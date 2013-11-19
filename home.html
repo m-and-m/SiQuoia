@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+ <head>
+ 	<title>HOME</title>
+	<script src="../js/source/jquery-v1.6.1.js" type="text/javascript"></script>	
+ </head>
+ <body>
+ 
+ <header>
+  <h1>SiQuoia</h1><hr>
+  
+  <nav>
+   <ul>
+    <li class="page_item_home current_page_item"><a href="home.html">Home</a></li>
+    <li class="page_item_sample"><a href="overview.html">Overview</a></li>
+    <li class="page_item_rule"><a href="rule.html">Rules</a></li>
+    <li class="page_item_create current_page_item"><a href="create_user.html">Create Account</a></li>    
+    <li class="page_item_findus"><a href="aboutus.html">About Us</a></li> 
+    <li class="page_item_maintenace"><a href="findus.html">Maintenance</a></li> 
+   </ul>
+  </nav>
+ </header>
+ 
+ <div class="content">
+ <h2>Home</h2>
+  <hr>
+  <form action="create_user.html">
+    <fieldset>
+    	<legend>New User</legend>
+    	<input type="hidden" name="user_type" value="new_user" />
+    	<input type="submit" value="CREATE"/>
+    </fieldset>
+  </form>
+  <br />
+  <form action="verify_user.php">
+    <fieldset>
+    	<legend>Returning User</legend>
+    	<label>Email*<input type="text" name="remail"/></label><br /><br />
+    	<label>Password*<input type="text" name="rpass"/></label><br /><br />
+    	<input type="hidden" name="user_type" value="returning_user" />
+    	<input type="submit" value="LOGIN"/>
+    </fieldset>
+  </form>
+ </div>
+
+ <footer>
+  <hr>
+  <section>
+   <div>created by SQ4</div>
+  </section>
+ </footer> 
+ </body>
+ 
+</html>
