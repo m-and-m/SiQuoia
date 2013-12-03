@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+ <head>
+ 	<title>LOGIN</title>
+	<script src="../js/source/jquery-1.10.2.min.js" type="text/javascript"></script>	
+	<script src="../js/check_empty.js" type="text/javascript"></script>
+ </head>
+ <body>
+ 
+ <header>
+  <h1>SiQuoia</h1><hr>  
+ </header>
+ 
+ <div class="content">
+ <h2>LOGIN</h2>
+  <hr>
+  <form action="../php/register.php" id="register_form" method="post">
+    <fieldset>
+    	<legend>New User</legend>
+    	<label>Email*<input type="text" name="new_email" id="new_email"/></label><br /><br />
+    	<label>Screen Name*<input type="text" name="new_name" id="new_name"/></label><br /><br />
+    	<label>Password*<input type="text" autocomplete="off" name="new_pass" id="new_pass"/></label><br /><br />
+    	<label>Referred By<input type="text" name="referred" value="Enter email address"/></label><br /><br />
+    	<input type="submit" value="REGISTER"/>
+    </fieldset>
+  </form>
+  <br />
+  <form action="../php/validate_user.php" id="login_form" method="post">
+    <fieldset>
+    	<legend>Returning User</legend>
+    	<label>Email*<input type="text" name="rn_email" id="rn_email"/></label><br /><br />
+    	<label>Password*<input type="text" autocomplete="off" name="rn_pass" id="rn_pass"/></label><br /><br />
+    	<input type="submit" value="LOGIN"/>
+    </fieldset>
+  </form>
+ </div>
+
+ <footer>
+  <hr>
+  <section>
+   <div>created by SQ4</div>
+  </section>
+ </footer> 
+ </body>
+ 
+</html>
