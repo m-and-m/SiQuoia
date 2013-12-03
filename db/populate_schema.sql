@@ -78,6 +78,7 @@ CREATE TABLE subject (
 CREATE TABLE packet (
 	packetid VARCHAR(7) NOT NULL,
 	p_name VARCHAR(30) NOT NULL,
+	cost INT,
 	questionid_set TEXT,
 	PRIMARY KEY(packetid)
 );

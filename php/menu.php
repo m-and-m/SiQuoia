@@ -6,9 +6,9 @@ session_start();
 $userid = $_SESSION["userid"];
 
 // DELETE ME
-print("session id: ".$userid."<br/>");
+//print("session id: ".$userid."<br/>");
 
-$query0  = "select isadmin, savedquiz, usercredit from user_profile p, user_data d where p.userid=d.userid and p.userid='".$userid."'";
+$query0  = "select username, isadmin, savedquiz, usercredit from user_profile p, user_data d where p.userid=d.userid and p.userid='".$userid."'";
 $result0 = pdo_query($query0);    
 $user_item  = $result0->fetch();
 //DELETE ME
@@ -26,7 +26,7 @@ $user_item  = $result0->fetch();
  <body>
  
  <header>
-  <h1>SiQuoia</h1><hr>  
+  <h1>SiQuoia - <?php print($user_item["username"])?>'s page</h1><hr>  
  </header>
  
  <div class="content">

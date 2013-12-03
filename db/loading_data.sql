@@ -155,5 +155,13 @@ INSERT INTO question VALUES (
 INSERT INTO packet VALUES (
 "p1", "trial", "{'idset':[{'id':'q0'},{'id':'q1'},{'id':'q2'},{'id':'q3'},{'id':'q4'},{'id':'q5'},{'id':'q6'},{'id':'q7'},{'id':'q8'},{'id':'q9'},{'id':'q10'},{'id':'q11'},{'id':'q12'},{'id':'q13'},{'id':'q14'},{'id':'q15'},{'id':'q16'},{'id':'q17'},{'id':'q18'},{'id':'q19'}]}");
 
-
-
+INSERT INTO subject VALUES ("s0","science");
+INSERT INTO subject VALUES ("s1","sports");
+INSERT INTO topic VALUES ("t0","math","s0");
+INSERT INTO topic VALUES ("t1","football","s1");
+INSERT INTO topic VALUES ("t2","basketball","s1");
+INSERT INTO subtopic VALUES ("sub0","algebra","t0");
+INSERT INTO subtopic VALUES ("sub1","nfl football","t1");
+INSERT INTO subtopic VALUES ("sub2","ncaa football","t1");
+INSERT INTO subtopic VALUES ("sub3","nba basketball","t2");
+INSERT INTO subtopic VALUES ("sub4","ncaa basketball","t2");
