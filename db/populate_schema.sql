@@ -36,11 +36,13 @@ CREATE TABLE user_data (
 );
 
 /* NOTE (question):*/ 
-/*qid: q999999 (up to 10M)*/ 
+/*qid: 001 - 999 */
+/*packetid: together with qid makes primary key */
 /*correct_count & use_count are used for q.ranking*/
 /*	FOREIGN KEY(subtopicid) REFERENCES subtopic(subtopicid) ON DELETE CASCADE*/
 CREATE TABLE question (
 	qid VARCHAR(7) NOT NULL,
+	packetid VARCHAR(7) NOT NULL,
 	question TEXT NOT NULL,
 	answer1 TEXT NOT NULL,
 	answer2 TEXT NOT NULL,
@@ -50,7 +52,8 @@ CREATE TABLE question (
 	subtopicid VARCHAR(7),
 	correct_count INT,
 	use_count INT,
-	PRIMARY KEY(qid)
+	PRIMARY KEY(qid, packetid)
+	FOREIGN KEY(packetid) REFERENCES packet(packetid) ON DELETE CASCADE
 );
 
 /*FOREIGN KEY(topicid) REFERENCES topic(topicid) ON DELETE CASCADE*/
