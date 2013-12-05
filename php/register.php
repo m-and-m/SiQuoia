@@ -41,7 +41,7 @@ if($email_exist == true) {
 		print ("<p>The email must be empty or already taken.<br/></p>");
 		print ("<a href='../html/login.html'>Go Back Login Page</a>");	
 	/* ...or
-//DELETE ME
+//DELETEME
 		// By navigating another page
 		header("Location: not_verified_email.php");
 	    exit;
@@ -57,12 +57,12 @@ if($email_exist == true) {
     $max_id  = $result1->fetch();
     $id_numpart = substr($max_id[0], 4);
     $curr_id = "user" . ($id_numpart + 1);
-//DELETE ME
+//DELETEME
 //	print("old: " . $id_numpart . " current: " . $curr_id."\n");
 
 	// Bcrypt
 	$bcrypt_pass = password_hash($new_pass, PASSWORD_BCRYPT, $options);
-//DELETE ME
+//DELETEME
 //	print("hush pass: ".$bcrypt_pass."\n");
 	
 	// Check referred_by
@@ -74,7 +74,7 @@ if($email_exist == true) {
 	if($match_email == true) {
 		$referringid = $match_email[0];
 	} 
-//DELETE ME
+//DELETEME
 	//print($referringid."\n");
 
 	// Create data set for user_profile

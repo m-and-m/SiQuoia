@@ -5,13 +5,13 @@ server_connect();
 session_start();
 $userid = $_SESSION["userid"];
 
-// DELETE ME
-print("session id: ".$userid."<br/>");
+// DELETEME
+//print("session id: ".$userid."<br/>");
 /*
 $query0  = "select isadmin, savedquiz, usercredit from user_profile p, user_data d where p.userid=d.userid and p.userid='".$userid."'";
 $result0 = pdo_query($query0);    
 $user_item  = $result0->fetch();
-//DELETE ME
+//DELETEME
 //var_dump($user_item);
 */
 ?>

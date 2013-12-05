@@ -5,13 +5,13 @@ server_connect();
 session_start();
 $userid = $_SESSION["userid"];
 
-// DELETE ME
+// DELETEME
 //print("session id: ".$userid."<br/>");
 
 $query0  = "select username, isadmin, savedquiz, usercredit from user_profile p, user_data d where p.userid=d.userid and p.userid='".$userid."'";
 $result0 = pdo_query($query0);    
 $user_item  = $result0->fetch();
-//DELETE ME
+//DELETEME
 //var_dump($user_item);
 ?>
 
@@ -44,13 +44,6 @@ if($user_item["savedquiz"] != null) {
 	// the user has a saved quiz
 	print("<div id='resume_quiz'><a href='resume_quiz.php'>Resume Quiz</a></div>");
 }
-/*
-// Check if the users credit is 0 or below a  certain amount
-if($user_item["usercredit"] <= 0) {
-	// the user doesn't have any money to purchase a new quiz / new user
-	print("<div id='trial_quiz'><a href='trial_quiz.php'>Trial Quiz</a></div>");
-}
-*/
 ?>
 	<div id="choose_quiz"><a href='choose_quiz.php?<?php SID ?>'>Choose Quiz</a></div>
 	<div id="submit_question"><a href='submit_question.php?<?php SID ?>'>Submit A Question</a></div>

@@ -1,11 +1,11 @@
-DROP TABLE user_data;
-DROP TABLE user_profile;
-DROP TABLE question;
-DROP TABLE subtopic;
-DROP TABLE topic;
-DROP TABLE subject;
-DROP TABLE packet;
-DROP TABLE purchase;
+DROP TABLE IF EXISTS user_data;
+DROP TABLE IF EXISTS user_profile;
+DROP TABLE IF EXISTS question;
+DROP TABLE IF EXISTS subtopic;
+DROP TABLE IF EXISTS topic;
+DROP TABLE IF EXISTS subject;
+DROP TABLE IF EXISTS packet;
+DROP TABLE IF EXISTS purchase;
 
 /*NOTE (user_profile):*/
 /*userid: user999999 (up to 10M)*/

@@ -5,26 +5,37 @@ server_connect();
 session_start();
 $userid = $_SESSION["userid"];
 
-// DELETE ME
+// DELETEME
 //print("session id: ".$userid."<br/>");
 
+// Get user information
 $query0  = "select username, userpoint, usedtrial from user_profile p, user_data d where p.userid=d.userid and p.userid='".$userid."'";
 $result0 = pdo_query($query0);    
 $user_item  = $result0->fetch();
-//DELETE ME
-//var_dump($user_item);
 
+// Get subject information
 $query1  = "select * from subject";
 $result1 = pdo_query($query1);    
 $subject_item  = $result1->fetchAll(PDO::FETCH_ASSOC);
+// Remove the 1st row of 2d array
+array_shift($subject_item);
 
+//DELETEME
+//var_dump($subject_item);
+
+// Get topic information
 $query2  = "select topicid, t_name from topic";
 $result2 = pdo_query($query2);    
 $topic_item  = $result2->fetchAll(PDO::FETCH_ASSOC);
+// Remove the 1st row of 2d array
+array_shift($topic_item);
 
+// Get subtopic information
 $query3  = "select subtopicid, st_name from subtopic";
 $result3 = pdo_query($query3);    
 $subtopic_item  = $result3->fetchAll(PDO::FETCH_ASSOC);
+// Remove the 1st row of 2d array
+array_shift($subtopic_item);
 
 ?>
 
@@ -46,20 +57,46 @@ $subtopic_item  = $result3->fetchAll(PDO::FETCH_ASSOC);
  <h2>CHOOSE A QUIZ</h2>
   <hr>
 <?php
-// Show the total point
+	// Show the total point
 	print("Your current point: ".$user_item["userpoint"]." points<br/><br/>");
 
-  /*Drop Down option form with option groups
-    Pick one of the categories (trial, subject, topic, subtopic)*/
-  print("<form action='start_quiz.php' method='post'>");
+	//Drop Down option from packet list
+	print("<div id='static_question'><p>STATIC(?) QUIZ</p><form action='start_quiz.php' method='post'>");
 ?>
-    <select name="question_select" size="20">
+    <select name="category_select" size="10">
 		<?php    
 			// Trial quiz
 			if(!$user_item["usedtrial"]) {
 				print("<optgroup label='TRIAL'>");
-				print("<option value='trial;static'>FRIENDS(TV)</option>");
-				print("<option value='trial;random'>RANDOM QUIZ</option></optgroup>");
+				print("<option value='st0'>FRIENDS(TV)</option>");
+			}
+		?>
+		<optgroup label="ALL">
+		<?php
+		/*
+			foreach($subject_item as $row) {
+				print("<option value='".$row["subjectid"]."'>".strtoupper($row["s_name"])."</option>");
+			}
+		*/
+		?>
+		</optgroup>		
+		</optgroup>
+    </select>
+    <input type="submit" value="START"/>
+  </form>
+  </div>	
+<br/>
+
+  <!--Drop Down option from packet list-->
+  <div id="random_question">
+  <p>RANDOM QUIZ</p>
+  <form action='start_quiz.php' method='post'>
+    <select name="category_select" size="20">
+		<?php    
+			// Trial quiz
+			if(!$user_item["usedtrial"]) {
+				print("<optgroup label='TRIAL'>");
+				print("<option value='all'>RANDOM QUIZ</option></optgroup>");
 			}
 		?>
 		<optgroup label="SUBJECT">
@@ -91,7 +128,7 @@ $subtopic_item  = $result3->fetchAll(PDO::FETCH_ASSOC);
 		
     </select>
     <input type="submit" value="START"/>
-  </form>	
+  </form></div>
 <br />
 	<div id="menu"><a href='menu.php'>Menu</a></div>
 	<div id="logout"><a href='logout.php'>Logout</a></div> <!--COMPLETE-->

@@ -14,7 +14,7 @@ $hush_pass = $pass_exist[0];
 
 $rslt = password_verify($rn_pass, $hush_pass);
 
-//DELETE ME
+//DELETEME
 //print("rn_pass: ".$rn_pass.", hush: ".$hush_pass.", result: ".($rslt == 1)."\n");
 
 // Verify the email and password
