@@ -68,7 +68,7 @@ array_shift($subtopic_item);
 			// Trial quiz
 			if(!$user_item["usedtrial"]) {
 				print("<optgroup label='TRIAL'>");
-				print("<option value='st0'>FRIENDS(TV)</option>");
+				print("<option value='p0'>FRIENDS(TV)</option>");
 			}
 		?>
 		<optgroup label="ALL">
@@ -82,6 +82,7 @@ array_shift($subtopic_item);
 		</optgroup>		
 		</optgroup>
     </select>
+    <input type="hidden" name="quiz_type" value="static_quiz"/>    
     <input type="submit" value="START"/>
   </form>
   </div>	
@@ -127,6 +128,7 @@ array_shift($subtopic_item);
 		</optgroup>
 		
     </select>
+    <input type="hidden" name="quiz_type" value="random_quiz"/>        
     <input type="submit" value="START"/>
   </form></div>
 <br />

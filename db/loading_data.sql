@@ -13,38 +13,38 @@ INSERT INTO user_data VALUES ("user4",100,0,"",0);
 
 INSERT INTO question VALUES (
 'q0','What is Monica\'s biggest pet peeve?',
-'1) Animals dressed as humans.',
-'2) Humans dressed like animals.',
-'3) Not using a coaster.',
-'4) Not being the best.',
+'Animals dressed as humans.',
+'Humans dressed like animals.',
+'Not using a coaster.',
+'Not being the best.',
 1,'st0',0,0);
 INSERT INTO question VALUES (
 'q1','According to Chandler, what phenomenon scares the bejesus out of him?',
-'1) Talking dogs.',
-'2) Michael Flatley, Lord of the Dance.',
-'3) Thanksgiving.',
-'4) Christmas',
+'Talking dogs.',
+'Michael Flatley, Lord of the Dance.',
+'Thanksgiving.',
+'Christmas',
 2,'st0',0,0);
 INSERT INTO question VALUES (
 'q2','Every week the TV Guide comes to Chandler and Joey\'s apartment. What name appears on the address label?',
-'1) Ms. Chanandler Bong',
-'2) Chandler Bing',
-'3) Joey Tribianni',
-'4) Ms. Joie Tribanini',
+'Ms. Chanandler Bong',
+'Chandler Bing',
+'Joey Tribianni',
+'Ms. Joie Tribanini',
 1,'st0',0,0);
 INSERT INTO question VALUES (
 'q3','What are the names of Rachel\'s sisters?',
-'1) Emma and Erica',
-'2) Phoebe and Monica',
-'3) Jill and Amy',
-'4) Carol and Susan',
+'Emma and Erica',
+'Phoebe and Monica',
+'Jill and Amy',
+'Carol and Susan',
 3,'st0',0,0);
 INSERT INTO question VALUES (
 'q4','Monica and Ross had a grandmother who died. What was that grandmother\'s name?',
-'1) Agnes',
-'2) Judy',
-'3) Amy',
-'4) Althea',
+'Agnes',
+'Judy',
+'Amy',
+'Althea',
 4,'st0',0,0);
 INSERT INTO question VALUES (
 'q5','What is the name of Chandler\'s father\'s Las Vegas all-male burlesque?',
@@ -62,17 +62,17 @@ INSERT INTO question VALUES (
 3,'st0',0,0);
 INSERT INTO question VALUES (
 'q7','Rachel Claims this is her favorite movie?',
-'1) Dangerous Liasons',
-'2) Pretty in Pink',
-'3) Weekend at Bernie''s',
-'4) Breakfast at Tiffany''s',
+'Dangerous Liasons',
+'Pretty in Pink',
+'Weekend at Bernie''s',
+'Breakfast at Tiffany''s',
 1,'st0',0,0);
 INSERT INTO question VALUES (
 'q8','Rachel''s ACTUAL favorite movie is?',
-'1) Dangerous Liasons',
-'2) Pretty in Pink',
-'3) Weekend at Bernie''s',
-'4) Breakfast at Tiffany''s',
+'Dangerous Liasons',
+'Pretty in Pink',
+'Weekend at Bernie''s',
+'Breakfast at Tiffany''s',
 3,'st0',0,0);
 INSERT INTO question VALUES (
 'q9','In what part of her body did Monica get a pencil stuck at age 14?',
@@ -83,31 +83,31 @@ INSERT INTO question VALUES (
 3,'st0',0,0);
 INSERT INTO question VALUES (
 'q10','How many children does Ross have?',
-'1) One',
-'2) Two',
-'3) Three',
-'4) Zero',
+'One',
+'Two',
+'Three',
+'Zero',
 2,'st0',0,0);
 INSERT INTO question VALUES (
 'q11','What is Joey\'s favorite food?',
-'1) Spaghetti.',
-'2) Sandwiches.',
-'3) Steak.',
-'4) All of the above.',
+'Spaghetti.',
+'Sandwiches.',
+'Steak.',
+'All of the above.',
 2,'st0',0,0);
 INSERT INTO question VALUES (
 'q12','Chandler was how old when he first touched a girl\'s breast?',
-'1) Seventeen.',
-'2) Eighteen.',
-'3) Nineteen.',
-'4) Twenty.',
+'Seventeen.',
+'Eighteen.',
+'Nineteen.',
+'Twenty.',
 3,'st0',0,0);
 INSERT INTO question VALUES (
 'q13','Joey had an imaginary childhood friend. What was his name and profession?',
-'1) Maurice, Space Cowboy.',
-'2) Dr. Drake Ramoray, Neurosurgeon.',
-'3) Dr. Hans Ramoray, Evil Twin.',
-'4) Hugsy, Penguin Pal.',
+'Maurice, Space Cowboy.',
+'Dr. Drake Ramoray, Neurosurgeon.',
+'Dr. Hans Ramoray, Evil Twin.',
+'Hugsy, Penguin Pal.',
 1,'st0',0,0);
 INSERT INTO question VALUES (
 'q14','Before the coffee shop became Central Perk, what did the establishment did it use to be?',
@@ -118,24 +118,24 @@ INSERT INTO question VALUES (
 2,'st0',0,0);
 INSERT INTO question VALUES (
 'q15','How many girls has Ross married?',
-'1) One',
-'2) Two',
-'3) Three',
-'4) Four',
+'One',
+'Two',
+'Three',
+'Four',
 3,'st0',0,0);
 INSERT INTO question VALUES (
 'q16','Who is Princess Consuela Bananahammock',
-'1) Phoebe Buffay',
-'2) Regina Phalange',
-'3) Emily Waltham',
-'4) Melissa Warburton',
+'Phoebe Buffay',
+'Regina Phalange',
+'Emily Waltham',
+'Melissa Warburton',
 1,'st0',0,0);
 INSERT INTO question VALUES (
 'q17','Monica Categorizes her towels. How many categories are there?',
-'1) Eleven.',
-'2) Ten.',
-'3) Three.',
-'4) Two.',
+'Eleven.',
+'Ten.',
+'Three.',
+'Two.',
 1,'st0',0,0);
 INSERT INTO question VALUES (
 'q18','What is the name of Ross''s monkey?',
@@ -146,16 +146,19 @@ INSERT INTO question VALUES (
 2,'st0',0,0);
 INSERT INTO question VALUES (
 'q19','Joey has an animal whose name is Pat. What type of animal is it?',
-'1) the dog',
-'2) the cat',
-'3) the monkey',
-'4) the penguin',
+'the dog',
+'the cat',
+'the monkey',
+'the penguin',
 1,'st0',0,0);
 
 INSERT INTO packet VALUES (
 "p1", "trial;static", "[{\"id\":\"q0\",\"answered\":\"0\"},{\"id\":\"q1\",\"answered\":\"0\"},{\"id\":\"q2\",\"answered\":\"0\"},{\"id\":\"q3\",\"answered\":\"0\"},{\"id\":\"q4\",\"answered\":\"0\"},{\"id\":\"q5\",\"answered\":\"0\"},{\"id\":\"q6\",\"answered\":\"0\"},{\"id\":\"q7\",\"answered\":\"0\"},{\"id\":\"q8\",\"answered\":\"0\"},{\"id\":\"q9\",\"answered\":\"0\"},{\"id\":\"q10\",\"answered\":\"0\"},{\"id\":\"q11\",\"answered\":\"0\"},{\"id\":\"q12\",\"answered\":\"0\"},{\"id\":\"q13\",\"answered\":\"0\"},{\"id\":\"q14\",\"answered\":\"0\"},{\"id\":\"q15\",\"answered\":\"0\"},{\"id\":\"q16\",\"answered\":\"0\"},{\"id\":\"q17\",\"answered\":\"0\"},{\"id\":\"q18\",\"answered\":\"0\"},{\"id\":\"q19\",\"answered\":\"0\"}]",
 0);
 
+/* 
+"[\"q0\", \"q1\", \"q2\", \"q3\", \"q4\", \"q1\", \"q1\", \"q1\"]"
+*/
 INSERT INTO subject VALUES ("s0","trial");
 INSERT INTO subject VALUES ("s1","sports");
 INSERT INTO subject VALUES ("s2","science");

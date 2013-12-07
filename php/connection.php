@@ -47,4 +47,9 @@ function pdo_rollback(){
 	$pdo->rollBack();
 } // pdo_rollback
 
+function pdo_errorInfo(){
+	GLOBAL $pdo;
+	$pdo->errorInfo();
+} // pdo_rollback
+
 ?>

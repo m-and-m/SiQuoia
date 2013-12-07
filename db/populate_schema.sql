@@ -18,8 +18,6 @@ CREATE TABLE user_profile (
 	isadmin  TINYINT(1) NOT NULL,  
 	userpass TEXT NOT NULL,
 	introducedby VARCHAR(10),
-	twitter TEXT, 
-	facebook TEXT,
 	PRIMARY KEY(userid)
 );
 
@@ -42,6 +40,7 @@ CREATE TABLE user_data (
 CREATE TABLE question (
 	qid VARCHAR(7) NOT NULL,
 	question TEXT NOT NULL,
+	media TEXT NOT NULL,
 	answer1 TEXT NOT NULL,
 	answer2 TEXT NOT NULL,
 	answer3 TEXT NOT NULL,
@@ -50,6 +49,8 @@ CREATE TABLE question (
 	subtopicid VARCHAR(7),
 	correct_count INT,
 	use_count INT,
+	submitedby VARCHAR(7),
+	evaluatedby VARCHAR(7),
 	PRIMARY KEY(qid)
 );
 
@@ -78,14 +79,25 @@ CREATE TABLE subject (
 CREATE TABLE packet (
 	packetid VARCHAR(7) NOT NULL,
 	p_name VARCHAR(30) NOT NULL,
-	cost INT,
+	branded VARCHAR(10),
 	questionid_set TEXT,
 	PRIMARY KEY(packetid)
 );
 
+/*
+purchase_type:
+MEMOR - memorabilia  
+SUBJE - subject
+TOPIC - topic
+SUBTO - subtopic
+*/
 CREATE TABLE purchase (
+	purchaseid VARCHAR(7) NOT NULL,
 	userid VARCHAR(7) NOT NULL,
-	packetid VARCHAR(7) NOT NULL,
+	packetid VARCHAR(7),
+	purchase_type VARCHAR(5) NOT NULL,  
 	cost INT,
-	PRIMARY KEY(userid, packetid)
+	purchased_date DATE NOT NULL,
+	PRIMARY KEY(purchaseid),
+	FOREIGN KEY(userid) REFERENCES user_profile(userid) ON DELETE CASCADE
 );
