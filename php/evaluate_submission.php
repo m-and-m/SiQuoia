@@ -16,7 +16,7 @@ $answer4 = isset($_REQUEST["answer4"]) ? $_REQUEST["answer4"] : "";;
 $correct_answer = isset($_REQUEST["correct_answer"]) ? $_REQUEST["correct_answer"] : "";
 
 //DELETME
-print($text_question.", ".$answer1.", ".$answer2.", ".$answer3.", ".$answer4.", ".$correct_answer."<br/>");
+//print($text_question.", ".$answer1.", ".$answer2.", ".$answer3.", ".$answer4.", ".$correct_answer."<br/>");
 
 if(($text_question == "" )|| ($answer1 == "") || ($answer2 == "" ) ||
    ($answer3 == "" ) || ($answer4 == "" ) || ($correct_answer == "" )) {
@@ -45,7 +45,7 @@ $file_error_codes = array(
     6=>"Missing a temporary folder"
 );
 
-dump_array_pretty($_FILES);
+//dump_array_pretty($_FILES);
 ?>
 
 
@@ -117,15 +117,10 @@ if (isset($_FILES[$file_field]) && isset($_FILES[$file_field]["tmp_name"]) && is
 }
 
 // 3) insert into question. LEAVE subtopicid as NULL and ADD submitedby
-/*    NEED TO FIX get max qid first
+
+	$base = (isset($base)) ? $base : "";
 	$query2  = "INSERT INTO question VALUES ('".
 				$new_qid."','".$text_question."','".$base."','".
-				$answer1."','".$answer2."','".$answer3."','".$answer4."','".
-				$correct_answer."',null,0,0,'".$userid."',null)";
-*/
-	$base = (isset($base)) ? $base : "";
-/*
-	$query2  = "INSERT INTO question VALUES ('q100','".$text_question."','".$base."','".
 				$answer1."','".$answer2."','".$answer3."','".$answer4."','".
 				$correct_answer."',null,0,0,'".$userid."',null)";
 
@@ -134,8 +129,11 @@ if (isset($_FILES[$file_field]) && isset($_FILES[$file_field]["tmp_name"]) && is
 	if($result2 == false) {
         print("Failed to create new question: " . pdo_errorInfo() . "<br />");
 		pdo_rollback();
+	} else {
+		print("Your submission was successfully sent.<br/>".
+			"After your question is accepted, you will see the new score.<br/><br/>");
 	}
-    */
+
     print("<a href='submit_question.php'>Back To Submit A Quiz</a>");
 
   ?>

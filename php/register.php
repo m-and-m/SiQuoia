@@ -45,7 +45,12 @@ if($email_exist == true) {
 } else {
 	// start transaction 
 	pdo_transactionstart();
-	
+
+	// Fetch the maximum value of the question id
+	$table_name = "user_profile";
+	$curr_id = get_max_id($table_name);
+
+/*	
 	// Fetch the maximum value of the user id
     $query1  = "select max(userid) from user_profile";
     $result1 = pdo_query($query1);
@@ -56,7 +61,7 @@ if($email_exist == true) {
     $curr_id = "user" . ($id_numpart + 1);
 //DELETEME
 //	print("old: " . $id_numpart . " current: " . $curr_id."\n");
-
+*/
 	// Bcrypt
 	$bcrypt_pass = password_hash($new_pass, PASSWORD_BCRYPT, $options);
 //DELETEME

@@ -122,21 +122,23 @@ function get_max_id($table_name) {
 	if(strcmp($table_name, "question") == 0) {
 		$idname = "qid";
 		// Number of char before the numeric value
-		$identifier = 2; 
+		$identifier_count = 2; 
+		$identifier = "q";
 	} elseif(strcmp($table_name, "user_profile") == 0) {
 		$idname = "userid";
 		// Number of char before the numeric value
-		$identifier = 5; 
+		$identifier_count = 5; 
+		$identifier = "user";
 	}
 
     $query1  = "select max(qidint+0) as max from ( SELECT ".$idname.
-    			", SUBSTRING(".$idname.", ".$identifier.", 10) as qidint from ".$table_name.") as tmptable";
+    			", SUBSTRING(".$idname.", ".$identifier_count.", 10) as qidint from ".$table_name.") as tmptable";
     $result1 = pdo_query($query1);
     $max_qid  = $result1->fetch();
     $id_numpart = $max_qid["max"];
 
-    $curr_qid = "q" . ($id_numpart);
-    $new_qid = "q" . ($id_numpart + 1);
+    $curr_qid = $identifier.$id_numpart;
+    $new_qid = $identifier.($id_numpart+1);
 
 //DELETEME
 	print("cur: ".$curr_qid.", new: ".$new_qid."<br/>");
