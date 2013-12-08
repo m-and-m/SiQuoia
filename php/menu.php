@@ -4,13 +4,12 @@ server_connect();
 
 session_start();
 $userid = $_SESSION["userid"];
+$username = $_SESSION["username"];
 
-// DELETEME
-//print("session id: ".$userid."<br/>");
-
-$query0  = "select username, isadmin, savedquiz, usercredit from user_profile p, user_data d where p.userid=d.userid and p.userid='".$userid."'";
+$query0  = "select isadmin, savedquiz, usercredit from user_profile p, user_data d where p.userid=d.userid and p.userid='".$userid."'";
 $result0 = pdo_query($query0);    
 $user_item  = $result0->fetch();
+
 //DELETEME
 //var_dump($user_item);
 ?>
@@ -26,7 +25,9 @@ $user_item  = $result0->fetch();
  <body>
  
  <header>
-  <h1>SiQuoia - <?php print($user_item["username"])?>'s page</h1><hr>  
+<!--  <h1>SiQuoia - <?php print($user_item["username"])?>'s page</h1><hr>  -->
+  <h1>SiQuoia - <?php print($username); ?>'s page</h1><hr>  
+
  </header>
  
  <div class="content">

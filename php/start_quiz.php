@@ -5,13 +5,11 @@ server_connect();
 
 session_start();
 $userid = $_SESSION["userid"];
-
 $quiztype = $_REQUEST["quiz_type"];
-
-// Get user information
-$query0  = "select username from user_profile where userid='".$userid."'";
-$result0 = pdo_query($query0);    
-$user_item  = $result0->fetch();
+$_SESSION["quizid"] = $_REQUEST["category_select"];
+$quizid = $_SESSION["quizid"];
+//DELETEME
+print("QUIZ TYPE: ".$quiztype."<br/>");
 
 if(strcmp($quiztype, "static_quiz") == 0) {
 
@@ -19,28 +17,41 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 	
 	print("'staic quiz' is selected.<br/>");
 // 1) get question set	
-	$query0  = "select questionid_set from packet where packetid = '".$selected_category."'";
+	$query0  = "select questionid_set from packet where packetid = '".$quizid."'";
 	$result0 = pdo_query($query0);    
 	$q_item  = $result0->fetch();
-	
-// DELETEME
-	
+		
 	$questionidset = json_decode($q_item["questionid_set"], true);
 
-	//var_dump($q_item["questionid_set"]);
+// DELETEME
+/*	var_dump($questionidset);
+
 	foreach($questionidset as $row) {
 		var_dump($row);
 		print("<br/>");
 	}
-	
-	
-// 2) put the quiz set into the user's 'savedquiz'
+*/
+	// Making complete json including "lastquestion" and "quizset"
+	$quizset = array();
+	foreach($questionidset as $row) {
+		array_push($quizset, array("id"=> $row, "correct" => false));
+	}
+	$combine = array("lastindex" => -1, "quiz_set" => $quizset);
+	$combine_json = json_encode($combine);
+//DELETME
+/*
+	echo "<br /><pre>";
+	echo json_encode($combine, JSON_PRETTY_PRINT);
+	echo "</pre><br />";
+*/
+// 2) put the quiz set (json form) into the user's 'savedquiz'
 	pdo_transactionstart();
 	
 	$stmt = pdo_prepare("update user_data set savedquiz = ? where userid = ?");
-	$stmt->bindParam(1, $q_item["questionid_set"]);
+	$stmt->bindParam(1, $combine_json);
 	$stmt->bindParam(2, $userid);
 	$result1 = $stmt->execute();
+
 	pdo_commit();
 
 	if($result1 == false) {
@@ -54,9 +65,7 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 		header("Location: take_quiz.php");
 	    exit;
 */
-	print("<a href='take_quiz.php?packetid=".$selected_category."'>Take A Quiz</a>");
-
-// @) fix format for questionid_set (delete "answered", generate it automatically)
+	print("<a href='take_quiz.php'>Take A Quiz</a>");
 
 } elseif(strcmp($quiztype, "random_quiz") == 0) {
 	print("'random quiz' is selected.<br/>");
@@ -96,39 +105,6 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 } else {
 	print("something wrong at selecting quiz type.<br/>");
 }
-?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
- <head>
- 	<title>BEFORE TAKE A QUIZ</title>
-	<script src="../js/source/jquery-1.10.2.min.js" type="text/javascript"></script>	
-	<script src="../js/check_empty.js" type="text/javascript"></script>
- </head>
- <body>
- 
- <header>
-  <h1>SiQuoia - <?php print($user_item["username"])?>'s page</h1><hr>  
- </header>
- 
- <div class="content">
-  <h2>BEFORE TAKE A QUIZ</h2>
-  <hr>
-	<div id="menu"><a href='menu.php'>Menu</a></div>
-	<div id="logout"><a href='logout.php'>Logout</a></div> <!--COMPLETE-->
-
- </div>
-
- <footer>
-  <hr>
-  <section>
-   <div>created by SQ4</div>
-  </section>
- </footer> 
- </body>
- 
-</html>
-<?php
 server_disconnect();
 ?>

@@ -1,0 +1,12 @@
+SiQuoia Currency
+
+Initial SQ: 15
+
+Answer correct: 1 
+Answer incorrect: 0
+Introduce a friend: 10
+Submit a quiz: 5
+
+Subject packet: 15
+Topic packet: 10
+Subtopic packet: 5

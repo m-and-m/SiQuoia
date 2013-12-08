@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	//alert("hello");
-	$("#select_answer").submit("submit", verify_answer);
+//	$("#select_answer").submit("submit", verify_answer);
 
 /*
     $("#addTags").dropdownchecklist({

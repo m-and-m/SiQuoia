@@ -4,12 +4,10 @@ server_connect();
 
 session_start();
 $userid = $_SESSION["userid"];
-
-// DELETEME
-//print("session id: ".$userid."<br/>");
+$username = $_SESSION["username"];
 
 // Get user information
-$query0  = "select username, userpoint, usedtrial from user_profile p, user_data d where p.userid=d.userid and p.userid='".$userid."'";
+$query0  = "select userpoint, usedtrial from user_profile p, user_data d where p.userid=d.userid and p.userid='".$userid."'";
 $result0 = pdo_query($query0);    
 $user_item  = $result0->fetch();
 
@@ -50,7 +48,7 @@ array_shift($subtopic_item);
  <body>
  
  <header>
-  <h1>SiQuoia - <?php print($user_item["username"])?>'s page</h1><hr>  
+  <h1>SiQuoia - <?php print($username); ?>'s page</h1><hr>  
  </header>
  
  <div class="content">
@@ -68,7 +66,7 @@ array_shift($subtopic_item);
 			// Trial quiz
 			if(!$user_item["usedtrial"]) {
 				print("<optgroup label='TRIAL'>");
-				print("<option value='p0'>FRIENDS(TV)</option>");
+				print("<option value='p1'>FRIENDS(TV)</option>");
 			}
 		?>
 		<optgroup label="ALL">

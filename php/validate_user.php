@@ -27,14 +27,15 @@ if(($pass_exist == false) || ($rslt == null)) {
 } else { // Navigate a particular page 
 
 	// Fetch userid
-	$query1  = "select userid from user_profile where useremail='" . $rn_email. "'";
+	$query1  = "select userid, username from user_profile where useremail='" . $rn_email. "'";
 	$result1 = pdo_query($query1);
-	$userids = $result1->fetch();
-	$userid = $userids[0];
-
+	$user_info = $result1->fetch();
+	$userid = $user_info["userid"];
+	$username = $user_info["username"];
 	$_SESSION["userid"] = $userid;
+	$_SESSION["username"] = $username;
 
-	header("Location: menu.php?".SID);
+	header("Location: menu.php");
 	exit;
 }
 

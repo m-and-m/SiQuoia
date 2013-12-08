@@ -2,7 +2,6 @@
 include("connection.php");
 include("../skip/sesoning.php");
 server_connect();
-
 session_start();
 
 $new_email = isset($_REQUEST["new_email"]) ? $_REQUEST["new_email"] : "";
@@ -78,21 +77,21 @@ if($email_exist == true) {
 	//print($referringid."\n");
 
 	// Create data set for user_profile
-	$query3  = "INSERT INTO user_profile VALUES ('".$curr_id."','".$new_name."','".$new_email."',0,'".$bcrypt_pass."', '".$referringid."', '', '')";
+	$query3  = "INSERT INTO user_profile VALUES ('".$curr_id."','".$new_name."','".$new_email."',0,'".$bcrypt_pass."', '".$referringid."')";
     $result3 = pdo_query($query3);
 	
 	if($result3 == false) {
-        print("Failed to create new user account(user_profile): " . mysql_error() . "<br />");
+        print("Failed to create new user account(user_profile): " . pdo_errorInfo() . "<br />");
 		// rollback transaction
 		pdo_rollback();
 	}
 
 	// Create data set for user_data
-	$query4  = "INSERT INTO user_data VALUES ('".$curr_id."',100,0,'',0)";
+	$query4  = "INSERT INTO user_data VALUES ('".$curr_id."',15,0,'',0)";
     $result4 = pdo_query($query4);
 	
 	if($result4 == false) {
-        print("Failed to create new user account(user_data): " . mysql_error() . "<br />");
+        print("Failed to create new user account(user_data): " . pdo_errorInfo() . "<br />");
 		// rollback transaction
 		pdo_rollback();
 	}
@@ -101,9 +100,10 @@ if($email_exist == true) {
 	pdo_commit();
 	
 	$_SESSION["userid"] = $curr_id;
+	$_SESSION["username"] = $new_name;
 	
 	print "<p>The registration is successfully completed. Enjoy the game!<br/></p>";
-	print "<a href='menu.php?".SID."'>Play Game</a>";	
+	print "<a href='menu.php'>Play Game</a>";	
 	print "<br/><a href='logout.php'>Logout</a>";	
 	
 }
