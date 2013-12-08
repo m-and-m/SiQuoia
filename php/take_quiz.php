@@ -15,10 +15,10 @@ $previous_answer = isset($_REQUEST["rslt"]) ? $_REQUEST["rslt"] : null;
 // Get user's saved quiz
 $query0  = "select savedquiz from user_data where userid='".$userid."'";
 $result0 = pdo_query($query0);    
-$q_item = $result0->fetch();
+$user_item = $result0->fetch();
 
 // Decode the saved quiz from json into array
-$savedquiz = json_decode($q_item["savedquiz"], true);
+$savedquiz = json_decode($user_item["savedquiz"], true);
 $last_status = $savedquiz["lastindex"];
 $quiz_set = $savedquiz["quiz_set"];
 $total_question_count = count($quiz_set);
@@ -41,7 +41,7 @@ echo "</pre>";
 <html>
  <head>
  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
- 	<title></title>
+ 	<title>QUIZ</title>
 	<script src="../js/source/jquery-1.10.2.min.js" type="text/javascript"></script>	
  </head>
  <body>
@@ -79,15 +79,15 @@ if($load_count < $total_question_count) {
 	$curr_qid = $quiz_set[($load_count)]["id"];
 	$query1  = "select * from question where qid='".$curr_qid."'";
 	$result1 = pdo_query($query1);    
-	$q_item = $result1->fetch(PDO::FETCH_ASSOC);
+	$user_item = $result1->fetch(PDO::FETCH_ASSOC);
 
-	print("<div id='question_content'><p>".$q_item['question']."</p></div>");
+	print("<div id='question_content'><p>".$user_item['question']."</p></div>");
 
 	print("<div id='question_answer'><form action='verify_answer.php' id='select_answer' method='post'>");
-	print("<label><input type='radio' name='answer' value='1'/>&nbsp;".($q_item['answer1'])."</label><br/>");
-	print("<label><input type='radio' name='answer' value='2'/>&nbsp;".($q_item['answer2'])."</label><br/>");
-	print("<label><input type='radio' name='answer' value='3'/>&nbsp;".($q_item['answer3'])."</label><br/>");
-	print("<label><input type='radio' name='answer' value='4'/>&nbsp;".($q_item['answer4'])."</label><br/><br/>");
+	print("<label><input type='radio' name='answer' value='1'/>&nbsp;".($user_item['answer1'])."</label><br/>");
+	print("<label><input type='radio' name='answer' value='2'/>&nbsp;".($user_item['answer2'])."</label><br/>");
+	print("<label><input type='radio' name='answer' value='3'/>&nbsp;".($user_item['answer3'])."</label><br/>");
+	print("<label><input type='radio' name='answer' value='4'/>&nbsp;".($user_item['answer4'])."</label><br/><br/>");
 
 	print("<input type='hidden' name='load_count' value='".($load_count)."'/>");
 	print("<input type='hidden' name='curr_qid' value='".($curr_qid)."'/>");
@@ -95,7 +95,7 @@ if($load_count < $total_question_count) {
 
 //DELETME
 print("Current QID: ".$curr_qid."<br/>");
-print("correct answer: ".$q_item["correct_answer"]."<br/><br/>");
+print("correct answer: ".$user_item["correct_answer"]."<br/><br/>");
 
 	print("<div><a href='menu.php'>QUIT QUIZ</a></div></div>");
 
