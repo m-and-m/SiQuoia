@@ -37,7 +37,7 @@ $email_exist = $result0->fetch();
 if($email_exist == true) {
 	
 	// By showing this in pop window by JS
-		print ("<p>The email must be empty or already taken.<br/></p>");
+		print ("<p>The email is already taken.<br/></p>");
 		print ("<a href='../html/login.html'>Go Back Login Page</a>");	
 	/* ...or
 //DELETEME

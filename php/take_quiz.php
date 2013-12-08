@@ -24,11 +24,9 @@ $quiz_set = $savedquiz["quiz_set"];
 $total_question_count = count($quiz_set);
 
 
-
 //DELETEME
 	print("<br/>Page load count: ".$load_count."<br/>Packet id: ".$quizid.
 	  "<br/>Total # question: ".$total_question_count.
-//	  "<br/>Previouse qid: ".$previouse_qid.
 	  "<br/>Last status: ".$last_status."<br/>");
 
 echo "<pre><br/>";
@@ -103,6 +101,12 @@ print("correct answer: ".$user_item["correct_answer"]."<br/><br/>");
 
 	print("Question is done!!<br/>");
 	print("<a href='quiz_report.php'>Quiz Report</a><br/><br/>");
+
+	// Update usedtrial value to true
+	check_trial_used($userid, $quizid);
+
+	// Delete savedquiz if it exists
+	delete_savedquiz($user_item, $userid);	
 }	
 ?>
 	<div id="menu"><a href='menu.php'>Menu</a></div>

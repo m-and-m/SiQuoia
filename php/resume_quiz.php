@@ -10,9 +10,6 @@ $quizid = $_SESSION["quizid"];
 
 $previous_answer = isset($_REQUEST["rslt"]) ? $_REQUEST["rslt"] : null;
 
-//DELETE ME
-print("packetid: ".$quizid."<br/>");
-
 // Get user's saved quiz
 $query0  = "select savedquiz from user_data where userid='".$userid."'";
 $result0 = pdo_query($query0);    
@@ -97,8 +94,15 @@ print("correct answer: ".$user_item["correct_answer"]."<br/><br/>");
 } elseif($load_count == $total_question_count) {
 
 	print("Question is done!!<br/>");
-	print("<a href='quiz_report.php'>Quiz Report</a><br/><br/>");
-}	
+	print("<a href='quiz_report.php'>Quiz Report</a><br/><br/>");	
+
+	// Update usedtrial value to true
+	check_trial_used($userid, $quizid);
+
+	// Delete savedquiz if it exists
+	delete_savedquiz($user_item, $userid);
+}
+
 ?>
 	<br/>
 

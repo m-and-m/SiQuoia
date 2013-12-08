@@ -71,6 +71,7 @@ if($previous_answer != null) {
    		} 
 	}
 
+	// update savedquiz
 	$combine = array("lastindex" => $load_count, "quiz_set" => $quiz_set);
 	$combine_json = json_encode($combine);
 	

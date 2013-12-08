@@ -36,6 +36,7 @@ CREATE TABLE user_data (
 /* NOTE (question):*/ 
 /*qid: q999999 (up to 10M)*/ 
 /*correct_count & use_count are used for q.ranking*/
+/*evaluatedby - the value is either 'admin' or ''*/
 /*	FOREIGN KEY(subtopicid) REFERENCES subtopic(subtopicid) ON DELETE CASCADE*/
 CREATE TABLE question (
 	qid VARCHAR(7) NOT NULL,

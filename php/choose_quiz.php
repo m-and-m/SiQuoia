@@ -1,5 +1,7 @@
 <?php
 include("connection.php");
+include("mm_php_library.php");
+
 server_connect();
 
 session_start();
@@ -11,16 +13,8 @@ $query0  = "select userpoint, usedtrial, savedquiz from user_profile p, user_dat
 $result0 = pdo_query($query0);    
 $user_item  = $result0->fetch();
 
-// If the user has the savedquiz, delete it
-if($user_item["savedquiz"] != null) {
-	$query4  = "update user_data set savedquiz = null where userid='".$userid."'";
-	$result4 = pdo_query($query4); 
-
-	if($result4 == false) {
-		print("Failed to delete the savedquiz.<br/>");
-    }  
-}
-
+// Delete savedquiz if it exists
+delete_savedquiz($user_item, $userid);
 
 
 // Get subject information
@@ -66,13 +60,14 @@ array_shift($subtopic_item);
  <div class="content">
  <h2>CHOOSE A QUIZ</h2>
   <hr>
-<?php
-	// Show the total point
-	print("Your current point: ".$user_item["userpoint"]." points<br/><br/>");
+  
+  <!-- Show the total point -->
+  <p>Your current point: <?php print($user_item["userpoint"]); ?> points<br/><br/></p>
 
-	//Drop Down option from packet list
-	print("<div id='static_question'><p>FEATURED QUIZ</p><form action='start_quiz.php' method='post'>");
-?>
+    <!--Pre-existing question-->
+	<div id='static_question'>
+	<span>FEATURED QUIZ</span>
+	<form action='start_quiz.php' method='post'>
     <select name="category_select" size="10">
 		<?php    
 			// Trial quiz
@@ -97,10 +92,10 @@ array_shift($subtopic_item);
   </form>
   </div>	
 <br/>
-
-  <!--Drop Down option from packet list-->
+<br/>
+  <!--Random question-->
   <div id="random_question">
-  <p>RANDOM QUIZ</p>
+  <span>RANDOM QUIZ</span>
   <form action='start_quiz.php' method='post'>
     <select name="category_select" size="20">
 		<?php    
@@ -140,8 +135,20 @@ array_shift($subtopic_item);
     </select>
     <input type="hidden" name="quiz_type" value="random_quiz"/>        
     <input type="submit" value="START"/>
-  </form></div>
-<br />
+  </form>
+  </div>
+<br/>
+<br/>
+  <!--Branded Quiz-->
+  <div id="branded_question">
+  <span>BRANDED QUIZ</span>
+    <form action="verify_branded_code.php" id="register_form" method="post">
+
+    	<label>Promotion Code*&nbsp;<input type="text" name="b_code" id="b_code"/></label>
+    	<input type="submit" value="START"/>
+  </form>
+  </div>
+<br /><br/>
 	<div id="menu"><a href='menu.php'>Menu</a></div>
 	<div id="logout"><a href='logout.php'>Logout</a></div> <!--COMPLETE-->
 

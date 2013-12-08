@@ -138,14 +138,14 @@ INSERT INTO question VALUES (
 'the monkey',
 'the penguin',
 1,'st0',0,0,'','');
+UPDATE question SET evaluatedby = 'admin';
 
 INSERT INTO packet VALUES (
 "p1","trial","",
 "[\"q0\", \"q1\", \"q2\", \"q3\", \"q4\", \"q5\", \"q6\", \"q7\", \"q8\", \"q9\",\"q10\", \"q11\", \"q12\", \"q13\", \"q14\",\"q15\", \"q16\", \"q17\", \"q18\", \"q19\"]");
-/* 
-"[{\"id\":\"q0\",\"answered\":\"0\"},{\"id\":\"q1\",\"answered\":\"0\"},{\"id\":\"q2\",\"answered\":\"0\"},{\"id\":\"q3\",\"answered\":\"0\"},{\"id\":\"q4\",\"answered\":\"0\"},{\"id\":\"q5\",\"answered\":\"0\"},{\"id\":\"q6\",\"answered\":\"0\"},{\"id\":\"q7\",\"answered\":\"0\"},{\"id\":\"q8\",\"answered\":\"0\"},{\"id\":\"q9\",\"answered\":\"0\"},{\"id\":\"q10\",\"answered\":\"0\"},{\"id\":\"q11\",\"answered\":\"0\"},{\"id\":\"q12\",\"answered\":\"0\"},{\"id\":\"q13\",\"answered\":\"0\"},{\"id\":\"q14\",\"answered\":\"0\"},{\"id\":\"q15\",\"answered\":\"0\"},{\"id\":\"q16\",\"answered\":\"0\"},{\"id\":\"q17\",\"answered\":\"0\"},{\"id\":\"q18\",\"answered\":\"0\"},{\"id\":\"q19\",\"answered\":\"0\"}]"
-"[\"q0\", \"q1\", \"q2\", \"q3\", \"q4\", \"q5\", \"q6\", \"q7\", \"q8\", \"q9\",\"q10\", \"q11\", \"q12\", \"q13\", \"q14\",\"q15\", \"q16\", \"q17\", \"q18\", \"q19\"]"
-*/
+INSERT INTO packet VALUES (
+"p1","trial","",
+"[\"q0\", \"q1\", \"q2\", \"q3\", \"q4\"]");
 
 INSERT INTO subject VALUES ("s0","trial");
 INSERT INTO subject VALUES ("s1","sports");
