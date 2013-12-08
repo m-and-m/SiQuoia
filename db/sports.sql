@@ -14,7 +14,7 @@ INSERT INTO questions VALUES (
 INSERT INTO questions VALUES (
 'q2002', 'This quarterback holds the record for most passing touchdoawn in 
 	a Super Bowl:',
-'http://cdn.bleacherreport.net/images_root/slides/photos/000/503/698/289004_display_image.jpg?1289793693',
+'q2002.jpg',
 'Jim Kelly',
 'Joe Montana',
 'Steve Young',
@@ -23,7 +23,7 @@ INSERT INTO questions VALUES (
 
 INSERT INTO questions VALUES (
 'q2003', 'This player was named MVP of Super Bowl XXX1:',
-'http://static.nfl.com/static/content/photo/2009/01/23/09000d5d80e4f298.jpeg',
+'q2003.jpg',
 'Antonio Freeman',
 'Reggie White',
 'Andre Rison',
