@@ -33,7 +33,7 @@ $load_count = isset($_REQUEST["load_count"]) ? $_REQUEST["load_count"] : ($last_
 
 <html>
  <head>
- 	<title>QUIZ</title>
+ 	<title>RESUME QUIZ</title>
 	<script src="../js/source/jquery-1.10.2.min.js" type="text/javascript"></script>	
 	<script src="../js/check_empty.js" type="text/javascript"></script>
  </head>
@@ -54,41 +54,13 @@ $load_count = isset($_REQUEST["load_count"]) ? $_REQUEST["load_count"] : ($last_
   <hr>
 <?php
 //Display the result of preciouse quiz, (IN)CORRECT, here.
-	print("<div id='prev_q_result'>");
-  	// if the previous_answer doesn't have any value -> it means first question
-	if(($previous_answer != null) && ($previous_answer == true)) {
-		print("<p>In Previous Question, You Got <b>CORRECT!</b><br/><hr/>"); 
-	} elseif (($previous_answer != null) && ($previous_answer == false)) {
-		print("<p>In Previous Question, You Got <b>INCORRECT.</b><br/><hr/>"); 
-	} else {
-	}
-	print("</p></div>");
-  
+display_prequestion_result($previous_answer);  
 	
+$isresume_quiz = true;	
 // Get the question contents/answer/key using question id
 if($load_count < $total_question_count) { 
 
-	$curr_qid = $quiz_set[($load_count)]["id"];
-	$query1  = "select * from question where qid='".$curr_qid."'";
-	$result1 = pdo_query($query1);    
-	$user_item = $result1->fetch(PDO::FETCH_ASSOC);
-
-	print("<div id='question_content'><p>".$user_item['question']."</p></div>");
-
-	print("<div id='question_answer'><form action='verify_answer.php' id='select_answer' method='post'>");
-	print("<label><input type='radio' name='answer' value='1'/>&nbsp;".($user_item['answer1'])."</label><br/>");
-	print("<label><input type='radio' name='answer' value='2'/>&nbsp;".($user_item['answer2'])."</label><br/>");
-	print("<label><input type='radio' name='answer' value='3'/>&nbsp;".($user_item['answer3'])."</label><br/>");
-	print("<label><input type='radio' name='answer' value='4'/>&nbsp;".($user_item['answer4'])."</label><br/><br/>");
-
-	print("<input type='hidden' name='load_count' value='".($load_count)."'/>");
-	print("<input type='hidden' name='curr_qid' value='".($curr_qid)."'/>");
-	print("<input type='submit' value='CONTINUE'/><br/></form></div>");
-
-//DELETME
-print("Current QID: ".$curr_qid."<br/>");
-print("correct answer: ".$user_item["correct_answer"]."<br/><br/>");
-
+	display_question_contents($quiz_set, $load_count, $isresume_quiz);
 	print("<div><a href='menu.php'>QUIT QUIZ</a></div></div>");
 
 } elseif($load_count == $total_question_count) {

@@ -1,5 +1,7 @@
 <?php
 include("connection.php");
+include("mm_php_library.php");
+
 server_connect();
 session_start();
 

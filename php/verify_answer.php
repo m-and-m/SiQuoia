@@ -7,6 +7,10 @@ server_connect();
 session_start();
 $userid = $_SESSION["userid"];
 
+$isResume = $_REQUEST["isResume"];
+//DELETE ME
+//print($isResume);
+
 $load_count = isset($_REQUEST["load_count"]) ? $_REQUEST["load_count"] : 0;
 $previous_answer = isset($_REQUEST["answer"]) ? $_REQUEST["answer"] : "";
 $curr_qid = isset($_REQUEST["curr_qid"]) ? $_REQUEST["curr_qid"] : "";
@@ -83,7 +87,12 @@ if($previous_answer != null) {
 	pdo_commit();
 } 
 	// INCREMENT load_count by 1
-	header("Location: take_quiz.php?load_count=".($load_count+1).
-		   "&rslt=".(int)$pre_question_result);
+	if($isResume == true) {
+		header("Location: resume_quiz.php?load_count=".($load_count+1).
+			   "&rslt=".(int)$pre_question_result);
+	} else {
+		header("Location: take_quiz.php?load_count=".($load_count+1).
+			   "&rslt=".(int)$pre_question_result);	
+	}	
 	exit;
 ?>

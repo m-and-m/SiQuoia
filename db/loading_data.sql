@@ -147,14 +147,14 @@ INSERT INTO packet VALUES (
 "p1","trial","",
 "[\"q0\", \"q1\", \"q2\", \"q3\", \"q4\"]");
 
-INSERT INTO subject VALUES ("s0","trial");
+INSERT INTO subject VALUES ("s0","TV");
 INSERT INTO subject VALUES ("s1","sports");
 INSERT INTO subject VALUES ("s2","science");
-INSERT INTO topic VALUES ("t0","trial","s0");
+INSERT INTO topic VALUES ("t0","comedy","s0");
 INSERT INTO topic VALUES ("t1","football","s1");
 INSERT INTO topic VALUES ("t2","basketball","s1");
 INSERT INTO topic VALUES ("t3","math","s2");
-INSERT INTO subtopic VALUES ("st0","trial","t0");
+INSERT INTO subtopic VALUES ("st0","friends","t0");
 INSERT INTO subtopic VALUES ("st1","nfl football","t1");
 INSERT INTO subtopic VALUES ("st2","ncaa football","t1");
 INSERT INTO subtopic VALUES ("st3","nba basketball","t2");

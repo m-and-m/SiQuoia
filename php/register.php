@@ -1,5 +1,7 @@
 <?php
 include("connection.php");
+include("mm_php_library.php");
+include("sq_currency.php");
 include("../skip/sesoning.php");
 server_connect();
 session_start();
@@ -39,12 +41,7 @@ if($email_exist == true) {
 	// By showing this in pop window by JS
 		print ("<p>The email is already taken.<br/></p>");
 		print ("<a href='../html/login.html'>Go Back Login Page</a>");	
-	/* ...or
-//DELETEME
-		// By navigating another page
-		header("Location: not_verified_email.php");
-	    exit;
-	*/
+
 } else {
 	// start transaction 
 	pdo_transactionstart();
@@ -52,7 +49,8 @@ if($email_exist == true) {
 	// Fetch the maximum value of the user id
     $query1  = "select max(userid) from user_profile";
     $result1 = pdo_query($query1);
-    
+
+	// Generate new userid    
     $max_id  = $result1->fetch();
     $id_numpart = substr($max_id[0], 4);
     $curr_id = "user" . ($id_numpart + 1);
@@ -87,7 +85,7 @@ if($email_exist == true) {
 	}
 
 	// Create data set for user_data
-	$query4  = "INSERT INTO user_data VALUES ('".$curr_id."',15,0,'',0)";
+	$query4  = "INSERT INTO user_data VALUES ('".$curr_id."',".$initial_point.",0,'',0)";
     $result4 = pdo_query($query4);
 	
 	if($result4 == false) {

@@ -9,29 +9,25 @@ $quiztype = $_REQUEST["quiz_type"];
 $_SESSION["quizid"] = $_REQUEST["category_select"];
 $quizid = $_SESSION["quizid"];
 //DELETEME
-print("QUIZ TYPE: ".$quiztype."<br/>");
+//print("QUIZ TYPE: ".$quiztype."<br/>");
 
+//STATIC QUIZ
 if(strcmp($quiztype, "static_quiz") == 0) {
 
+	print("'staic quiz' is selected.<br/>");
 	$selected_category = $_POST["category_select"];
 	
-	print("'staic quiz' is selected.<br/>");
 // 1) get question set	
 	$query0  = "select questionid_set from packet where packetid = '".$quizid."'";
 	$result0 = pdo_query($query0);    
 	$q_item  = $result0->fetch();
-		
+	// question set in json
 	$questionidset = json_decode($q_item["questionid_set"], true);
 
 // DELETEME
-/*	var_dump($questionidset);
+//dump_array_pretty($questionidset);
 
-	foreach($questionidset as $row) {
-		var_dump($row);
-		print("<br/>");
-	}
-*/
-	// Making complete json including "lastquestion" and "quizset"
+	// Inserting additional key/value in the question set
 	$quizset = array();
 	foreach($questionidset as $row) {
 		array_push($quizset, array("id"=> $row, "correct" => false));
@@ -39,12 +35,9 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 	$combine = array("lastindex" => -1, "quiz_set" => $quizset);
 	$combine_json = json_encode($combine);
 //DELETME
-/*
-	echo "<br /><pre>";
-	echo json_encode($combine, JSON_PRETTY_PRINT);
-	echo "</pre><br />";
-*/
-// 2) put the quiz set (json form) into the user's 'savedquiz'
+//dump_array_pretty($combine_json);
+
+// 2) put the question set (json form) into the user's 'savedquiz'
 	pdo_transactionstart();
 	
 	$stmt = pdo_prepare("update user_data set savedquiz = ? where userid = ?");
@@ -56,10 +49,8 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 
 	if($result1 == false) {
 		print("Fail to add quiz set: ".pdo_errorInfo()."<br/>");
-    } else {
-    	print("inserted q.set into the user_data!<br/>");
     }
-
+    
 // 3) Go to another page for actual 'taking-quiz' page
 /* 	   => later, delete html part, and navigat to the next page
 		header("Location: take_quiz.php");

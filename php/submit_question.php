@@ -28,12 +28,13 @@ $user_item  = $result0->fetch();
  <div class="content">
  <h2>SUBMIT A QUIZ</h2>
   <hr>
-  <form action="evaluate_submission" method="post">
+  <form action="evaluate_submission.php" method="post" enctype="multipart/form-data">
   	<span> 1) Create your question.</span><br/>
-	<textarea name="text_question" rows="5" cols="50">
-	</textarea><br/><br/>
+	<textarea name="text_question" rows="5" cols="50"></textarea>
+    <br/><br/>
   	<span> [OPTIONAL] You can submit one multimedia file (Audio, Graphics, or Video)<br/> 
-  	Filetype: .mp3, .jpg, .png, .mp4, or .flv, size must be < 10 MB</span><br/>
+  	Filetype: .jpg, .png, .gif, .mp3, .mp4, or .flv, size must be < 6.5 MB</span><br/>
+	<input type="hidden" name="MAX_FILE_SIZE" value="6815744"/><br/>
 	<input type="file" name="multimedia_question" size="50"/><br/><br/>
   	<span> 2) Create 4 possible answers </span><br/>
 	1st answer&nbsp;<input type="text" name="answer1" size="50"/><br/>
