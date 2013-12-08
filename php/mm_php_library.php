@@ -1,5 +1,4 @@
 <?php
-
 /* Check the string if it has a certain string (needle)
 return - true(or, 1) if the string has a needle
 return - false if the string dosn't has a needle
@@ -118,6 +117,32 @@ function delete_savedquiz($user_item, $userid) {
 	}
 } // delete_savedquiz
 
+function get_max_id($table_name) {
+
+	if(strcmp($table_name, "question") == 0) {
+		$idname = "qid";
+		// Number of char before the numeric value
+		$identifier = 2; 
+	} elseif(strcmp($table_name, "user_profile") == 0) {
+		$idname = "userid";
+		// Number of char before the numeric value
+		$identifier = 5; 
+	}
+
+    $query1  = "select max(qidint+0) as max from ( SELECT ".$idname.
+    			", SUBSTRING(".$idname.", ".$identifier.", 10) as qidint from ".$table_name.") as tmptable";
+    $result1 = pdo_query($query1);
+    $max_qid  = $result1->fetch();
+    $id_numpart = $max_qid["max"];
+
+    $curr_qid = "q" . ($id_numpart);
+    $new_qid = "q" . ($id_numpart + 1);
+
+//DELETEME
+	print("cur: ".$curr_qid.", new: ".$new_qid."<br/>");
+
+	return $new_qid;
+} // get_max_id
 
 server_disconnect();
 ?>

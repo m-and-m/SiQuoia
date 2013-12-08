@@ -71,29 +71,10 @@ dump_array_pretty($_FILES);
 
 // Creating new question and insert into question
 // 1) generate new qid
-/*
+
 	// Fetch the maximum value of the question id
-    $query1  = "select max(qid) from question";
-    $result1 = pdo_query($query1);
-    $max_qid  = $result1->fetch();
-    $curr_qid = $max_qid["max(qid)"];
-
-    $id_numpart = substr($curr_qid, 1);
-    $new_qid = "q" . ($id_numpart + 1);
-*/
-
-
-    $query1  = "select max(qidint+0) as max from ( SELECT qid, SUBSTRING(qid, 2, 10) as qidint from question) as tmptable";
-    $result1 = pdo_query($query1);
-    $max_qid  = $result1->fetch();
-    $id_numpart = $max_qid["max"];
-
-    $curr_qid = "q" . ($id_numpart);
-    $new_qid = "q" . ($id_numpart + 1);
-
-//DELETEME
-	print("cur: ".$curr_qid.", new: ".$new_qid."<br/>");
-
+	$table_name = "question";
+	$new_qid = get_max_id($table_name);
 
 if (isset($_FILES[$file_field]) && isset($_FILES[$file_field]["tmp_name"]) && isset($_FILES[$file_field]["name"])) {
 
