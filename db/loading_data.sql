@@ -150,13 +150,16 @@ INSERT INTO packet VALUES (
 INSERT INTO subject VALUES ("s0","TV");
 INSERT INTO subject VALUES ("s1","sports");
 INSERT INTO subject VALUES ("s2","science");
+INSERT INTO subject VALUES ("s3","movie");
 INSERT INTO topic VALUES ("t0","comedy","s0");
 INSERT INTO topic VALUES ("t1","football","s1");
 INSERT INTO topic VALUES ("t2","basketball","s1");
 INSERT INTO topic VALUES ("t3","math","s2");
+INSERT INTO topic VALUES ("t4","disney","s3");
 INSERT INTO subtopic VALUES ("st0","friends","t0");
 INSERT INTO subtopic VALUES ("st1","nfl football","t1");
 INSERT INTO subtopic VALUES ("st2","ncaa football","t1");
 INSERT INTO subtopic VALUES ("st3","nba basketball","t2");
 INSERT INTO subtopic VALUES ("st4","ncaa basketball","t2");
 INSERT INTO subtopic VALUES ("st5","algebra","t3");
+INSERT INTO subtopic VALUES ("st6","the aristocats","t4");

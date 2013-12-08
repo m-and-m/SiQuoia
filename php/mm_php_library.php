@@ -45,6 +45,16 @@ function dump_array_pretty($array) {
 
 } // dump_array_pretty
 
+function dump_array2d_pretty($array2d) {
+	
+	print("<pre>");
+	foreach($array2d as $row) {
+		var_dump($row);
+	}
+	print("</pre>");
+
+} // dump_array_pretty
+
 function display_question_contents($quiz_set, $load_count, $isResume) {
 	$curr_qid = $quiz_set[($load_count)]["id"];
 	$query1  = "select * from question where qid='".$curr_qid."'";
@@ -122,14 +132,14 @@ function get_max_id($table_name) {
 	if(strcmp($table_name, "question") == 0) {
 		$idname = "qid";
 		// Number of char before the numeric value
-		$identifier_count = 2; 
 		$identifier = "q";
 	} elseif(strcmp($table_name, "user_profile") == 0) {
 		$idname = "userid";
 		// Number of char before the numeric value
-		$identifier_count = 5; 
 		$identifier = "user";
 	}
+
+	$identifier_count = strlen($identifier)+1; 
 
     $query1  = "select max(qidint+0) as max from ( SELECT ".$idname.
     			", SUBSTRING(".$idname.", ".$identifier_count.", 10) as qidint from ".$table_name.") as tmptable";

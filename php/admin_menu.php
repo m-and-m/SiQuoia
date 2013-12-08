@@ -20,7 +20,7 @@ $user_item  = $result0->fetch();
 
 <html>
  <head>
- 	<title>MENU</title>
+ 	<title>ADMIN MENU</title>
 	<script src="../js/source/jquery-1.10.2.min.js" type="text/javascript"></script>	
 	<script src="../js/check_empty.js" type="text/javascript"></script>
  </head>
@@ -33,29 +33,11 @@ $user_item  = $result0->fetch();
  </header>
  
  <div class="content">
- <h2>MENU</h2>
+ <h2>ADMIN MENU</h2>
   <hr>
-<?php
-// Check if the user has the saved quiz
-if($user_item["savedquiz"] != null) {
-	// the user has a saved quiz
-	print("<div id='resume_quiz'>".
-		  "<span><b>WARNING: You have one incomplete quiz.</b><br/>If you choose \"Choose Quiz\", the saved quiz and all progress will be automatically deleted. There is no way to undo this.</span><br/><br/>".
-		  "<a href='resume_quiz.php'>Resume Quiz</a></div><br />");
-} 
-?>
-	<div id="choose_quiz"><a href='choose_quiz.php'>Choose Quiz</a></div>
-	<div id="submit_question"><a href='submit_question.php'>Submit A Question</a></div>
-	<div id="my_account"><a href='my_account.php'>My Account</a></div>
-	<div id="scoreboard"><a href='scoreboard.php'>Scoreboard</a></div>
-<?php
-// Check if the user has admin-flag
-if($user_item["isadmin"]) {
-	// the user is admin  
-	print("<br/><div id='admin_menu'><a href='admin_menu.php'>Administration</a></div>");
-}
-?>
-<br />
+	<div id="eval_submission"><a href='admin_eval_submission.php'>Evaluate Submission</a></div>
+<br/><br/>
+	<div id="menu"><a href='menu.php'>Menu</a></div>
 	<div id="logout"><a href='logout.php'>Logout</a></div> <!--COMPLETE-->
 
  </div>
