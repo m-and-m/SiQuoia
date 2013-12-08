@@ -76,8 +76,8 @@ if($load_count < $total_question_count) {
 // Get the question contents/answer/key using question id
 if($load_count < $total_question_count) { 
 
-	$current_qid = $quiz_set[($load_count)]["id"];
-	$query1  = "select * from question where qid='".$current_qid."'";
+	$curr_qid = $quiz_set[($load_count)]["id"];
+	$query1  = "select * from question where qid='".$curr_qid."'";
 	$result1 = pdo_query($query1);    
 	$q_item = $result1->fetch(PDO::FETCH_ASSOC);
 
@@ -90,11 +90,11 @@ if($load_count < $total_question_count) {
 	print("<label><input type='radio' name='answer' value='4'/>&nbsp;".($q_item['answer4'])."</label><br/><br/>");
 
 	print("<input type='hidden' name='load_count' value='".($load_count)."'/>");
-	print("<input type='hidden' name='curr_qid' value='".($current_qid)."'/>");
+	print("<input type='hidden' name='curr_qid' value='".($curr_qid)."'/>");
 	print("<input type='submit' value='CONTINUE'/><br/></form></div>");
 
 //DELETME
-print("Current QID: ".$current_qid."<br/>");
+print("Current QID: ".$curr_qid."<br/>");
 print("correct answer: ".$q_item["correct_answer"]."<br/><br/>");
 
 	print("<div><a href='menu.php'>QUIT QUIZ</a></div></div>");
