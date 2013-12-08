@@ -4,7 +4,7 @@ INSERT INTO questions VALUES (
 'q2001', 'This play is known as one of the greatest plays in NFL occurring 
 	in the AFC divisional playoff game, between the Pittsburgh Steelers 
 	and the Oakland Raiders:',
-'http://youtu.be/7xMDIcsUMmA',
+'q2001',
 'The Catch',
 'Miracle at the Meadowlands',
 'The Immaculate Reception',
