@@ -1,0 +1,33 @@
+
+
+
+INSERT INTO `question` (`qid`, `question`, `answer1`, `answer2`, `answer3`, `answer4`, `correct_answer`, `subtopicid`, `correct_count`, `use_count`) VALUES
+('q6001', 'What car does Ken Block currently drive for his popular "Gymkhana" drifting video series?', 'Subaru STI', 'Ford Fiesta', 'BMW M3', 'Porsche 911', 2, 'st22', 0, 0),
+('q6002', 'Niki Lauda is a famous racer for what racing competition?', 'NASCAR', 'WRC', 'Formula 1', 'GT', 3, 'st22', 0, 0),
+('q6003', 'Which famous speedway was NASCAR driver Dale Earnhardt Sr. racing at when he died from an accident on the track?', 'Daytona International Speedway', 'Indianapolis Motor Speedway', 'Las Vegas Motor Speedway', 'Talladega Superspeedway', 1, 'st22', 0, 0),
+('q6004', '"Drift King" Keiichi Tsuchiya is famous for driving which car?', 'Nissan Skyline R34', 'Acura NSX Type R', 'Toyota Sprinter Trueno AE86', 'Toyota Supra Twin Turbo MKIV', 3, 'st22', 0, 0),
+('q6005', 'What course does Toyota own?', 'Suzuka Circuit', 'Fuji Speedway', 'Autopolis', 'Nakayama Circuit', 2, 'st20', 0, 0),
+('q6006', 'What famous track features a 14 mile loop that is used by many manufacturers in testing their cars?', 'Mazda Raceway Laguna Seca', 'Nurburgring ', 'Circuit de Monaco', 'Daytona Motor Speedway', 2, 'st20', 0, 0),
+('q6007', 'What famous Japanese car was never sold in the US domestic market?', 'Acura NSX', 'Toyota Altezza', 'Toyota 2000GT', 'Nissan Skyline GTR R34', 4, 'st23', 0, 0),
+('q6008', 'What is the only American-made car to win the 24 Hours of Le Mans race?', 'Ford GT40', 'Chevrolet Chevelle', 'Chevrolet Corvette ', 'Ford Boss 429 Mustang', 1, 'st22', 0, 0),
+('q6009', 'What car bears the name "Stingray"?', 'Chrysler Crossfire', 'Chevrolet Camaro', 'Pontiac Firebird', 'Chevrolet Corvette', 4, 'st22', 0, 0),
+('q6010', 'What was the first Japanese car produced in the United States?', '1982 Honda Accord', '1985 Toyota Camry', '1989 Mazda Miata', '1970 Datsun 240z', 1, 'st23', 0, 0),
+('q6011', 'How much horsepower did the first Porsche 911 make?', '45 HP', '90 HP', '130 HP', '180 HP', 3, 'st23', 0, 0),
+('q6012', 'What is Toyota''s first supercar?', 'Lexus LFA', 'Toyota Supra Twin Turbo', 'Toyota Sprinter Trueno AE86', 'Toyota 2000GT', 4, 'st23', 0, 0),
+('q6013', 'What was the first Ferrari that could drive faster than 198 MPH?', 'Ferrri F40', 'Ferrari Testarossa', 'Ferrari F430', 'Ferrari Enzo', 1, 'st23', 0, 0),
+('q6014', 'Which Japanese manufacturer sold the first car in the UK?', 'Mazda', 'Daihatsu', 'Toyota', 'Honda', 2, 'st23', 0, 0),
+('q6015', 'What does a tire aspect ratio mean?', 'The ratio of width of the tire to the sidewall.', 'The ratio of the durability of the tire to the cost.', 'The ratio of grip in the tires.', 'The ratio of how big the wheel for the tire needs to be compared to how wide.', 1, 'st24', 0, 0),
+('q6016', 'What octane gas is racing fuel consisted of?', '91 Octane', '100 Octane', '93 Octane', '125 Octane', 2, 'st25', 0, 0),
+('q6017', 'What are coilovers?', 'Adjustable shock absorber with springs', 'Road magnet sensors', 'Engine modification that adds horsepower', 'Induction coil in a car''s ignition system', 1, 'st24', 0, 0),
+('q6018', 'What is wheel offset?', 'The size difference between a replacement wheel and the original.', 'The distance between the drive and passenger side wheels.', 'The measured distance between the hub mounting surface and the center of the rim.', 'How large the diameter of the wheel is.', 3, 'st24', 0, 0),
+('q6019', 'What does HID stand for?', 'Hidden internal DVD', 'High Intensity Discharge', 'Highly Integrated Doorhandles ', 'Hydrogen Infused Diesel', 2, 'st24', 0, 0),
+('q6020', 'What is a redline?', 'The line at the end of a race track.', 'A penalty in racing competitions.', 'The highest an engine can rev.', 'The fastest a car can travel.', 3, 'st25', 0, 0),
+('q6021', 'What cars are usually used for drifting?', 'All Wheel Drive', 'Four Wheel Drive', 'Front Wheel Drive', 'Rear wheel Drive', 4, 'st25', 0, 0),
+('q6022', 'What manufacturer was the first to offer full LED headlights?', 'Mercedes-Benz', 'BMW', 'Lexus', 'Audi', 3, 'st23', 0, 0),
+('q6023', 'What car bears the name "Godzilla"?', 'Nissan Fairlady Z', 'Toyota Supra', 'Nissan Skyline GTR', 'Acura Integra Type R', 3, 'st23', 0, 0),
+('q6024', 'What performance brand was discontinued in 2010?', 'Plymoth', 'Oldsmobile', 'Geo', 'Pontiac', 4, 'st22', 0, 0),
+('q6025', 'What car used to be a coupe but was resurrected in 2005 as a sedan?', 'Dodge Charger', 'Plymouth Belvedere', 'Chevrolet Cruze', 'Chevrolet Impala', 1, 'st22', 0, 0),
+('q6026', 'What is a turbocharger?', 'Belt driven forced-induction system', 'Air pressure forced-induction system', 'Variable valve timing mechanism', 'System that intakes colder air for increased engine power', 2, 'st24', 0, 0),
+('q6027', 'Where is Mazda Speedway Laguna Seca located?', 'Alabama', 'Indianapolis', 'Texas', 'California', 4, 'st20', 0, 0),
+('q6028', 'What famous European race track is known for its many tight corners and height changes, as well a tunnel?', 'Circuit de Spa-Francorchamps', 'Autodromo Nazionale Monza', 'Nurburgring', 'Circuit de Monaco', 4, 'st20', 0, 0),
+('q6029', 'What is autocrossing?', 'An off-road dirt course for racing', 'A race circuit set up for drifting', 'A small course set up with many turns to emphasize turning ability', 'A track set up on public streets', 3, 'st25', 0, 0);

@@ -35,7 +35,7 @@ INSERT INTO question VALUES (
 3, 'st1', 0, 0, '', '');
 
 INSERT INTO question VALUES (
-'q2005', 'After a surprising Super Bowl win in 1999 which team’s offense led the NFL in turnovers each season from 2001 to 2003?',
+'q2005', 'After a surprising Super Bowl win in 1999 which team\'s offense led the NFL in turnovers each season from 2001 to 2003?',
 '',
 'St. Louis Rams',
 'New Orleans Saints',
@@ -184,7 +184,7 @@ INSERT INTO question VALUES (
 'Presidential',
 'Armed Forces',
 'Victory Bell',
-'Commander-in-Chief’s',
+'Commander-in-Chief\'s',
 4, 'st2', 0, 0, '', '');
 
 INSERT INTO question VALUES (
@@ -233,7 +233,7 @@ INSERT INTO question VALUES (
 1, 'st2', 0, 0, '', '');
 
 INSERT INTO question VALUES (
-'q2027', 'Which school plays their home games in a stadium otherwise known as “Death Valley”?',
+'q2027', 'Which school plays their home games in a stadium otherwise known as "Death Valley"?',
 '',
 'Clemson',
 'Georgia Tech',
