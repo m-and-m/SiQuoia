@@ -70,11 +70,9 @@ function display_question_contents($quiz_set, $load_count, $isResume) {
  			print("\n<audio src=\"../files/q21.mp3\" autoplay=\"autoplay\" controls=\"controls\"> </audio>\n");
  		}
  		elseif (strcmp($extension, "mp4") == 0) {
-  print ("<video id='example_video_1' class='video-js vjs-default-skin' controls preload='none' width='640' height='480'
-      poster='../mediaplayer/videobg.png' data-setup='{}'>
-    <source src='$mediafile' type='video/mp4' />
-  </video>");
-  }
+ 		 print ("<video id='example_video_1' class='video-js vjs-default-skin' controls preload='none' width='640' height='480'
+     	 poster='../mediaplayer/videobg.png' data-setup='{}'><source src='$mediafile' type='video/mp4' /></video>");
+ 		}
  		elseif (strcmp($extension, "jpg") == 0) {
  			echo "<img src='$mediafile' >";
  		}
@@ -94,8 +92,8 @@ function display_question_contents($quiz_set, $load_count, $isResume) {
 	print("<input type='submit' value='CONTINUE'/><br/></form></div>");
 
 //DELETME
-print("Current QID: ".$curr_qid."<br/>");
-print("correct answer: ".$user_item["correct_answer"]."<br/><br/>");
+//print("Current QID: ".$curr_qid."<br/>");
+//print("correct answer: ".$user_item["correct_answer"]."<br/><br/>");
 // 			print("\n<audio src=\"..\audio\blah.mp3\" preload=\"auto\"> </audio>\n");
 
 } // display_question_contents
@@ -113,13 +111,38 @@ function display_prequestion_result($previous_answer) {
 
 } // display_prequestion_result
 
-function check_trial_used($userid, $quizid){
 /*
-	// Get packet information
-	$query9  = "select p_name from packet where packetid='".$quizid."'";
-	$result9 = pdo_query($query9);    
-	$packet_item = $result9->fetch(PDO::FETCH_ASSOC);
+	Add purchased packet information into purchase table
 */
+	function add_purchase_packet($userid, $packetid, $purchasetype, $cost) {
+		// Fetch max purchase id
+		$query7 = "select max(purchaseid) from purchase";
+		$result7 = pdo_query($query7); 
+		$maxid = $result7->fetch();  
+		$purchase_maxid = $maxid["max(purchaseid)"];
+		if($purchase_maxid == null) {
+			// set initial value if the id doesn't exist
+			$purchase_newid = 0;
+		} else {
+			$purchase_newid = $purchase_maxid+1;		
+		}
+
+//DELETEME
+//	print("preid: ".$purchase_maxid."currid: ".$purchase_newid."<br/>");
+
+		$query8 = "INSERT INTO purchase VALUES ('".$purchase_newid."','".$userid."','"
+		.$packetid."','".$purchasetype ."','".$cost."',CURDATE())";
+		$result8 = pdo_query($query8);    
+		if($result8 == false) {
+			pdo_rollback();
+		} else {
+			print("Added purchase information successfully!<br/>");
+		}
+			
+	} // add_purchase_packet
+
+function check_trial_used($userid, $quizid){
+
 	// if the packet is trial, check the usedtrial to true/1
 	if($quizid == "p1") {
 		$query10  = "update user_data set usedtrial = true where userid='".$userid."'";
@@ -153,8 +176,11 @@ function get_max_id($table_name) {
 		$idname = "userid";
 		// Number of char before the numeric value
 		$identifier = "user";
+	} elseif(strcmp($table_name, "packet") == 0) {
+		$idname = "packetid";
+		// Number of char before the numeric value
+		$identifier = "p";
 	}
-
 	$identifier_count = strlen($identifier)+1; 
 
     $query1  = "select max(qidint+0) as max from ( SELECT ".$idname.
@@ -167,7 +193,7 @@ function get_max_id($table_name) {
     $new_qid = $identifier.($id_numpart+1);
 
 //DELETEME
-	print("cur: ".$curr_qid.", new: ".$new_qid."<br/>");
+//	print("cur: ".$curr_qid.", new: ".$new_qid."<br/>");
 
 	return $new_qid;
 } // get_max_id

@@ -24,15 +24,30 @@ $total_left_question_count = ($total_question_count-1) - $last_status;
 $load_count = isset($_REQUEST["load_count"]) ? $_REQUEST["load_count"] : ($last_status+1);
 
 //DELETEME
-	print("<br/>Page load count: ".$load_count."<br/>Packet id: ".$quizid.
+/*	print("<br/>Page load count: ".$load_count."<br/>Packet id: ".$quizid.
 	  "<br/>Total # question: ".$total_question_count.
 	  "<br/>Last status: ".$last_status."<br/>");
+*/
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
  <head>
+     <!-- Change URLs to wherever Video.js files will be hosted -->
+    <link href="../mediaplayer/video-js.css" rel="stylesheet" type="text/css">
+    <!-- video.js must be in the <head> for older IEs to work. -->
+    <script src="../mediaplayer/video.js"></script>
+    <script src="../mediaplayer/audio.min.js"></script>
+
+	<script>
+    videojs.options.flash.swf = "../mediaplayer/video-js.swf";
+    </script>
+    <script>
+    audiojs.events.ready(function() {
+        var as = audiojs.createAll();
+    });
+	</script>
  	<title>RESUME QUIZ</title>
 	<script src="../js/source/jquery-1.10.2.min.js" type="text/javascript"></script>	
 	<script src="../js/check_empty.js" type="text/javascript"></script>

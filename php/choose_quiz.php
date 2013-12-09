@@ -105,7 +105,8 @@ array_shift($packet_item);
   <div id="random_question">
   <span>RANDOM QUIZ</span><br/>
   <?php print("<span>Cost: ".$static_packet_cost." (Subject), ".
-  			$topic_packet_cost." (Topic), ".$subtopic_packet_cost." (SubTopic)</span>");
+  			$topic_packet_cost." (Topic), ".$subtopic_packet_cost." (SubTopic), ".
+  			$random_packet_cost." (Random)</span>");
    ?>
 
   <form action='start_quiz.php' method='post'>
@@ -142,9 +143,8 @@ array_shift($packet_item);
 		?>
 		</optgroup>
 		<optgroup label="RANDOM SELECTION">
-			<option>EASY</option>
-			<option>MEDIUM</option>					
-			<option>HARD</option>
+			<option value="easy">EASY</option>
+			<option value="hard">HARD</option>
 		</optgroup>
 		
     </select>

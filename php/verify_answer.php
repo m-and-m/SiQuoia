@@ -9,8 +9,6 @@ session_start();
 $userid = $_SESSION["userid"];
 
 $isResume = $_REQUEST["isResume"];
-//DELETE ME
-//print($isResume);
 
 $load_count = isset($_REQUEST["load_count"]) ? $_REQUEST["load_count"] : 0;
 $previous_answer = isset($_REQUEST["answer"]) ? $_REQUEST["answer"] : "";

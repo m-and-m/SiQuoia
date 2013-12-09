@@ -25,6 +25,7 @@ $total_question_count = count($quiz_set);
 
 
 //DELETEME
+/*
 	print("<br/>Page load count: ".$load_count."<br/>Packet id: ".$quizid.
 	  "<br/>Total # question: ".$total_question_count.
 	  "<br/>Last status: ".$last_status."<br/>");
@@ -32,6 +33,7 @@ $total_question_count = count($quiz_set);
 echo "<pre><br/>";
 //var_dump($savedquiz);
 echo "</pre>";
+*/
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

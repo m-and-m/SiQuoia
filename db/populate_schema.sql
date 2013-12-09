@@ -91,6 +91,8 @@ MEMOR - memorabilia
 SUBJE - subject
 TOPIC - topic
 SUBTO - subtopic
+RANDM - random
+STATI - static quiz, or pre-existing 
 */
 CREATE TABLE purchase (
 	purchaseid VARCHAR(7) NOT NULL,
