@@ -355,7 +355,7 @@ INSERT INTO questions VALUES (
 'Penn State',
 'Oregon',
 'Utah',
-'Alabam',
+'Alabama',
 1, 'st2', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
