@@ -35,7 +35,7 @@ INSERT INTO questions VALUES (
 3, 'st1', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2005', 'After a surprising Super Bowl win in 1999, which team’s offense led the NFL in turnovers each season from 2001 to 2003?',
+'q2005', 'After a surprising Super Bowl win in 1999 which team’s offense led the NFL in turnovers each season from 2001 to 2003?',
 '',
 'St. Louis Rams',
 'New Orleans Saints',
@@ -143,7 +143,7 @@ INSERT INTO questions VALUES (
 1, 'st1', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2017', 'During Week 12 of the 2008 season, who set a new record with his 108-yard TD interception?',
+'q2017', 'During Week 12 of the 2008 season who set a new record with his 108-yard TD interception?',
 '',
 'Jim Otto',
 'Ken Amato',
@@ -161,7 +161,7 @@ INSERT INTO questions VALUES (
 4, 'st1', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2019', 'Who was the first career Cincinnati Bengal to be inducted into pro football’s Hall of Fame?',
+'q2019', 'Who was the first career Cincinnati Bengal to be inducted into pro footballs Hall of Fame?',
 '',
 'James Brooks',
 'Boomer Esiason',
@@ -269,7 +269,7 @@ INSERT INTO questions VALUES (
 3, 'st2', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2031', 'Who defeated NC State in the 1975 Peach Bowl 13-10?',
+'q2031', 'Who defeated NC State in the 1975 Peach Bowl 13 to 10?',
 '',
 'West Virginia',
 'Vanderbilt',
@@ -278,7 +278,7 @@ INSERT INTO questions VALUES (
 1, 'st2', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2032', 'Who did Texas lose to 30-6 in the 1972 Cotton Bowl?',
+'q2032', 'Who did Texas lose to 30 to 6 in the 1972 Cotton Bowl?',
 '',
 'Penn State',
 'Texas Tech',
@@ -332,7 +332,7 @@ INSERT INTO questions VALUES (
 3, 'st2', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2038', 'In what year did Catholic and Arizona State tie 0 0 in the Sun Bowl?',
+'q2038', 'In what year did Catholic and Arizona State tie 0 to 0 in the Sun Bowl?',
 '',
 '1942',
 '1940',
@@ -341,7 +341,7 @@ INSERT INTO questions VALUES (
 2, 'st2', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2039', 'Which Division I-A military college won three consecutive National titles in the 1940s, despite not appearing in any bowl games in that decade?',
+'q2039', 'Which Division I A military college won three consecutive National titles in the 1940s, despite not appearing in any bowl games in that decade?',
 '',
 'Air Force',
 'Army',
@@ -356,10 +356,10 @@ INSERT INTO questions VALUES (
 'Oregon',
 'Utah',
 'Alabam',
-1, 'st2', 0, 0, '', '')
+1, 'st2', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2041', 'Who was the head coach of the Miami Heat for the 2010-11 season?',
+'q2041', 'Who was the head coach of the Miami Heat for the 2010 to 11 season?',
 '',
 'Erik Spoelstra',
 'Alvin Gentry',
@@ -386,7 +386,7 @@ INSERT INTO questions VALUES (
 1, 'st3', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2044', 'Which NBA team did ESPN/ABC analyst Dick Vitale coach?',
+'q2044', 'Which NBA team did ESPN ABC analyst Dick Vitale coach?',
 '',
 'Houston Rockets',
 'San Antonio Spurs',
@@ -422,7 +422,7 @@ INSERT INTO questions VALUES (
 4, 'st3', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2048', 'Which Atlanta Hawks player led the league in steals during the 1996-97 and 1997-98 seasons?',
+'q2048', 'Which Atlanta Hawks player led the league in steals during the 1996 to 97 and 1997 to 98 seasons?',
 '',
 'Mookie Blaylock',
 'Dikembo Mutombo',
@@ -440,7 +440,7 @@ INSERT INTO questions VALUES (
 4, 'st3', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2050', 'Which player was known as the “Big Dog”?',
+'q2050', 'Which player was known as the Big Dog?',
 '',
 'Ray Allen',
 'Earvin Johnson',
@@ -449,7 +449,7 @@ INSERT INTO questions VALUES (
 4, 'st3', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2051', 'Which of these track-and-field stars was NOT chosen in an NBA draft?',
+'q2051', 'Which of these track and field stars was NOT chosen in an NBA draft?',
 '',
 'Bruce Jenner',
 'Bob Beamon',
@@ -458,7 +458,7 @@ INSERT INTO questions VALUES (
 4, 'st3', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2052', 'Who was the first player to average a triple-double per game in one season?',
+'q2052', 'Who was the first player to average a triple double per game in one season?',
 '',
 'Oscar Robertson',
 'Michael Jordan',
@@ -503,7 +503,7 @@ INSERT INTO questions VALUES (
 3, 'st3', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2057', 'Who hit the game-winning shot in game 6 of the 1993 NBA championship to lift the Bulls over the Suns?',
+'q2057', 'Who hit the game winning shot in game 6 of the 1993 NBA championship to lift the Bulls over the Suns?',
 '',
 'Michael Jordan',
 'Scottie Pippen',
@@ -512,7 +512,7 @@ INSERT INTO questions VALUES (
 3, 'st3', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2058', 'What coach led the Bulls to two three-peats?',
+'q2058', 'What coach led the Bulls to two three peats?',
 '',
 'Phil Jackson',
 'Pat Riley',
@@ -530,7 +530,7 @@ INSERT INTO questions VALUES (
 3, 'st3', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2060', 'Who won the slam dunk contest in the 2008-09 season?',
+'q2060', 'Who won the slam dunk contest in the 2008 to 09 season?',
 '',
 'Nate Robinson',
 'Dwight Howard',
@@ -539,7 +539,7 @@ INSERT INTO questions VALUES (
 1, 'st3', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2061', 'Which school holds the longest home-court win streak in Division-I history?',
+'q2061', 'Which school holds the longest home court win streak in Division I history?',
 '',
 'Kentucky',
 'Lamar',
@@ -557,7 +557,7 @@ INSERT INTO questions VALUES (
 2, 'st4', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2063', 'In 2006 which Pac-10 Player of the Year helped Washington come back from a 11 point second-half deficit against Illinois in the second round?',
+'q2063', 'In 2006 which Pac 10 Player of the Year helped Washington come back from a 11 point second half deficit against Illinois in the second round?',
 '',
 'Brandon Roy',
 'Chase Budinger',
@@ -629,7 +629,7 @@ INSERT INTO questions VALUES (
 4, 'st4', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2071', 'Bryce Drew led what 13-seed to the 1998 Sweet-16?',
+'q2071', 'Bryce Drew led what 13 seed to the 1998 Sweet 16?',
 '',
 'Montana',
 'Hofstra',
@@ -638,7 +638,7 @@ INSERT INTO questions VALUES (
 3, 'st4', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2072', 'In 1997, Arizona beat 3 number one seeds?  Who were they?',
+'q2072', 'In 1997 Arizona beat 3 number one seeds?  Who were they?',
 '',
 'Duke, Kentucky, Cincinnati',
 'Kentucky, Duck, North Carolina',
@@ -656,7 +656,7 @@ INSERT INTO questions VALUES (
 1, 'st4', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2074', 'What team won 2 championships in the 1990s, each with a different coach?',
+'q2074', 'What team won 2 championships in the 1990s each with a different coach?',
 '',
 'North Carolina',
 'Kentucky',
@@ -665,7 +665,7 @@ INSERT INTO questions VALUES (
 2, 'st4', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2075', 'In UCONNs run to the 1999 Championship, which one of these teams did UCONN beat in the tournament?',
+'q2075', 'In UCONNs run to the 1999 Championship which one of these teams did UCONN beat in the tournament?',
 '',
 'They beat all three',
 'Iowa',
@@ -674,7 +674,7 @@ INSERT INTO questions VALUES (
 1, 'st4', 0, 0, '', '');
 
 INSERT INTO questions VALUES (
-'q2076', 'In 1996, what team knocked out defending champion UCLA, in the first round?',
+'q2076', 'In 1996, what team knocked out defending champion UCLA in the first round?',
 '',
 'Hofstra',
 'Richmond',
