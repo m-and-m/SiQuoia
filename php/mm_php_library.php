@@ -64,6 +64,21 @@ function display_question_contents($quiz_set, $load_count, $isResume) {
 	print("<div id='question_content'><p>".$user_item['question']."</p>");
 	if($user_item['media'] != null) {
 		print("<p>".$user_item['media']."</p>");
+		$mediafile = "../files/" . $user_item['media'];
+		$extension = strtolower(pathinfo($mediafile, PATHINFO_EXTENSION));
+ 		if (strcmp($extension, "mp3") == 0) {
+ 			print("\n<audio src=\"../files/q21.mp3\" autoplay=\"autoplay\" controls=\"controls\"> </audio>\n");
+ 		}
+ 		elseif (strcmp($extension, "mp4") == 0) {
+  print ("<video id='example_video_1' class='video-js vjs-default-skin' controls preload='none' width='640' height='480'
+      poster='../mediaplayer/videobg.png' data-setup='{}'>
+    <source src='$mediafile' type='video/mp4' />
+  </video>");
+  }
+ 		elseif (strcmp($extension, "jpg") == 0) {
+ 			echo "<img src='$mediafile' >";
+ 		}
+
 	}
 	print("</div>");
 	
@@ -81,6 +96,7 @@ function display_question_contents($quiz_set, $load_count, $isResume) {
 //DELETME
 print("Current QID: ".$curr_qid."<br/>");
 print("correct answer: ".$user_item["correct_answer"]."<br/><br/>");
+// 			print("\n<audio src=\"..\audio\blah.mp3\" preload=\"auto\"> </audio>\n");
 
 } // display_question_contents
 

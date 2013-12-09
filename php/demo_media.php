@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,13 +24,13 @@
 Here is some video:
   <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="640" height="480"
       poster="../mediaplayer/videobg.png" data-setup="{}">
-    <source src="../files/video01.mp4" type='video/mp4' />
+    <source src="../files/q21.mp4" type='video/mp4' />
   </video>
 <br>
 
 Here is some music:
 <br>
-<audio src="../files/music01.mp3" preload="auto"> </audio>
+<audio src="../files/q21.mp3" preload="auto"> </audio>
 <br>
 Here is an image
 <br>
@@ -53,3 +49,11 @@ both should work on most web browsers, as well as android and iOS.
 
 </body>
 </html>
+
+/*
+ $extension = strtolower(pathinfo($mediaile, PATHINFO_EXTENSION));
+ if ($extension == "mp3")
+ {
+ 	echo "<audio src='$mediafile' preload='auto> </audio>";
+ }
+ */

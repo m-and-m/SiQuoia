@@ -38,6 +38,20 @@ echo "</pre>";
 
 <html>
  <head>
+    <!-- Change URLs to wherever Video.js files will be hosted -->
+    <link href="../mediaplayer/video-js.css" rel="stylesheet" type="text/css">
+    <!-- video.js must be in the <head> for older IEs to work. -->
+    <script src="../mediaplayer/video.js"></script>
+    <script src="../mediaplayer/audio.min.js"></script>
+
+	<script>
+    videojs.options.flash.swf = "../mediaplayer/video-js.swf";
+    </script>
+    <script>
+    audiojs.events.ready(function() {
+        var as = audiojs.createAll();
+    });
+	</script>
  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
  	<title>QUIZ</title>
 	<script src="../js/source/jquery-1.10.2.min.js" type="text/javascript"></script>	

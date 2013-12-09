@@ -33,6 +33,9 @@ $supported_extensions = array (
     "gif" => "image/gif",
     "jpg" => "image/jpeg",
     "jpeg" => "image/jpeg",
+    "mp3" => "audio",
+    "mp4" => "video",
+    "flv" => "video",
 );
 
 //from http://www.php.net/manual/en/features.file-upload.errors.php#53278
