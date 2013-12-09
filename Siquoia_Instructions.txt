@@ -1,0 +1,25 @@
+﻿Step 1: Download xampp:
+
+
+Windows: http://www.apachefriends.org/en/xampp-windows.html#641
+Mac: http://www.apachefriends.org/en/xampp-macosx.html#849
+Linux: http://www.apachefriends.org/en/xampp-linux.html#374
+
+
+Step 2: Extract provided siquoia.zip zip file to the htdocs folder in the xampp installation, so that there is a 'siquoia' folder in htdocs.
+
+
+Step 3: Run xampp server (both apache and mysql servers)
+
+
+Step 4: On first time launch ONLY, set up the databases by navigating to http://localhost/siquoia/db/setup_db.php in an HTML5 standards compliant browser (modern Mozilla FireFox, Safari, Google Chrome)
+
+Step 5: Wait a few seconds for the database to be created, then initialized.  You will then be taken to the intro and login page.
+
+Step 6: (On Subsequent launches) Navigate to the intro page: http://localhost/siquoia
+
+Step 7: Click Register, enter email, username, password, and referrer if existing.
+
+Step 8: Proceed to login with provided details and play practice quiz.
+
+Step 9: To see some multimedia questions, choose the "NFL Football" Quiz from the "Featured Quiz" part of "Choose A Quiz"

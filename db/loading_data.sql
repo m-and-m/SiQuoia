@@ -161,7 +161,7 @@ INSERT INTO packet VALUES (
 "[\"q2061\", \"q2062\", \"q2063\", \"q2064\", \"q2065\", \"q2066\", \"q2067\", \"q2068\", \"q2069\", \"q2070\", \"q2071\", \"q2072\", \"q2073\", \"q2074\", \"q2075\",\"q2076\", \"q2077\", \"q2078\", \"q2079\", \"q2080\"]");
 
 INSERT INTO packet VALUES (
-"p10","lexus cars","",
+"p10","lexus cars","LEXUS",
 "[\"q0501\", \"q0502\", \"q0503\", \"q0504\", \"q0505\", \"q0506\", \"q0507\", \"q0508\", \"q0509\", \"q0510\", \"q0511\", \"q0512\", \"q0513\", \"q0514\", \"q0515\",\"q0516\", \"q0517\", \"q0518\", \"q0519\", \"q0520\"]");
 
 INSERT INTO packet VALUES (
@@ -181,15 +181,15 @@ INSERT INTO subject VALUES ("s3","movie");
 INSERT INTO topic VALUES ("t0","comedy","s0");
 INSERT INTO topic VALUES ("t1","football","s1");
 INSERT INTO topic VALUES ("t2","basketball","s1");
-INSERT INTO topic VALUES ("t3","math","s2");
-INSERT INTO topic VALUES ("t4","disney","s3");
+-- INSERT INTO topic VALUES ("t3","math","s2");
+-- INSERT INTO topic VALUES ("t4","disney","s3");
 INSERT INTO subtopic VALUES ("st0","friends","t0");
 INSERT INTO subtopic VALUES ("st1","nfl football","t1");
 INSERT INTO subtopic VALUES ("st2","ncaa football","t1");
 INSERT INTO subtopic VALUES ("st3","nba basketball","t2");
 INSERT INTO subtopic VALUES ("st4","ncaa basketball","t2");
-INSERT INTO subtopic VALUES ("st5","algebra","t3");
-INSERT INTO subtopic VALUES ("st6","the aristocats","t4");
+-- INSERT INTO subtopic VALUES ("st5","algebra","t3");
+INSERT INTO subtopic VALUES ("st6","misc","t4");
 
 -- Cars -> Japanese -> Lexus
 INSERT INTO subject VALUES ("s10","cars");
@@ -205,3 +205,7 @@ INSERT INTO subtopic (subtopicid, st_name, topicid) VALUES
 ('st23', 'import', 't20'),
 ('st24', 'modifications', 't20'),
 ('st25', 'racing', 't20');
+
+INSERT INTO user_profile (userid, username, useremail, isadmin, userpass) VALUES ("user0", "admin", "admin", "1", "aaa");
+
+INSERT INTO user_data (userid, userpoint, usercredit, usedtrial) VALUES ("user0", "15", "0", "0");
