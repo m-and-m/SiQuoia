@@ -15,6 +15,9 @@
 	$data = file_get_contents('loading_data.sql');
 	$result = mysqli_multi_query($data);
 	
+	$branded = file_get_contents('lexus.sql');
+	$result = mysqli_multi_query($branded);
+	
 	/*
 	 *make a data/result query for each .sql you need to load to db
 	$schema = file_get_contents('populate_schema.sql');
