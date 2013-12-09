@@ -1,6 +1,7 @@
 <?php
 include("connection.php");
 include("mm_php_library.php");
+include("sq_currency.php");
 
 server_connect();
 
@@ -15,7 +16,6 @@ $user_item  = $result0->fetch();
 
 // Delete savedquiz if it exists
 delete_savedquiz($user_item, $userid);
-
 
 // Get subject information
 $query1  = "select * from subject";
@@ -40,6 +40,15 @@ $result3 = pdo_query($query3);
 $subtopic_item  = $result3->fetchAll(PDO::FETCH_ASSOC);
 // Remove the 1st row of 2d array
 array_shift($subtopic_item);
+//var_dump($subtopic_item);
+
+// Get packet information
+$query4  = "select * from packet";
+$result4 = pdo_query($query4);    
+$packet_item  = $result4->fetchAll(PDO::FETCH_ASSOC);
+// Remove the 1st row of 2d array
+array_shift($packet_item);
+//var_dump($packet_item);
 
 ?>
 
@@ -66,7 +75,9 @@ array_shift($subtopic_item);
 
     <!--Pre-existing question-->
 	<div id='static_question'>
-	<span>FEATURED QUIZ</span>
+	<span>FEATURED QUIZ</span><br/>
+	<?php print("<span>Cost: ".$static_packet_cost."</span>"); ?>
+	
 	<form action='start_quiz.php' method='post'>
     <select name="category_select" size="10">
 		<?php    
@@ -75,14 +86,11 @@ array_shift($subtopic_item);
 				print("<optgroup label='TRIAL'>");
 				print("<option value='p1'>FRIENDS(TV)</option>");
 			}
-		?>
-		<optgroup label="ALL">
-		<?php
-		/*
-			foreach($subject_item as $row) {
-				print("<option value='".$row["subjectid"]."'>".strtoupper($row["s_name"])."</option>");
+
+		print("<optgroup label='ALL'>");
+			foreach($packet_item as $row) {
+				print("<option value='".$row["packetid"]."'>".strtoupper($row["p_name"])."</option>");
 			}
-		*/
 		?>
 		</optgroup>		
 		</optgroup>
@@ -95,7 +103,11 @@ array_shift($subtopic_item);
 <br/>
   <!--Random question-->
   <div id="random_question">
-  <span>RANDOM QUIZ</span>
+  <span>RANDOM QUIZ</span><br/>
+  <?php print("<span>Cost: ".$static_packet_cost." (Subject), ".
+  			$topic_packet_cost." (Topic), ".$subtopic_packet_cost." (SubTopic)</span>");
+   ?>
+
   <form action='start_quiz.php' method='post'>
     <select name="category_select" size="20">
 		<?php    
@@ -105,22 +117,25 @@ array_shift($subtopic_item);
 				print("<option value='all'>RANDOM QUIZ</option></optgroup>");
 			}
 		?>
-		<optgroup label="SUBJECT">
 		<?php
+			print("<optgroup label='SUBJECT'>");
+
 			foreach($subject_item as $row) {
 				print("<option value='".$row["subjectid"]."'>".strtoupper($row["s_name"])."</option>");
 			}
 		?>
 		</optgroup>		
-		<optgroup label="TOPIC">
 		<?php
+
+			print("<optgroup label='TOPIC'>");
 			foreach($topic_item as $row) {
 				print("<option value='".$row["topicid"]."'>".strtoupper($row["t_name"])."</option>");
 			}
 		?>
 		</optgroup>
-		<optgroup label="SUBTOPIC">
 		<?php
+
+		print("<optgroup label='SUBTOPIC'>");
 			foreach($subtopic_item as $row) {
 				print("<option value='".$row["subtopicid"]."'>".strtoupper($row["st_name"])."</option>");
 			}
@@ -141,7 +156,7 @@ array_shift($subtopic_item);
 <br/>
   <!--Branded Quiz-->
   <div id="branded_question">
-  <span>BRANDED QUIZ</span>
+  <span>BRANDED QUIZ</span><br/>
     <form action="verify_branded_code.php" id="register_form" method="post">
 
     	<label>Promotion Code*&nbsp;<input type="text" name="b_code" id="b_code"/></label>

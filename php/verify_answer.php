@@ -2,6 +2,7 @@
 include("connection.php");
 include("mm_php_library.php");
 include("sq_currency.php");
+
 server_connect();
 
 session_start();
@@ -44,7 +45,8 @@ if($previous_answer != null) {
 		pdo_transactionstart();
 
 		// update "userpoint" in user_data, increment by 1
-		$query3  = "UPDATE user_data SET userpoint = userpoint+".$answer_correct_point." WHERE userid = '".$userid."'";
+		$query3  = "UPDATE user_data SET userpoint = userpoint+".$answer_correct_point.
+				   ", usercredit=usercredit+".$answer_correct_point." WHERE userid = '".$userid."'";
     	$result3 = pdo_query($query3);
 
 		if($result3 == false) {

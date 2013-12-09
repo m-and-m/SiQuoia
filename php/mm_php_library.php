@@ -104,9 +104,9 @@ function display_prequestion_result($previous_answer) {
 	print("<div id='prev_q_result'>");
   	// if the previous_answer doesn't have any value -> it means first question
 	if(($previous_answer != null) && ($previous_answer == true)) {
-		print("<p>In Previous Quiz, You Got <b>CORRECT!</b><br/><hr/>"); 
+		print("<p>In Previous Question, You Got <b>CORRECT!</b><br/><hr/>"); 
 	} elseif (($previous_answer != null) && ($previous_answer == false)) {
-		print("<p>In Previous Quiz, You Got <b>INCORRECT.</b><br/><hr/>"); 
+		print("<p>In Previous Question, You Got <b>INCORRECT.</b><br/><hr/>"); 
 	} else {
 	}
 	print("</p></div>");
