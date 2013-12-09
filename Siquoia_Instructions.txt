@@ -23,3 +23,5 @@ Step 7: Click Register, enter email, username, password, and referrer if existin
 Step 8: Proceed to login with provided details and play practice quiz.
 
 Step 9: To see some multimedia questions, choose the "NFL Football" Quiz from the "Featured Quiz" part of "Choose A Quiz"
+
+Step 10: To test admin account, login as "admin" password "SiQuoiaAdmin". Admin account can review questions submitted by users.

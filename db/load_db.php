@@ -31,6 +31,9 @@
     mysqli_query($connection, "UPDATE user_profile set userpass ='$bcrypt_pass' where userid='user0'");
 	do {;} while (mysqli_next_result($connection));
     
+    mysqli_query($connection, "UPDATE question SET evaluatedby = 'admin'");
+	do {;} while (mysqli_next_result($connection));
+    
     //print("databases initialized..<br>");
     
     //print("<a href='../html/splashpage.html>Go To SiQuoia</a><br>");
