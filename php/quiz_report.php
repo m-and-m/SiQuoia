@@ -7,7 +7,7 @@ server_connect();
 session_start();
 $userid = $_SESSION["userid"];
 $username = $_SESSION["username"];
-
+$quizid = $_SESSION["quizid"];
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

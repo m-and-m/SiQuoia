@@ -23,6 +23,13 @@ $total_question_count = count($quiz_set);
 $total_left_question_count = ($total_question_count-1) - $last_status;
 $load_count = isset($_REQUEST["load_count"]) ? $_REQUEST["load_count"] : ($last_status+1);
 
+$correct_count = 0;
+foreach ($quiz_set as $item) {
+	if ($item['correct'] == true) {
+	   $correct_count += 1;
+	}
+}
+
 //DELETEME
 /*	print("<br/>Page load count: ".$load_count."<br/>Packet id: ".$quizid.
 	  "<br/>Total # question: ".$total_question_count.
@@ -80,7 +87,8 @@ if($load_count < $total_question_count) {
 
 } elseif($load_count == $total_question_count) {
 
-	print("Question is done!!<br/>");
+	print("Question is done!!<br/><br/>");
+		print("Score: ".$correct_count." / ".$total_question_count."<br/>");
 	print("<a href='quiz_report.php'>Quiz Report</a><br/><br/>");	
 
 	// Update usedtrial value to true

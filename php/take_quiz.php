@@ -23,7 +23,12 @@ $last_status = $savedquiz["lastindex"];
 $quiz_set = $savedquiz["quiz_set"];
 $total_question_count = count($quiz_set);
 
-
+$correct_count = 0;
+foreach ($quiz_set as $item) {
+	if ($item['correct'] == true) {
+	   $correct_count += 1;
+	}
+}
 //DELETEME
 /*
 	print("<br/>Page load count: ".$load_count."<br/>Packet id: ".$quizid.
@@ -87,11 +92,15 @@ if($load_count < $total_question_count) {
 
 } elseif($load_count == $total_question_count) {
 
-	print("Question is done!!<br/>");
+	print("Question is done!!<br/><br/>");
+	print("Score: ".$correct_count." / ".$total_question_count."<br/>");
+	
 	print("<a href='quiz_report.php'>Quiz Report</a><br/><br/>");
 
 	// Update usedtrial value to true
 	check_trial_used($userid, $quizid);
+
+
 
 	// Delete savedquiz if it exists
 	delete_savedquiz($user_item, $userid);	

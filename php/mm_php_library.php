@@ -63,7 +63,7 @@ function display_question_contents($quiz_set, $load_count, $isResume) {
 
 	print("<div id='question_content'><p>".$user_item['question']."</p>");
 	if($user_item['media'] != null) {
-		print("<p>".$user_item['media']."</p>");
+		//print("<p>".$user_item['media']."</p>");
 		$mediafile = "../files/" . $user_item['media'];
 		$extension = strtolower(pathinfo($mediafile, PATHINFO_EXTENSION));
  		if (strcmp($extension, "mp3") == 0) {
