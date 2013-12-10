@@ -5,8 +5,6 @@ include("sq_currency.php");
 
 server_connect();
 
-// TEMPORARY...st = the aristocats
-$subtopicid = "st6";
 $qid = (isset($_REQUEST["qid"])) ? ($_REQUEST["qid"]) : "";
 
 if($qid == "") {

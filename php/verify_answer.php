@@ -41,17 +41,7 @@ if($previous_answer != null) {
 		$quiz_set[$load_count]["correct"] = $pre_question_result;
 
 		pdo_transactionstart();
-
-		// update "userpoint" in user_data, increment by 1
-		$query3  = "UPDATE user_data SET userpoint = userpoint+".$answer_correct_point.
-				   ", usercredit=usercredit+".$answer_correct_point." WHERE userid = '".$userid."'";
-    	$result3 = pdo_query($query3);
-
-		if($result3 == false) {
-			print("Fail to update user_data: ".pdo_errorInfo()."<br/>");
-			pdo_rollback();
-    	} 
-    
+ 
 		// update "use_count" & "correct_count" in question, increment by 1
 		$query4  = "UPDATE question SET use_count = use_count+1, correct_count = correct_count+1 WHERE qid = '".$curr_qid."'";
     	$result4 = pdo_query($query4);

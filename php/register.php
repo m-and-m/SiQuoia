@@ -90,7 +90,7 @@ if($email_exist == true) {
 	}
 
 	// Create data set for user_data
-	$query4  = "INSERT INTO user_data VALUES ('".$curr_id."',".$initial_point.",0,'',0)";
+	$query4  = "INSERT INTO user_data VALUES ('".$curr_id."',".$initial_credit.",0,'',0)";
     $result4 = pdo_query($query4);
 	
 	if($result4 == false) {

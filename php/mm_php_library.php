@@ -1,5 +1,4 @@
 <?php
-
 /* Check the string if it has a certain string (needle)
 return - true(or, 1) if the string has a needle
 return - false if the string dosn't has a needle
@@ -180,6 +179,20 @@ function add_purchase_packet($userid, $packetid, $purchasetype, $cost) {
 	}
 } // add_purchase_packet
 
+/*
+*/
+function add_point($correct_count, $userid, $point){	
+	$totalpoint = ($correct_count * $point);
+	$query3  = "UPDATE user_data SET userpoint = userpoint+".$totalpoint.
+			   ", usercredit=usercredit+".$totalpoint." WHERE userid = '".$userid."'";
+    $result3 = pdo_query($query3);
+
+	if($result3 == false) {
+		print("Fail to update user_data: ".pdo_errorInfo()."<br/>");
+		pdo_rollback();
+	}
+} // add_point
+    
 /* Check if the user has used trial packet before
    If the user has not, check the value because the user just finished
    trial packet
@@ -249,10 +262,10 @@ function get_max_id($table_name) {
 */
 function display_score($correct_count, $total_question_count) {
 
-	print("Question is done!!<br/>");
+	print("Quiz is done!!<br/>");
 	print("Score: ".$correct_count." / ".$total_question_count."<br/><br/>");
 	
-	print("<a href='quiz_report.php'>Quiz Report</a><br/><br/>");
+//	print("<a href='quiz_report.php'>Quiz Report</a><br/><br/>");
 } // display_score
 
 server_disconnect();

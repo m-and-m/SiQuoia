@@ -47,7 +47,6 @@ if($user_item["savedquiz"] != null) {
 	<div id="choose_quiz"><a href='choose_quiz.php'>Choose Quiz</a></div>
 	<div id="submit_question"><a href='submit_question.php'>Submit A Question</a></div>
 	<div id="my_account"><a href='my_account.php'>My Account</a></div>
-	<div id="scoreboard"><a href='scoreboard.php'>Scoreboard</a></div>
 <?php
 // Check if the user has admin-flag
 if($user_item["isadmin"]) {

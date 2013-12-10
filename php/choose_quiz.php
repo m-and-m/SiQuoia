@@ -10,7 +10,7 @@ $userid = $_SESSION["userid"];
 $username = $_SESSION["username"];
 
 // Get user information
-$query0  = "select userpoint, usedtrial, savedquiz from user_profile p, user_data d where p.userid=d.userid and p.userid='".$userid."'";
+$query0  = "select * from user_profile p, user_data d where p.userid=d.userid and p.userid='".$userid."'";
 $result0 = pdo_query($query0);    
 $user_item  = $result0->fetch();
 
@@ -50,7 +50,7 @@ $packet_item  = $result4->fetchAll(PDO::FETCH_ASSOC);
 array_shift($packet_item);
 //var_dump($packet_item);
 
-// Get all branded name
+// Get all branded names
 $query5  = "select st_name from subtopic where topicid in"
 		  ." (select topicid from topic where t_name = 'branded')";
 $result5 = pdo_query($query5);    
@@ -77,12 +77,12 @@ $branded_item  = $result5->fetchAll();
   <hr>
   
   <!-- Show the total point -->
-  <p>Your current point: <?php print($user_item["userpoint"]); ?> points<br/><br/></p>
+  <p>Your current SQ credit: <?php print($user_item["usercredit"]); ?><br/><br/></p>
 
     <!--Pre-existing question-->
 	<div id='static_question'>
-	<span>FEATURED QUIZ</span><br/>
-	<?php print("<span>Cost: ".$static_packet_cost."</span>"); ?>
+	<span><b>FEATURED QUIZ</b></span><br/>
+	<?php print("<span>Required SQ credit: ".$static_packet_cost."</span>"); ?>
 	
 	<form action='start_quiz.php' method='post'>
     <select name="category_select" size="10">
@@ -111,8 +111,8 @@ $branded_item  = $result5->fetchAll();
 <br/>
   <!--Random question-->
   <div id="random_question">
-  <span>RANDOM QUIZ</span><br/>
-  <?php print("<span>Cost: ".$static_packet_cost." (Subject), ".
+  <span><b>RANDOM QUIZ</b></span><br/>
+  <?php print("<span>Required SQ credit: ".$subject_packet_cost." (Subject), ".
   			$topic_packet_cost." (Topic), ".$subtopic_packet_cost." (SubTopic), ".
   			$random_packet_cost." (Random)</span>");
    ?>
@@ -171,9 +171,9 @@ $branded_item  = $result5->fetchAll();
 <br/>
   <!--Branded Quiz-->
   <div id="branded_question">
-  <span>BRANDED QUIZ</span><br/>
-    <form action="start_quiz.php" id="register_form" method="post">
-    	<label>Promotion Code*&nbsp;<input type="text" name="b_code" id="b_code"/></label>
+  <span><b>BRANDED QUIZ</b></span><br/>
+    <form action="start_quiz.php" id="branded_form" method="post">
+    	<label>Promotion Code*&nbsp;<input type="text" name="b_code" id="b_code" autocomplete="off"/></label>
 	    <input type="hidden" name="quiz_type" value="branded_quiz"/>        
     	<input type="submit" value="START"/>
   </form>

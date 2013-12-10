@@ -4,8 +4,9 @@ session_start();
 include("../html/take_quiz_head.html");
 include("connection.php");
 include("mm_php_library.php");
-server_connect();
+include("sq_currency.php");
 
+server_connect();
 
 $userid = $_SESSION["userid"];
 $username = $_SESSION["username"];
@@ -26,6 +27,15 @@ $total_question_count = count($quiz_set);
 $total_left_question_count = ($total_question_count-1) - $last_status;
 $load_count = isset($_REQUEST["load_count"]) ? $_REQUEST["load_count"] : ($last_status+1);
 
+// Check if the packet is branded quiz
+$query1  = "select brandlogo from packet where packetid ='".$quizid."'";
+$result1 = pdo_query($query1);
+$brand_item  = $result1->fetch();
+$isbranded_quiz = false;    
+if($brand_item["brandlogo"] != false) {
+	$isbranded_quiz = true;
+}
+
 // Trace correct count
 $correct_count = 0;
 foreach ($quiz_set as $item) {
@@ -44,12 +54,18 @@ foreach ($quiz_set as $item) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
-
+ 	<title>RESUME QUIZ</title>
  <body>
  
  <header>
-	<h1>SiQuoia - <?php print($username);?>'s page</h1><hr>  
-	<script src="../js/did_you_answer.js" type="text/javascript"></script>  
+	<h1>
+	 <?php
+ 		if($isbranded_quiz) {
+ 			print("<img src='../files/".$brand_item["brandlogo"]."' alt='brand logo' height='50' >&nbsp;&nbsp;");
+ 		}
+ 	?>
+
+	 SiQuoia - <?php print($username);?>'s page</h1><hr>
  </header>
  
  <div class="content">
@@ -77,6 +93,9 @@ if($load_count < $total_question_count) {
 
 	// Display score
 	display_score($correct_count, $total_question_count);
+
+	// Add score/point
+	add_point($correct_count, $userid, $answer_correct_point);	
 
 	// Update usedtrial value to true
 	check_trial_used($userid, $quizid);

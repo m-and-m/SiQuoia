@@ -2,9 +2,21 @@ $(document).ready(function() {
 
    $("#register_form").submit("submit", validate_register);
    $("#login_form").submit("submit", validate_login);
+   $("#branded_form").submit("submit", check_code);
 
 });
 
+/*
+Check if the field has a value
+*/
+function check_code () {
+//	alert("hello");
+	if($("#b_code").val() == "") {
+		alert("Code?");
+		return false;
+	}
+	
+} // check_code
 /* 
 Validate user registration information: email, username and password
 */

@@ -108,7 +108,8 @@ if (isset($_FILES[$file_field]) && isset($_FILES[$file_field]["tmp_name"]) && is
         $base = $new_qid . "." . $extension;
         $filename = $upload_folder . $base;
         move_uploaded_file($tmpfilename, $filename);
-        echo "<h1>File uploaded to " . $filename . "</h1>";
+//DELETEME
+//        echo "<h1>File uploaded to " . $filename . "</h1>";
         
     } 
     /*else {
@@ -120,12 +121,13 @@ if (isset($_FILES[$file_field]) && isset($_FILES[$file_field]["tmp_name"]) && is
 }
 
 // 3) insert into question. LEAVE subtopicid as NULL and ADD submitedby
-
+	// TEMPORARY...st6 = misc
+	$subtopicid = "st6";
 	$base = (isset($base)) ? $base : "";
 	$query2  = "INSERT INTO question VALUES ('".
 				$new_qid."','".$text_question."','".$base."','".
 				$answer1."','".$answer2."','".$answer3."','".$answer4."','".
-				$correct_answer."',null,0,0,'".$userid."',null)";
+				$correct_answer."','".$subtopicid."',0,0,'".$userid."',null)";
 
     $result2 = pdo_query($query2);
 	

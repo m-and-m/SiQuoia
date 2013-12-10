@@ -26,8 +26,8 @@ CREATE TABLE user_profile (
 /*Delete a row from user_profile, then automatically delete a correspond row from user_data */
 CREATE TABLE user_data (
 	userid VARCHAR(10) NOT NULL,
-	userpoint INT,
 	usercredit INT, 
+	userpoint INT,
 	savedquiz TEXT,
 	usedtrial TINYINT(1) NOT NULL,
 	FOREIGN KEY(userid) REFERENCES user_profile(userid) ON DELETE CASCADE
@@ -81,6 +81,7 @@ CREATE TABLE packet (
 	packetid VARCHAR(7) NOT NULL,
 	p_name VARCHAR(30) NOT NULL,
 	branded VARCHAR(10),
+	brandlogo VARCHAR(30),
 	questionid_set TEXT,
 	PRIMARY KEY(packetid)
 );
@@ -94,6 +95,7 @@ SUBTO - subtopic
 RANDM - random
 STATI - static quiz, or pre-existing 
 TRIAL - trial
+BRAND - branded quiz
 */
 CREATE TABLE purchase (
 	purchaseid VARCHAR(7) NOT NULL,

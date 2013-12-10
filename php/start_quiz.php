@@ -72,14 +72,18 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 //2) Get 20 questions randomly
 	if(strcmp($quizid, "all") == 0) {
 		// special case:
+
+//DELETEME		print("all<br/>");
 		// trial and random quiz packet(questions are chosen from entire question
 		$purchasetype = "TRIAL";
 		$cost = $trial_packet_cost;
 		$query = "select qid from question order by rand() limit 20";		
-
+		$packet_name = "random trial";
+		
 	} elseif (find_category($quizid, "s")) {
 		// pick from subject
-
+//DELETEME		print("subject<br/>");
+		
 		$purchasetype = "SUBJE";
 		$cost = $subject_packet_cost;
 
@@ -90,9 +94,12 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 		where t.subjectid = s.subjectid && t.topicid = sub.topicid ) 
 		as st where subjectid = '".$quizid."') order by rand() limit 20";
 
+		$packet_name = "random subject";
+		
 	} elseif(find_category($quizid, "t")) {
 		// pick from topic
-
+//DELETEME		print("topic<br/>");
+		
 		$purchasetype = "TOPIC";
 		$cost = $topic_packet_cost;
 
@@ -103,15 +110,20 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 		where t.topicid = sub.topicid ) 
 		as st where topicid = '".$quizid."') order by rand() limit 20";
 
+		$packet_name = "random topic";
+
 	} elseif(find_category($quizid, "st")) { 
 		// pick from subtopic
-
+//DELETEME		print("subtopic<br/>");
+		
 		$purchasetype = "SUBTO";
 		$cost = $subtopic_packet_cost;
 
 		$query = "select qid from question where subtopicid='".
 				$quizid."' order by rand() limit 20";
 
+		$packet_name = "random subtopic";
+		
 	} elseif(find_category($quizid, "easy")) {
 		// use question ranking <50%
 		// special case that a packet will be random selection from entire question
@@ -145,12 +157,19 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 	$combine_json = json_encode($combine);
 	//var_dump($combine_json);
 
-//3) Saved into packet
 	$json_quizidset = json_encode($quizset_json_for_packet);
 	$newid = get_max_id("packet");
-	
+
+//3) Saved into packet
+/*	
 	$query7 = "INSERT INTO packet VALUES ('"
-	.$newid."','".$purchasetype."','', ".$json_quizidset;
+	.$newid."','".$packet_name."','', '".$json_quizidset."','')";
+	$result7 = pdo_query($query7);    
+
+	if($result7 == false) {
+		pdo_rollback();
+	}
+*/
 
 	pdo_transactionstart();
 
@@ -162,7 +181,7 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 	$quizid = $_SESSION["quizid"];
 
 //6) Add packet information in purchase
-	add_purchase_packet($userid, $quizid, $purchasetype, $cost);
+	add_purchase_packet($userid, "", $purchasetype, $cost);
 
 	pdo_commit();
 	
@@ -171,9 +190,51 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 } 
 //BRANDED QUIZ
 elseif(strcmp($quiztype, "branded_quiz") == 0) {
-	// Check the code
+
+	$purchasetype = "BRAND";
+	$cost = $branded_packet_cost;
+
 	$code = $_REQUEST["b_code"];
-	print("CODE: ".$code);
+//DELETEME	
+	print("CODE: ".$code."<br/>");
+
+//1) Get the question, which has the code from packet
+	$query9  = "select packetid from packet where branded ='".$code."'";
+	$result9 = pdo_query($query9);    
+	$packetid  = $result9->fetch();
+	$b_packetid = $packetid["packetid"];
+//DELETEME
+	print("B PID: ".$b_packetid."<br/>");
+	$_SESSION["quizid"] = $b_packetid;
+	$quizid = $_SESSION["quizid"];
+
+// 1) get question set from packet 
+	$query10  = "select questionid_set from packet where packetid = '".$quizid."'";
+	$result10 = pdo_query($query10);    
+	$q_item  = $result10->fetch();
+	// question set in json
+	$questionidset = json_decode($q_item["questionid_set"], true);
+
+	// Inserting additional key/value in the question set
+	$quizset = array();
+	foreach($questionidset as $row) {
+		array_push($quizset, array("id"=> $row, "correct" => false));
+	}
+	$combine = array("lastindex" => -1, "quiz_set" => $quizset);
+	$combine_json = json_encode($combine);
+
+	pdo_transactionstart();
+
+// 2) put the question set (json form) into the user's 'savedquiz'
+	add_json_in_savedquiz($combine_json, $userid);
+
+// 3) Add packet information in purchase
+	add_purchase_packet($userid, $b_packetid, $purchasetype, $cost);
+
+	pdo_commit();
+	
+	print("<a href='take_quiz.php'>Take A Quiz</a>");
+	
 } 
 else {
 	print("something wrong at selecting quiz type.<br/>");
