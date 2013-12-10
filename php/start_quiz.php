@@ -32,11 +32,12 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 
 // 1) get question set from packet 
 	$query0  = "select questionid_set from packet where packetid = '".$quizid."'";
+//DELETEME
+print("strt_quiz: ".$query0."<br/>");
 	$result0 = pdo_query($query0);    
 	$q_item  = $result0->fetch();
 	// question set in json
 	$questionidset = json_decode($q_item["questionid_set"], true);
-
 	// Inserting additional key/value in the question set
 	$quizset = array();
 	foreach($questionidset as $row) {
@@ -51,7 +52,7 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 	add_json_in_savedquiz($combine_json, $userid);
 
 // 3) Add packet information in purchase
-	add_purchase_packet($userid, $quizid, $purchasetype, $cost);
+	add_purchase_information($userid, $quizid, $purchasetype, $cost);
 
 	pdo_commit();
 	
@@ -160,7 +161,8 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 	$json_quizidset = json_encode($quizset_json_for_packet);
 	$newid = get_max_id("packet");
 
-//3) Saved into packet
+//3) !! Changed not to save a question set into packet
+//Saved into packet
 /*	
 	$query7 = "INSERT INTO packet VALUES ('"
 	.$newid."','".$packet_name."','', '".$json_quizidset."','')";
@@ -181,7 +183,7 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 	$quizid = $_SESSION["quizid"];
 
 //6) Add packet information in purchase
-	add_purchase_packet($userid, "", $purchasetype, $cost);
+	add_purchase_information($userid, "", $purchasetype, $cost);
 
 	pdo_commit();
 	
@@ -229,7 +231,7 @@ elseif(strcmp($quiztype, "branded_quiz") == 0) {
 	add_json_in_savedquiz($combine_json, $userid);
 
 // 3) Add packet information in purchase
-	add_purchase_packet($userid, $b_packetid, $purchasetype, $cost);
+	add_purchase_information($userid, $b_packetid, $purchasetype, $cost);
 
 	pdo_commit();
 	

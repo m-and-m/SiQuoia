@@ -65,6 +65,8 @@ function display_question_contents($quiz_set, $load_count, $isResume) {
 
 	$curr_qid = $quiz_set[($load_count)]["id"];
 	$query1  = "select * from question where qid='".$curr_qid."'";
+//DELETEME
+//print("mm_library: ".$query1."<br/>");
 	$result1 = pdo_query($query1);    
 	$user_item = $result1->fetch(PDO::FETCH_ASSOC);
 
@@ -72,7 +74,8 @@ function display_question_contents($quiz_set, $load_count, $isResume) {
 
 //Check if the question has media, and check what kind of media
 	if($user_item['media'] != null) {
-
+//DELETEME
+//print($user_item['media']);
 		//print("<p>".$user_item['media']."</p>");
 		$mediafile = "../files/" . $user_item['media'];
 		$extension = strtolower(pathinfo($mediafile, PATHINFO_EXTENSION));
@@ -149,7 +152,7 @@ function add_json_in_savedquiz($combine_json, $userid){
 
 /* Add purchased packet information into purchase table	
 */
-function add_purchase_packet($userid, $packetid, $purchasetype, $cost) {
+function add_purchase_information($userid, $packetid, $purchasetype, $cost) {
 
 	// Fetch max purchase id
 	$query7 = "select max(abs(purchaseid)) from purchase order by purchaseid";
@@ -177,7 +180,7 @@ function add_purchase_packet($userid, $packetid, $purchasetype, $cost) {
 		
 		//print("Added purchase information successfully!<br/>");
 	}
-} // add_purchase_packet
+} // add_purchase_information
 
 /*
 */
@@ -267,6 +270,13 @@ function display_score($correct_count, $total_question_count) {
 	
 //	print("<a href='quiz_report.php'>Quiz Report</a><br/><br/>");
 } // display_score
+
+/* Calculate the total number of memorabilia that the user can purchase
+*/
+function nummemora_availability($current_credit, $memora_cost) {
+	$answer = floor($current_credit / $memora_cost);
+	return $answer;
+} // nummemora_availability
 
 server_disconnect();
 ?>

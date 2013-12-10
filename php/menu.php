@@ -1,6 +1,7 @@
 <?php
 include("connection.php");
 include("mm_php_library.php");
+include("sq_currency.php");
 
 server_connect();
 
@@ -46,6 +47,12 @@ if($user_item["savedquiz"] != null) {
 ?>
 	<div id="choose_quiz"><a href='choose_quiz.php'>Choose Quiz</a></div>
 	<div id="submit_question"><a href='submit_question.php'>Submit A Question</a></div>
+<?php
+if($memorabilia_cost < $user_item["usercredit"]) {
+	print("<div id='purchase_memorabilia'><a href='purchase_memorabilia.php'>Purchase Memorabilia</a></div>");
+}	
+
+?>
 	<div id="my_account"><a href='my_account.php'>My Account</a></div>
 <?php
 // Check if the user has admin-flag
