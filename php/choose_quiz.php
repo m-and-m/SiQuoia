@@ -65,6 +65,8 @@ $branded_item  = $result5->fetchAll();
  	<title>CHOOSE A QUIZ</title>
 	<script src="../js/source/jquery-1.10.2.min.js" type="text/javascript"></script>	
 	<script src="../js/check_empty.js" type="text/javascript"></script>
+	<script src="../js/did_you_answer.js" type="text/javascript"></script>
+
  </head>
  <body>
  
@@ -84,8 +86,8 @@ $branded_item  = $result5->fetchAll();
 	<span><b>FEATURED QUIZ</b></span><br/>
 	<?php print("<span>Required SQ credit: ".$static_packet_cost."</span>"); ?>
 	
-	<form action='start_quiz.php' method='post'>
-    <select name="category_select" size="10">
+	<form action='start_quiz.php' id='featured_selection_form' method='post'>
+    <select name="category_select" id="featured_selection" size="10">
 		<?php    
 			// Trial quiz
 			if(!$user_item["usedtrial"]) {
@@ -117,50 +119,55 @@ $branded_item  = $result5->fetchAll();
   			$random_packet_cost." (Random)</span>");
    ?>
 
-  <form action='start_quiz.php' method='post'>
-    <select name="category_select" size="20">
+  <form action='start_quiz.php' id='random_select_form' method='post'>
+    <select name="category_select" id="random_selection" size="20">
 		<?php    
-			// Trial quiz
+// TRIAL 
 			if(!$user_item["usedtrial"]) {
 				print("<optgroup label='TRIAL'>");
 				print("<option value='all'>RANDOM QUIZ</option></optgroup>");
 			}
-		?>
-		<?php
-			print("<optgroup label='SUBJECT'>");
-
-			foreach($subject_item as $row) {
-				if(strcmp($row["s_name"], "branded") != 0) {
-					print("<option value='".$row["subjectid"]."'>".strtoupper($row["s_name"])."</option>");
+// SUBJECT		
+			if($subject_packet_cost <= $user_item["usercredit"]) {
+				print("<optgroup label='SUBJECT'>");
+				foreach($subject_item as $row) {
+					if(strcmp($row["s_name"], "branded") != 0) {
+						print("<option value='".$row["subjectid"]."'>".strtoupper($row["s_name"])."</option>");
+					}
 				}
+				print("</optgroup>");
 			}
-		?>
-		</optgroup>		
-		<?php
-			print("<optgroup label='TOPIC'>");
-			foreach($topic_item as $row) {
-				if(strcmp($row["t_name"], "branded") != 0) {
-					print("<option value='".$row["topicid"]."'>".strtoupper($row["t_name"])."</option>");
+// TOPIC
+			if($topic_packet_cost <= $user_item["usercredit"]) {		
+				print("<optgroup label='TOPIC'>");
+				foreach($topic_item as $row) {
+					if(strcmp($row["t_name"], "branded") != 0) {
+						print("<option value='".$row["topicid"]."'>".strtoupper($row["t_name"])."</option>");
+					}
 				}
+				print("</optgroup>");				
 			}
-		?>
-		</optgroup>
-		<?php
-
-		print("<optgroup label='SUBTOPIC'>");
-			foreach($subtopic_item as $row) {
-				foreach($branded_item as $abrand) {
-					if(strcmp($abrand["st_name"], $row["st_name"]) != 0) {	
-						print("<option value='".$row["subtopicid"]."'>".strtoupper($row["st_name"])."</option>");
-					}		
+// SUBTOPIC
+			if($subtopic_packet_cost <= $user_item["usercredit"]) {		
+				print("<optgroup label='SUBTOPIC'>");
+				foreach($subtopic_item as $row) {
+					foreach($branded_item as $abrand) {
+						if(strcmp($abrand["st_name"], $row["st_name"]) != 0) {	
+							print("<option value='".$row["subtopicid"]."'>".strtoupper($row["st_name"])."</option>");
+						}		
+					}
 				}
+				print("</optgroup>");				
 			}
-		?>
-		</optgroup>
-		<optgroup label="RANDOM SELECTION">
-			<option value="easy">EASY</option>
-			<option value="hard">HARD</option>
-		</optgroup>
+// RANDOM=>DIFFICULTY
+			if($random_packet_cost <= $user_item["usercredit"]) {	
+				print("<optgroup label='RANDOM SELECTION'>");
+				print("<option value='easy'>EASY</option>");
+				print("<option value='hard'>HARD</option>");
+				print("</optgroup>");
+			}	
+?>
+		
 		
     </select>
     <input type="hidden" name="quiz_type" value="random_quiz"/>        

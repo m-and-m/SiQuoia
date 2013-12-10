@@ -30,7 +30,7 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 	$purchasetype = "STATI";
 	$cost = $static_packet_cost;
 
-// 1) get question set from packet 
+//1) get question set from packet 
 	$query0  = "select questionid_set from packet where packetid = '".$quizid."'";
 //DELETEME
 print("strt_quiz: ".$query0."<br/>");
@@ -48,10 +48,13 @@ print("strt_quiz: ".$query0."<br/>");
 
 	pdo_transactionstart();
 
-// 2) put the question set (json form) into the user's 'savedquiz'
+//2) put the question set (json form) into the user's 'savedquiz'
 	add_json_in_savedquiz($combine_json, $userid);
 
-// 3) Add packet information in purchase
+//3) update users credit
+	use_credit($cost, $userid);
+	
+//4) Add packet information in purchase
 	add_purchase_information($userid, $quizid, $purchasetype, $cost);
 
 	pdo_commit();
@@ -182,7 +185,10 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 	$_SESSION["quizid"] = $newid;
 	$quizid = $_SESSION["quizid"];
 
-//6) Add packet information in purchase
+//6) update users credit
+	use_credit($cost, $userid);
+
+//7) Add packet information in purchase
 	add_purchase_information($userid, "", $purchasetype, $cost);
 
 	pdo_commit();

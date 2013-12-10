@@ -182,7 +182,7 @@ function add_purchase_information($userid, $packetid, $purchasetype, $cost) {
 	}
 } // add_purchase_information
 
-/*
+/* Add the point to the userpoint
 */
 function add_point($correct_count, $userid, $point){	
 	$totalpoint = ($correct_count * $point);
@@ -195,6 +195,16 @@ function add_point($correct_count, $userid, $point){
 		pdo_rollback();
 	}
 } // add_point
+    
+/* Subtract the credit the user used from usercredit
+*/    
+function use_credit($total_used_credit, $userid){
+	$query0  = "update user_data set usercredit = (usercredit-".$total_used_credit.") where userid='".$userid."'";
+	$result0 = pdo_query($query0);    
+	if($result0 == false) {
+		pdo_rollbakc();
+	}
+} // use_credit
     
 /* Check if the user has used trial packet before
    If the user has not, check the value because the user just finished

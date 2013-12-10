@@ -43,12 +43,9 @@ $user_item  = $result0->fetch();
   
   <?php
  pdo_transactionstart();
+ 
 //2) decrement the usercredit
-	$query0  = "update user_data set usercredit = (usercredit-".$total_amount_to_pay.") where userid='".$userid."'";
-	$result0 = pdo_query($query0);    
-	if($result0 == false) {
-		pdo_rollbakc();
-	}
+	use_credit($total_amount_to_pay);	
 	
 //3) add purchase information in purchase
 	add_purchase_information($userid, "", $purchasetype, $total_amount_to_pay);
