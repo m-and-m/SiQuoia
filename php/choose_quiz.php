@@ -81,7 +81,7 @@ $branded_item  = $result5->fetchAll();
   <!-- Show the total point -->
   <p>Your current SQ credit: <?php print($user_item["usercredit"]); ?><br/><br/></p>
 
-    <!--Pre-existing question-->
+<!--Pre-existing question-->
 	<div id='static_question'>
 	<span><b>FEATURED QUIZ</b></span><br/>
 	<?php print("<span>Required SQ credit: ".$static_packet_cost."</span>"); ?>
@@ -94,13 +94,15 @@ $branded_item  = $result5->fetchAll();
 				print("<optgroup label='TRIAL'>");
 				print("<option value='p1'>FRIENDS(TV)</option>");
 			}
-
-		print("<optgroup label='ALL'>");
-			foreach($packet_item as $row) {
-				if($row["branded"] == ""){
-					print("<option value='".$row["packetid"]."'>".strtoupper($row["p_name"])."</option>");
+		
+		if($static_packet_cost <= $user_item["usercredit"]) {
+			print("<optgroup label='ALL'>");
+				foreach($packet_item as $row) {
+					if($row["branded"] == ""){
+						print("<option value='".$row["packetid"]."'>".strtoupper($row["p_name"])."</option>");
+					}
 				}
-			}
+		}
 		?>
 		</optgroup>		
 		</optgroup>
