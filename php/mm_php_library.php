@@ -1,4 +1,5 @@
 <?php
+
 /* Check the string if it has a certain string (needle)
 return - true(or, 1) if the string has a needle
 return - false if the string dosn't has a needle
@@ -37,6 +38,8 @@ function text_match($hay, $needle, $charlen) {
  return true;
 } // text_match
 
+/* Display array with new space
+*/
 function dump_array_pretty($array) {
 
 	print("<pre>");
@@ -45,6 +48,8 @@ function dump_array_pretty($array) {
 
 } // dump_array_pretty
 
+/* Display 2d array with new space
+*/
 function dump_array2d_pretty($array2d) {
 	
 	print("<pre>");
@@ -55,29 +60,40 @@ function dump_array2d_pretty($array2d) {
 
 } // dump_array_pretty
 
+/* Display question contents including text and multimedia
+*/
 function display_question_contents($quiz_set, $load_count, $isResume) {
+
 	$curr_qid = $quiz_set[($load_count)]["id"];
 	$query1  = "select * from question where qid='".$curr_qid."'";
 	$result1 = pdo_query($query1);    
 	$user_item = $result1->fetch(PDO::FETCH_ASSOC);
 
 	print("<div id='question_content'><p>".$user_item['question']."</p>");
+
+//Check if the question has media, and check what kind of media
 	if($user_item['media'] != null) {
+
 		//print("<p>".$user_item['media']."</p>");
 		$mediafile = "../files/" . $user_item['media'];
 		$extension = strtolower(pathinfo($mediafile, PATHINFO_EXTENSION));
+ 		
  		if (strcmp($extension, "mp3") == 0) {
- 			print("\n<audio src=\"../files/q21.mp3\" autoplay=\"autoplay\" controls=\"controls\"> </audio>\n");
- 		}
- 		elseif (strcmp($extension, "mp4") == 0) {
- 		 print ("<video id='example_video_1' class='video-js vjs-default-skin' controls preload='none' width='640' height='480'
-     	 poster='../mediaplayer/videobg.png' data-setup='{}'><source src='$mediafile' type='video/mp4' /></video>");
- 		}
- 		elseif (strcmp($extension, "jpg") == 0) {
- 			echo "<img src='$mediafile' >";
+ 		
+ 			print("\n<audio src=\"".$mediafile."\" autoplay=\"autoplay\" controls=\"controls\"> </audio>\n");
+ 		
+ 		} elseif (strcmp($extension, "mp4") == 0) {
+ 		
+ 		 print ("<video id='example_video_1' class='video-js vjs-default-skin' autoplay=\"autoplay\" controls=\"controls\"
+ 		  	preload='none' width='500' height='350' data-setup='{}'><source src='".$mediafile."' type='video/mp4' /></video>");
+ 		
+ 		} elseif (strcmp($extension, "jpg") == 0) {
+ 		
+ 			print( "<img src='".$mediafile."' >");
  		}
 
 	}
+	
 	print("</div>");
 	
 	print("<div id='question_answer'><form action='verify_answer.php' id='select_answer' method='post'>");
@@ -92,55 +108,83 @@ function display_question_contents($quiz_set, $load_count, $isResume) {
 	print("<input type='submit' value='CONTINUE'/><br/></form></div>");
 
 //DELETME
-//print("Current QID: ".$curr_qid."<br/>");
-//print("correct answer: ".$user_item["correct_answer"]."<br/><br/>");
-// 			print("\n<audio src=\"..\audio\blah.mp3\" preload=\"auto\"> </audio>\n");
+print("mm_php_library.<br/>");
+print("Current QID: ".$curr_qid."<br/>");
+print("correct answer: ".$user_item["correct_answer"]."<br/><br/>");
 
 } // display_question_contents
 
+/* Display precious question result
+*/
 function display_prequestion_result($previous_answer) {
+
 	print("<div id='prev_q_result'>");
+
   	// if the previous_answer doesn't have any value -> it means first question
 	if(($previous_answer != null) && ($previous_answer == true)) {
 		print("<p>In Previous Question, You Got <b>CORRECT!</b><br/><hr/>"); 
 	} elseif (($previous_answer != null) && ($previous_answer == false)) {
 		print("<p>In Previous Question, You Got <b>INCORRECT.</b><br/><hr/>"); 
-	} else {
-	}
+	} 
+
 	print("</p></div>");
 
 } // display_prequestion_result
 
-/*
-	Add purchased packet information into purchase table
+/* Put the question set (json form) into the user's 'savedquiz'
 */
-	function add_purchase_packet($userid, $packetid, $purchasetype, $cost) {
-		// Fetch max purchase id
-		$query7 = "select max(purchaseid) from purchase";
-		$result7 = pdo_query($query7); 
-		$maxid = $result7->fetch();  
-		$purchase_maxid = $maxid["max(purchaseid)"];
-		if($purchase_maxid == null) {
-			// set initial value if the id doesn't exist
-			$purchase_newid = 0;
-		} else {
-			$purchase_newid = $purchase_maxid+1;		
-		}
+function add_json_in_savedquiz($combine_json, $userid){
+	$stmt = pdo_prepare("update user_data set savedquiz = ? where userid = ?");
+	$stmt->bindParam(1, $combine_json);
+	$stmt->bindParam(2, $userid);
+	$result1 = $stmt->execute();
+
+	if($result1 == false) {
+		print("Fail to add quiz set: ".pdo_errorInfo()."<br/>");
+    }
+/*     else {
+    	print("add json in savedqui");
+    }
+*/
+} // add_json_in_savedquiz
+
+/* Add purchased packet information into purchase table	
+*/
+function add_purchase_packet($userid, $packetid, $purchasetype, $cost) {
+
+	// Fetch max purchase id
+	$query7 = "select max(abs(purchaseid)) from purchase order by purchaseid";
+	$result7 = pdo_query($query7); 
+	$maxid = $result7->fetch();  
+	$purchase_maxid = $maxid["max(abs(purchaseid))"];
+
+	if($purchase_maxid == null) {
+		// set initial value if the id doesn't exist
+		$purchase_newid = 0;
+	} else {
+		$purchase_newid = $purchase_maxid+1;		
+	}
 
 //DELETEME
 //	print("preid: ".$purchase_maxid."currid: ".$purchase_newid."<br/>");
 
-		$query8 = "INSERT INTO purchase VALUES ('".$purchase_newid."','".$userid."','"
-		.$packetid."','".$purchasetype ."','".$cost."',CURDATE())";
-		$result8 = pdo_query($query8);    
-		if($result8 == false) {
-			pdo_rollback();
-		} else {
-			print("Added purchase information successfully!<br/>");
-		}
-			
-	} // add_purchase_packet
+	$query8 = "INSERT INTO purchase VALUES ('".$purchase_newid."','".$userid.
+			  "','".$packetid."','".$purchasetype ."','".$cost."',CURDATE())";
+	$result8 = pdo_query($query8);    
+	
+	if($result8 == false) {
+		pdo_rollback();
+	} else {
+		
+		//print("Added purchase information successfully!<br/>");
+	}
+} // add_purchase_packet
 
+/* Check if the user has used trial packet before
+   If the user has not, check the value because the user just finished
+   trial packet
+   **packet id "p1" is trial packet  	
+*/
 function check_trial_used($userid, $quizid){
 
 	// if the packet is trial, check the usedtrial to true/1
@@ -154,7 +198,8 @@ function check_trial_used($userid, $quizid){
 
  } // check_trial_used
  
-// If the user has the savedquiz, delete it
+/* If the user has the savedquiz, delete it
+*/
 function delete_savedquiz($user_item, $userid) {
 	if($user_item["savedquiz"] != null) {
 		$query4  = "update user_data set savedquiz = null where userid='".$userid."'";
@@ -166,6 +211,8 @@ function delete_savedquiz($user_item, $userid) {
 	}
 } // delete_savedquiz
 
+/* Get max id in this format "q0000" 
+*/
 function get_max_id($table_name) {
 
 	if(strcmp($table_name, "question") == 0) {
@@ -197,6 +244,16 @@ function get_max_id($table_name) {
 
 	return $new_qid;
 } // get_max_id
+
+/* Display the score at the end of a question set
+*/
+function display_score($correct_count, $total_question_count) {
+
+	print("Question is done!!<br/>");
+	print("Score: ".$correct_count." / ".$total_question_count."<br/><br/>");
+	
+	print("<a href='quiz_report.php'>Quiz Report</a><br/><br/>");
+} // display_score
 
 server_disconnect();
 ?>

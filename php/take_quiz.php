@@ -1,9 +1,10 @@
 <?php
+session_start();
+
+include("../html/take_quiz_head.html");
 include("connection.php");
 include("mm_php_library.php");
 server_connect();
-
-session_start();
 
 $userid = $_SESSION["userid"];
 $username = $_SESSION["username"];
@@ -23,6 +24,7 @@ $last_status = $savedquiz["lastindex"];
 $quiz_set = $savedquiz["quiz_set"];
 $total_question_count = count($quiz_set);
 
+// Trace correct count
 $correct_count = 0;
 foreach ($quiz_set as $item) {
 	if ($item['correct'] == true) {
@@ -30,49 +32,30 @@ foreach ($quiz_set as $item) {
 	}
 }
 //DELETEME
-/*
-	print("<br/>Page load count: ".$load_count."<br/>Packet id: ".$quizid.
-	  "<br/>Total # question: ".$total_question_count.
-	  "<br/>Last status: ".$last_status."<br/>");
+	print("take_quiz.<br/>Page load count: ".$load_count."<br/>Packet id: ".$quizid.
+	  	  "<br/>Total # question: ".$total_question_count.
+	 	  "<br/>Last status: ".$last_status."<br/>");
 
-echo "<pre><br/>";
+//echo "<pre><br/>";
 //var_dump($savedquiz);
-echo "</pre>";
-*/
+//echo "</pre>";
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
- <head>
-    <!-- Change URLs to wherever Video.js files will be hosted -->
-    <link href="../mediaplayer/video-js.css" rel="stylesheet" type="text/css">
-    <!-- video.js must be in the <head> for older IEs to work. -->
-    <script src="../mediaplayer/video.js"></script>
-    <script src="../mediaplayer/audio.min.js"></script>
-
-	<script>
-    videojs.options.flash.swf = "../mediaplayer/video-js.swf";
-    </script>
-    <script>
-    audiojs.events.ready(function() {
-        var as = audiojs.createAll();
-    });
-	</script>
- <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
- 	<title>QUIZ</title>
-	<script src="../js/source/jquery-1.10.2.min.js" type="text/javascript"></script>	
- </head>
  <body>
  
  <header>
   <h1>SiQuoia - <?php print($username); ?>'s page</h1><hr>  
+  <script src="../js/did_you_answer.js" type="text/javascript"></script>  
  </header>
  
  <div class="content">
 <?php
 if($load_count < $total_question_count) { 
-	print("<h2>TAKE A QUIZ - ".($load_count+1)."/".($total_question_count)."</h2>");
+	print("<h2>TAKE A QUIZ - ".($load_count+1)." of ".($total_question_count)." Questions</h2>");
+	print("<h3>Your Score: ".$correct_count."/".$total_question_count."</h3>");
 } elseif($load_count == $total_question_count) {
 	print("<h2>TAKE A QUIZ</h2>");
 }
@@ -92,15 +75,11 @@ if($load_count < $total_question_count) {
 
 } elseif($load_count == $total_question_count) {
 
-	print("Question is done!!<br/><br/>");
-	print("Score: ".$correct_count." / ".$total_question_count."<br/>");
-	
-	print("<a href='quiz_report.php'>Quiz Report</a><br/><br/>");
+	// Display score
+	display_score($correct_count, $total_question_count);
 
 	// Update usedtrial value to true
 	check_trial_used($userid, $quizid);
-
-
 
 	// Delete savedquiz if it exists
 	delete_savedquiz($user_item, $userid);	

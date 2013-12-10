@@ -93,6 +93,7 @@ TOPIC - topic
 SUBTO - subtopic
 RANDM - random
 STATI - static quiz, or pre-existing 
+TRIAL - trial
 */
 CREATE TABLE purchase (
 	purchaseid VARCHAR(7) NOT NULL,

@@ -5,6 +5,7 @@ $answer_correct_point = 1;
 $introduce_friend_point = 10;
 $submit_quiz_point = 5;
 
+$trial_packet_cost = 0;
 $static_packet_cost = 10;
 $random_packet_cost = 10;
 $subject_packet_cost = 15;

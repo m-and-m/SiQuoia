@@ -28,14 +28,14 @@ array_shift($subject_item);
 //var_dump($subject_item);
 
 // Get topic information
-$query2  = "select topicid, t_name from topic";
+$query2  = "select * from topic";
 $result2 = pdo_query($query2);    
 $topic_item  = $result2->fetchAll(PDO::FETCH_ASSOC);
 // Remove the 1st row of 2d array
 array_shift($topic_item);
 
 // Get subtopic information
-$query3  = "select subtopicid, st_name from subtopic";
+$query3  = "select * from subtopic";
 $result3 = pdo_query($query3);    
 $subtopic_item  = $result3->fetchAll(PDO::FETCH_ASSOC);
 // Remove the 1st row of 2d array
@@ -50,6 +50,12 @@ $packet_item  = $result4->fetchAll(PDO::FETCH_ASSOC);
 array_shift($packet_item);
 //var_dump($packet_item);
 
+// Get all branded name
+$query5  = "select st_name from subtopic where topicid in"
+		  ." (select topicid from topic where t_name = 'branded')";
+$result5 = pdo_query($query5);    
+$branded_item  = $result5->fetchAll();
+//var_dump($branded_item);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -89,7 +95,9 @@ array_shift($packet_item);
 
 		print("<optgroup label='ALL'>");
 			foreach($packet_item as $row) {
-				print("<option value='".$row["packetid"]."'>".strtoupper($row["p_name"])."</option>");
+				if($row["branded"] == ""){
+					print("<option value='".$row["packetid"]."'>".strtoupper($row["p_name"])."</option>");
+				}
 			}
 		?>
 		</optgroup>		
@@ -122,15 +130,18 @@ array_shift($packet_item);
 			print("<optgroup label='SUBJECT'>");
 
 			foreach($subject_item as $row) {
-				print("<option value='".$row["subjectid"]."'>".strtoupper($row["s_name"])."</option>");
+				if(strcmp($row["s_name"], "branded") != 0) {
+					print("<option value='".$row["subjectid"]."'>".strtoupper($row["s_name"])."</option>");
+				}
 			}
 		?>
 		</optgroup>		
 		<?php
-
 			print("<optgroup label='TOPIC'>");
 			foreach($topic_item as $row) {
-				print("<option value='".$row["topicid"]."'>".strtoupper($row["t_name"])."</option>");
+				if(strcmp($row["t_name"], "branded") != 0) {
+					print("<option value='".$row["topicid"]."'>".strtoupper($row["t_name"])."</option>");
+				}
 			}
 		?>
 		</optgroup>
@@ -138,7 +149,11 @@ array_shift($packet_item);
 
 		print("<optgroup label='SUBTOPIC'>");
 			foreach($subtopic_item as $row) {
-				print("<option value='".$row["subtopicid"]."'>".strtoupper($row["st_name"])."</option>");
+				foreach($branded_item as $abrand) {
+					if(strcmp($abrand["st_name"], $row["st_name"]) != 0) {	
+						print("<option value='".$row["subtopicid"]."'>".strtoupper($row["st_name"])."</option>");
+					}		
+				}
 			}
 		?>
 		</optgroup>
@@ -157,9 +172,9 @@ array_shift($packet_item);
   <!--Branded Quiz-->
   <div id="branded_question">
   <span>BRANDED QUIZ</span><br/>
-    <form action="verify_branded_code.php" id="register_form" method="post">
-
+    <form action="start_quiz.php" id="register_form" method="post">
     	<label>Promotion Code*&nbsp;<input type="text" name="b_code" id="b_code"/></label>
+	    <input type="hidden" name="quiz_type" value="branded_quiz"/>        
     	<input type="submit" value="START"/>
   </form>
   </div>

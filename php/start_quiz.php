@@ -7,16 +7,26 @@ server_connect();
 session_start();
 $userid = $_SESSION["userid"];
 $quiztype = $_REQUEST["quiz_type"];
-$_SESSION["quizid"] = $_REQUEST["category_select"];
-$quizid = $_SESSION["quizid"];
+$select = (isset($_REQUEST["category_select"])) ? $_REQUEST["category_select"] : "";
+
 //DELETEME
-//print("QUIZ TYPE: ".$quiztype."<br/>");
-  print("Qid: ".$quizid."<br/>");
+print("Select: ".$select."<br/>");
 
 //STATIC QUIZ
 if(strcmp($quiztype, "static_quiz") == 0) {
 
 	print("'static quiz' is selected.<br/>");
+
+	$_SESSION["quizid"] = $select;
+	$quizid = $_SESSION["quizid"];
+	//DELETEME
+	print("Qid: ".$quizid."<br/>");
+	
+	if($quizid == "p1") {
+		$purchasetype = "TRIAL";
+		$cost = $trial_packet_cost;
+	}
+	
 	$purchasetype = "STATI";
 	$cost = $static_packet_cost;
 
@@ -35,68 +45,81 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 	$combine = array("lastindex" => -1, "quiz_set" => $quizset);
 	$combine_json = json_encode($combine);
 
-// 2) put the question set (json form) into the user's 'savedquiz'
 	pdo_transactionstart();
-	$stmt = pdo_prepare("update user_data set savedquiz = ? where userid = ?");
-	$stmt->bindParam(1, $combine_json);
-	$stmt->bindParam(2, $userid);
-	$result1 = $stmt->execute();
 
-	if($result1 == false) {
-		print("Fail to add quiz set: ".pdo_errorInfo()."<br/>");
-    }
+// 2) put the question set (json form) into the user's 'savedquiz'
+	add_json_in_savedquiz($combine_json, $userid);
 
 // 3) Add packet information in purchase
 	add_purchase_packet($userid, $quizid, $purchasetype, $cost);
+
 	pdo_commit();
 	
 	print("<a href='take_quiz.php'>Take A Quiz</a>");
 
-} elseif(strcmp($quiztype, "random_quiz") == 0) {
+} 
+//RANDOM QUIZ
+elseif(strcmp($quiztype, "random_quiz") == 0) {
 
 	print("'random quiz' is selected.<br/>");	
-	
-//1) Assign purchase type and cost to correspond to the quiz type
-//2) Get 20 questions randomly
 
-	/*MEMO: find_category($str, "all")
-	if the string contains all, return true(or, 1)
-	if the string doesn't contain, return false
-	*/
-	if (find_category($quizid, "s")) {
-		// pick from topic
-		print($quizid."<br/>");
+	$_SESSION["quizid"] = $select;
+	$quizid = $_SESSION["quizid"];
+	//DELETEME
+	print("Qid: ".$quizid."<br/>");
+
+//1) Assign purchase type and cost, corresponding to the quiz type
+//2) Get 20 questions randomly
+	if(strcmp($quizid, "all") == 0) {
+		// special case:
+		// trial and random quiz packet(questions are chosen from entire question
+		$purchasetype = "TRIAL";
+		$cost = $trial_packet_cost;
+		$query = "select qid from question order by rand() limit 20";		
+
+	} elseif (find_category($quizid, "s")) {
+		// pick from subject
+
 		$purchasetype = "SUBJE";
 		$cost = $subject_packet_cost;
+
 		$query = "select qid from question 
 		where subtopicid in (select subtopicid from (
 		select sub.subtopicid, sub.st_name, t.topicid, t.subjectid, 
 		t.t_name, s.s_name from topic t, subject s, subtopic sub 
 		where t.subjectid = s.subjectid && t.topicid = sub.topicid ) 
 		as st where subjectid = '".$quizid."') order by rand() limit 20";
+
 	} elseif(find_category($quizid, "t")) {
 		// pick from topic
+
 		$purchasetype = "TOPIC";
 		$cost = $topic_packet_cost;
+
 		$query = "select qid, question, subtopicid from question 
 		where subtopicid in (select subtopicid from (
 		select sub.subtopicid, sub.st_name, t.topicid, t.subjectid, 
 		t.t_name from topic t, subtopic sub 
 		where t.topicid = sub.topicid ) 
 		as st where topicid = '".$quizid."') order by rand() limit 20";
+
 	} elseif(find_category($quizid, "st")) { 
 		// pick from subtopic
+
 		$purchasetype = "SUBTO";
 		$cost = $subtopic_packet_cost;
+
 		$query = "select qid from question where subtopicid='".
 				$quizid."' order by rand() limit 20";
 
 	} elseif(find_category($quizid, "easy")) {
+		// use question ranking <50%
 		// special case that a packet will be random selection from entire question
 		$purchasetype = "RANDM";
 		$cost = $random_packet_cost;
 		$query = "";		
 	} elseif(find_category($quizid, "hard")) {
+		// use question ranking >=50%
 		// special case that a packet will be random selection from entire question
 		$purchasetype = "RANDM";
 		$cost = $random_packet_cost;
@@ -104,11 +127,11 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 	} else {
 		print("Your choice is not available currently.<br/>");
 	}
+	
 	$result = pdo_query($query);
 	$question_id = $result->fetchAll(PDO::FETCH_ASSOC);
-
 	
-//3) Making json
+//3) Making 2 arrays for json: one is for packet and another is for user's savedquis
 	$quizset = array();
 	$quizset_json_for_packet = array();
 	
@@ -121,6 +144,7 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 	$combine = array("lastindex" => -1, "quiz_set" => $quizset);
 	$combine_json = json_encode($combine);
 	//var_dump($combine_json);
+
 //3) Saved into packet
 	$json_quizidset = json_encode($quizset_json_for_packet);
 	$newid = get_max_id("packet");
@@ -128,27 +152,30 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 	$query7 = "INSERT INTO packet VALUES ('"
 	.$newid."','".$purchasetype."','', ".$json_quizidset;
 
+	pdo_transactionstart();
 
 //4) put the question set (json form) into the user's 'savedquiz'
-	pdo_transactionstart();
-	$stmt = pdo_prepare("update user_data set savedquiz = ? where userid = ?");
-	$stmt->bindParam(1, $combine_json);
-	$stmt->bindParam(2, $userid);
-	$result1 = $stmt->execute();
+	add_json_in_savedquiz($combine_json, $userid);
 
-	if($result1 == false) {
-		print("Fail to add quiz set: ".pdo_errorInfo()."<br/>");
-    }
 //5) Assign packet id into quizid 
 	$_SESSION["quizid"] = $newid;
 	$quizid = $_SESSION["quizid"];
+
 //6) Add packet information in purchase
 	add_purchase_packet($userid, $quizid, $purchasetype, $cost);
+
 	pdo_commit();
 	
 	print("<a href='take_quiz.php'>Take A Quiz</a>");
 
-} else {
+} 
+//BRANDED QUIZ
+elseif(strcmp($quiztype, "branded_quiz") == 0) {
+	// Check the code
+	$code = $_REQUEST["b_code"];
+	print("CODE: ".$code);
+} 
+else {
 	print("something wrong at selecting quiz type.<br/>");
 }
 

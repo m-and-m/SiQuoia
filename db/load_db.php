@@ -1,17 +1,33 @@
 <?php
 
+	$userpasses = array("user0" => "SiQuoiaAdmin",
+						"user1" => "trumpet",
+						"user2" => "blackcat",
+						"user3" => "browncat",
+						"user4" => "elecat",
+						"user5" => "singingcat",
+						"user6" => "whitecat",
+						"user7" => "yellowbear");
+
 	//file needs to be in SiQuoia/db folder
     include "../skip/mysql_login.php";
     include "../skip/sesoning.php";
 
 	$connection = mysqli_connect($db_host, $db_user, $db_pass, $db_name) or die('Could not connect: ' . mysql_error());
 
-
 	$schema = file_get_contents('populate_schema.sql');
 	$result = mysqli_multi_query($connection, $schema);
 	do {;} while (mysqli_next_result($connection));
     
-	$data = file_get_contents('loading_data.sql');
+	$data = file_get_contents('sample_user_data.sql');
+	$result = mysqli_multi_query($connection, $data);
+	do {;} while (mysqli_next_result($connection));
+
+	$data = file_get_contents('question_category.sql');
+	$result = mysqli_multi_query($connection, $data);
+	do {;} while (mysqli_next_result($connection));
+    
+	$data = file_get_contents('friends.sql');
 	$result = mysqli_multi_query($connection, $data);
 	do {;} while (mysqli_next_result($connection));
     
@@ -27,9 +43,16 @@
 	$result = mysqli_multi_query($connection, $branded);
 	do {;} while (mysqli_next_result($connection));
     
-    $bcrypt_pass = password_hash("SiQuoiaAdmin", PASSWORD_BCRYPT, $options);
-    mysqli_query($connection, "UPDATE user_profile set userpass ='$bcrypt_pass' where userid='user0'");
+	$data = file_get_contents('packet.sql');
+	$result = mysqli_multi_query($connection, $data);
 	do {;} while (mysqli_next_result($connection));
+    
+    foreach($userpasses as $key => $value) {
+    
+	    $bcrypt_pass = password_hash($value, PASSWORD_BCRYPT, $options);
+    	mysqli_query($connection, "UPDATE user_profile set userpass ='$bcrypt_pass' where userid='".$key."'");
+		do {;} while (mysqli_next_result($connection));
+    }
     
     mysqli_query($connection, "UPDATE question SET evaluatedby = 'admin'");
 	do {;} while (mysqli_next_result($connection));
