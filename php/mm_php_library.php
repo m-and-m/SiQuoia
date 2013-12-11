@@ -110,10 +110,11 @@ function display_question_contents($quiz_set, $load_count, $isResume) {
 	print("<input type='submit' value='CONTINUE'/><br/></form></div>");
 
 //DELETME
+/*
 print("mm_php_library.<br/>");
 print("Current QID: ".$curr_qid."<br/>");
 print("correct answer: ".$user_item["correct_answer"]."<br/><br/>");
-
+*/
 } // display_question_contents
 
 /* Display precious question result

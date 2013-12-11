@@ -45,10 +45,11 @@ foreach ($quiz_set as $item) {
 }
 
 //DELETEME
+/*
 	print("resume_quiz.<br/>Page load count: ".$load_count."<br/>Packet id: ".$quizid.
 	  	  "<br/>Total # question: ".$total_question_count.
 	 	  "<br/>Last status: ".$last_status."<br/>");
-
+*/
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

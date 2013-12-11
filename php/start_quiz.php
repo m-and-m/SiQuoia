@@ -10,12 +10,12 @@ $quiztype = $_REQUEST["quiz_type"];
 $select = (isset($_REQUEST["category_select"])) ? $_REQUEST["category_select"] : "";
 
 //DELETEME
-print("Select: ".$select."<br/>");
+//print("Select: ".$select."<br/>");
 
 //STATIC QUIZ
 if(strcmp($quiztype, "static_quiz") == 0) {
 
-	print("'static quiz' is selected.<br/>");
+	//print("'static quiz' is selected.<br/>");
 
 	$_SESSION["quizid"] = $select;
 	$quizid = $_SESSION["quizid"];
@@ -62,13 +62,15 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 
 	pdo_commit();
 	
-	print("<a href='take_quiz.php'>Take A Quiz</a>");
+	//print("<a href='take_quiz.php'>Take A Quiz</a>");
+	header("Location: take_quiz.php");
+	exit;
 
 } 
 //RANDOM QUIZ
 elseif(strcmp($quiztype, "random_quiz") == 0) {
 
-	print("'random quiz' is selected.<br/>");	
+	//print("'random quiz' is selected.<br/>");	
 
 	$_SESSION["quizid"] = $select;
 	$quizid = $_SESSION["quizid"];
@@ -202,7 +204,10 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 
 	pdo_commit();
 	
-	print("<a href='take_quiz.php'>Take A Quiz</a>");
+	header("Location: take_quiz.php");
+	exit;
+
+	//print("<a href='take_quiz.php'>Take A Quiz</a>");
 
 } 
 //BRANDED QUIZ
@@ -213,7 +218,7 @@ elseif(strcmp($quiztype, "branded_quiz") == 0) {
 
 	$code = $_REQUEST["b_code"];
 //DELETEME	
-	print("CODE: ".$code."<br/>");
+	//print("CODE: ".$code."<br/>");
 
 //1) Get the question, which has the code from packet
 	$query9  = "select packetid from packet where branded ='".$code."'";
@@ -221,7 +226,7 @@ elseif(strcmp($quiztype, "branded_quiz") == 0) {
 	$packetid  = $result9->fetch();
 	$b_packetid = $packetid["packetid"];
 //DELETEME
-	print("B PID: ".$b_packetid."<br/>");
+	//print("B PID: ".$b_packetid."<br/>");
 	$_SESSION["quizid"] = $b_packetid;
 	$quizid = $_SESSION["quizid"];
 
@@ -250,10 +255,11 @@ elseif(strcmp($quiztype, "branded_quiz") == 0) {
 
 	pdo_commit();
 	
-	print("<a href='take_quiz.php'>Take A Quiz</a>");
+	header("Location: take_quiz.php");
+	exit;
+	//print("<a href='take_quiz.php'>Take A Quiz</a>");
 	
-} 
-else {
+} else {
 	print("something wrong at selecting quiz type.<br/>");
 	return false;
 	print("<a href='choose_quiz.php'>Go Back To Choose Quiz</a>");
