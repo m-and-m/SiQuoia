@@ -29,7 +29,6 @@ $user_item  = $result0->fetch();
  <h2>SUBMIT A QUIZ</h2>
   <hr>
   <form action="evaluate_submission.php" method="post" enctype="multipart/form-data">
-  	<span><b>WARNING:</b> When you use apostrophe, type like this: <b>\'</b></span><br/><br/>
   	<span> 1) Create your question.</span><br/>
 	<textarea name="text_question" rows="5" cols="50"></textarea>
     <br/><br/>

@@ -8,11 +8,11 @@ session_start();
 $userid = $_SESSION["userid"];
 $username = $_SESSION["username"];
 
-$text_question = isset($_REQUEST["text_question"]) ? $_REQUEST["text_question"] : "";
-$answer1 = isset($_REQUEST["answer1"]) ? $_REQUEST["answer1"] : "";
-$answer2 = isset($_REQUEST["answer2"]) ? $_REQUEST["answer2"] : "";
-$answer3 = isset($_REQUEST["answer3"]) ? $_REQUEST["answer3"] : "";
-$answer4 = isset($_REQUEST["answer4"]) ? $_REQUEST["answer4"] : "";;
+$text_question = isset($_REQUEST["text_question"]) ? addslashes($_REQUEST["text_question"]) : "";
+$answer1 = isset($_REQUEST["answer1"]) ? addslashes($_REQUEST["answer1"]) : "";
+$answer2 = isset($_REQUEST["answer2"]) ? addslashes($_REQUEST["answer2"]) : "";
+$answer3 = isset($_REQUEST["answer3"]) ? addslashes($_REQUEST["answer3"]) : "";
+$answer4 = isset($_REQUEST["answer4"]) ? addslashes($_REQUEST["answer4"]) : "";;
 $correct_answer = isset($_REQUEST["correct_answer"]) ? $_REQUEST["correct_answer"] : "";
 
 //DELETME
