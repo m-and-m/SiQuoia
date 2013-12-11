@@ -7,7 +7,8 @@
 						"user4" => "elecat",
 						"user5" => "singingcat",
 						"user6" => "whitecat",
-						"user7" => "yellowbear");
+						"user7" => "yellowbear",
+						"user8" => "bluedonkey");
 
 	//file needs to be in SiQuoia/db folder
     include "../skip/mysql_login.php";
