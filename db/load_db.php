@@ -57,6 +57,10 @@
     mysqli_query($connection, "UPDATE question SET evaluatedby = 'admin'");
 	do {;} while (mysqli_next_result($connection));
     
+	$data = file_get_contents('usersubmit.sql');
+	$result = mysqli_multi_query($connection, $data);
+	do {;} while (mysqli_next_result($connection));
+
     //print("databases initialized..<br>");
     
     //print("<a href='../html/splashpage.html>Go To SiQuoia</a><br>");
