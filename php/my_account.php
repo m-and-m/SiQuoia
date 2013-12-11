@@ -43,15 +43,20 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 		$previous_user_point = 0;
 		foreach($user_item as $auser){
 
-			$current_user_point = $auser["userpoint"];
+				$current_user_point = $auser["userpoint"];
 
-			if($previous_user_point != $current_user_point) {
-				$i++;
-			}
-			print($i.": ".ucfirst($auser["username"])." ( ".$auser["userpoint"]." points )<br/>");		
+				if($previous_user_point != $current_user_point) {
+					$i++;
+				}
+				print($i.": ".ucfirst($auser["username"])." ( ".$auser["userpoint"]." points )<br/>");		
 
-			$previous_user_point = $auser["userpoint"];
+				$previous_user_point = $auser["userpoint"];
+				// Show the ranking up to top 10
+				if($i > 9) {
+					break;
+				}
 		}
+		
 	?>
 </div>
 </fieldset>
