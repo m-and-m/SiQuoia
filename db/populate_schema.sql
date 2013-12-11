@@ -92,7 +92,7 @@ MEMOR - memorabilia
 SUBJE - subject
 TOPIC - topic
 SUBTO - subtopic
-RANDM - random => difficulty
+MISCE - miscellaneous
 STATI - static quiz, or pre-existing 
 TRIAL - trial
 BRAND - branded quiz

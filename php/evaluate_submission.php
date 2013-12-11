@@ -150,13 +150,9 @@ if (isset($_FILES[$file_field]) && isset($_FILES[$file_field]["tmp_name"]) && is
 
  </div>
 
- <footer>
-  <hr>
-  <section>
-<!--<div>created by SQ4</div>-->
-<img src="../files/sq04/sq04.png" alt='sq04 logo' height='60' width='150'>	
-  </section>
- </footer> 
+  <?php
+	  include("../html/footer_group_logo.html");
+  ?>
  </body>
  
 </html>

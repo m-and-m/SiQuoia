@@ -19,8 +19,8 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 
 	$_SESSION["quizid"] = $select;
 	$quizid = $_SESSION["quizid"];
-	//DELETEME
-	print("Qid: ".$quizid."<br/>");
+//DELETEME
+//	print("Qid: ".$quizid."<br/>");
 	
 	if($quizid == "p1") {
 		$purchasetype = "TRIAL";
@@ -69,8 +69,8 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 
 	$_SESSION["quizid"] = $select;
 	$quizid = $_SESSION["quizid"];
-	//DELETEME
-	print("Qid: ".$quizid."<br/>");
+//DELETEME
+//	print("Qid: ".$quizid."<br/>");
 
 //1) Assign purchase type and cost, corresponding to the quiz type
 //2) Get 20 questions randomly
@@ -82,7 +82,8 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 		$purchasetype = "TRIAL";
 		$cost = $trial_packet_cost;
 		$query = "select qid from question order by rand() limit 20";		
-		$packet_name = "random trial";
+
+//		$packet_name = "random trial";
 		
 	} elseif (find_category($quizid, "s")) {
 		// pick from subject
@@ -98,7 +99,7 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 		where t.subjectid = s.subjectid && t.topicid = sub.topicid ) 
 		as st where subjectid = '".$quizid."') order by rand() limit 20";
 
-		$packet_name = "random subject";
+//		$packet_name = "random subject";
 		
 	} elseif(find_category($quizid, "t")) {
 		// pick from topic
@@ -114,7 +115,7 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 		where t.topicid = sub.topicid ) 
 		as st where topicid = '".$quizid."') order by rand() limit 20";
 
-		$packet_name = "random topic";
+//		$packet_name = "random topic";
 
 	} elseif(find_category($quizid, "st")) { 
 		// pick from subtopic
@@ -126,26 +127,42 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 		$query = "select qid from question where subtopicid='".
 				$quizid."' order by rand() limit 20";
 
-		$packet_name = "random subtopic";
+//		$packet_name = "random subtopic";
 		
-	} elseif(find_category($quizid, "easy")) {
+	} elseif(strcmp($quizid, "easy") == 0) {
 		// use question ranking <50%
-		// special case that a packet will be random selection from entire question
-		$purchasetype = "RANDM";
-		$cost = $random_packet_cost;
-		$query = "";		
-	} elseif(find_category($quizid, "hard")) {
+//DELETEME		print("misc easy!");
+		
+		$purchasetype = "MISCE";
+		$cost = $misc_packet_cost;
+
+		$query = "select qid from question 
+				  where (correct_count / use_count) < 50 order by rand() limit 20";
+				
+	} elseif(strcmp($quizid, "hard") == 0) {
 		// use question ranking >=50%
-		// special case that a packet will be random selection from entire question
-		$purchasetype = "RANDM";
-		$cost = $random_packet_cost;
-		$query = "";
+//DELETEME		print("misc hard!");
+
+		$purchasetype = "MISCE";
+		$cost = $misc_packet_cost;
+
+		$query = "select qid from question 
+				  where (correct_count / use_count) >= 50 order by rand() limit 20";		
+
 	} else {
 		print("Your choice is not available currently.<br/>");
 	}
 	
 	$result = pdo_query($query);
 	$question_id = $result->fetchAll(PDO::FETCH_ASSOC);
+
+	if($question_id == false) {
+		print("Currently the packet you selected is not available...<br/>");
+		print ("<a href='choose_quiz.html'>Go Back To Choose Quiz</a>");	
+
+		return false;	
+	}
+
 	
 //3) Making 2 arrays for json: one is for packet and another is for user's savedquis
 	$quizset = array();

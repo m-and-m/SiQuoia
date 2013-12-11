@@ -34,7 +34,7 @@ if(strcmp($decision, "ACCEPT") == 0) {
 	} 
 
 	// Award some point to the user
-	$query2  = "update user_data set userpoint = userpoint+".$submit_quiz_point.
+	$query2  = "update user_data set usercredit = usercredit+".$submit_quiz_point.
 			   " where userid in (select submitedby from question where qid='".$qid."')";
 	$result2 = pdo_query($query2);
 	if($result2 == false) {

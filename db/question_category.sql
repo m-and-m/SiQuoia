@@ -15,7 +15,7 @@ INSERT INTO subtopic VALUES ("st1","nfl football","t1");
 INSERT INTO subtopic VALUES ("st2","ncaa football","t1");
 INSERT INTO subtopic VALUES ("st3","nba basketball","t2");
 INSERT INTO subtopic VALUES ("st4","ncaa basketball","t2");
-INSERT INTO subtopic VALUES ("st6","misc","t4");
+INSERT INTO subtopic VALUES ("st6","submitted by users","t4");
 INSERT INTO subtopic (subtopicid, st_name, topicid) VALUES ('st9', 'lexus', 't9');
 
 INSERT INTO subtopic (subtopicid, st_name, topicid) VALUES

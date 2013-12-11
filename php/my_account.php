@@ -81,7 +81,7 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 		$branded_count = get_total_purchase_item($item_type, $userid);
 		$branded_count = (isset($branded_count) ? $branded_count : 0);
 		
-		$item_type = "RANDM";		
+		$item_type = "MISCE";		
 		$random_count = get_total_purchase_item($item_type, $userid);
 		$random_count = (isset($random_count) ? $random_count : 0);
 
@@ -129,7 +129,8 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 		print($total_point."<br/><br/>");
 
 // By introducing a friend		
-		print("<b>Points Earned By Introduce A Friend:</b><br/>");	
+		print("<b>Points Earned By Introduce A Friend:</b><br/>
+				(".$introduce_friend_point." SQ credit per a friend)<br/>");	
 		$query11 = "select username, p.userid from user_profile p, user_data d
 					where p.userid = d.userid and introducedby ='".$userid."'";
 		$result11 = pdo_query($query11);
@@ -144,7 +145,8 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 		print("Total points: ".$point_by_introduce."<br/><br/>");
 
 // By submit a question
-		print("<b>Points Earned By Submit A Question:</b><br/>");	
+		print("<b>Points Earned By Submit A Question:</b><br/>
+				(".$submit_quiz_point." SQ credit per a question)<br/>");	
 		$query12 = "select count(*) from question where submitedby = '".$userid."'";
 		$result12 = pdo_query($query12);
 		$row_submit = $result12->fetch(PDO::FETCH_ASSOC);
@@ -160,13 +162,9 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 
  </div>
 
- <footer>
-  <hr>
-  <section>
-<!--<div>created by SQ4</div>-->
-<img src="../files/sq04/sq04.png" alt='sq04 logo' height='60' width='150'>	
-  </section>
- </footer> 
+  <?php
+	  include("../html/footer_group_logo.html");
+  ?>
  </body>
  
 </html>

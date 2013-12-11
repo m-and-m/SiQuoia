@@ -5,7 +5,6 @@ include("../html/take_quiz_head.html");
 include("connection.php");
 include("mm_php_library.php");
 include("sq_currency.php");
-
 server_connect();
 
 $userid = $_SESSION["userid"];
@@ -115,13 +114,9 @@ if($load_count < $total_question_count) {
 
  </div>
 
- <footer>
-  <hr>
-  <section>
-<!--<div>created by SQ4</div>-->
-<img src="../files/sq04/sq04.png" alt='sq04 logo' height='60' width='150'>	
-  </section>
- </footer> 
+  <?php
+	  include("../html/footer_group_logo.html");
+  ?>
  </body>
  
 </html>

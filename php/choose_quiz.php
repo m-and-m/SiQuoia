@@ -118,7 +118,7 @@ $branded_item  = $result5->fetchAll();
   <span><b>RANDOM QUIZ</b></span><br/>
   <?php print("<span>Required SQ credit: ".$subject_packet_cost." (Subject), ".
   			$topic_packet_cost." (Topic), ".$subtopic_packet_cost." (SubTopic), ".
-  			$random_packet_cost." (Random)</span>");
+  			$misc_packet_cost." (Misc)</span>");
    ?>
 
   <form action='start_quiz.php' id='random_select_form' method='post'>
@@ -161,9 +161,9 @@ $branded_item  = $result5->fetchAll();
 				}
 				print("</optgroup>");				
 			}
-// RANDOM=>DIFFICULTY
-			if($random_packet_cost <= $user_item["usercredit"]) {	
-				print("<optgroup label='RANDOM SELECTION'>");
+// MISCELLANEOUS
+			if($misc_packet_cost <= $user_item["usercredit"]) {	
+				print("<optgroup label='MISC'>");
 				print("<option value='easy'>EASY</option>");
 				print("<option value='hard'>HARD</option>");
 				print("</optgroup>");
@@ -193,13 +193,9 @@ $branded_item  = $result5->fetchAll();
 
  </div>
 
- <footer>
-  <hr>
-  <section>
-<!--<div>created by SQ4</div>-->
-<img src="../files/sq04/sq04.png" alt='sq04 logo' height='60' width='150'>	
-  </section>
- </footer> 
+  <?php
+	  include("../html/footer_group_logo.html");
+  ?>
  </body>
  
 </html>
