@@ -11,11 +11,11 @@ INSERT INTO user_profile (userid, username, useremail, isadmin, userpass, introd
 
 INSERT INTO user_data (userid, usercredit, userpoint, usedtrial) VALUES 
 ("user0", "30", "8", "0"),
-("user1", "30", "60", "0"),
+("user1", "55", "60", "0"),
 ("user2", "30", "13", "0"),
-("user3", "30", "32", "0"),
-("user4", "30", "43", "0"),
+("user3", "75", "32", "0"),
+("user4", "80", "43", "0"),
 ("user5", "30", "8", "0"),
-("user6", "30", "75", "0"),
-("user7", "30", "100", "0"),
-("user8", "30", "53", "0");
+("user6", "100", "75", "0"),
+("user7", "100", "100", "0"),
+("user8", "0", "53", "0");

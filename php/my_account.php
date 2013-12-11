@@ -102,6 +102,23 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 		print("Miscelleneous: ".$random_count."<br/>");
 
 		print("<br/>");
+//By date - Packet
+		print("<b>Question Packets By Date:</b><br/>");
+
+		$query1 = "select purchased_date, purchase_type, count(purchase_type) 
+		from purchase where userid='".$userid."' group by purchased_date, purchase_type 
+		order by purchased_date desc limit 20";
+		$result1 = pdo_query($query1);
+		$row_purchase = $result1->fetchAll(PDO::FETCH_ASSOC);
+
+		print("<table border='1'><tr><th>Date</th><th>Packet Type</th><th>Total</th></tr>");
+
+		foreach($row_purchase as $item){
+			print("<tr><td>".$item["purchased_date"]."</td><td>".$item["purchase_type"]."</td><td>".$item["count(purchase_type)"]."</td></tr>");	
+		}
+
+		print("</table><br/>");
+
 //Memorabilia
 		print("<b>Memorabilia:</b><br/>");
 
@@ -121,7 +138,24 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 		$row_cost = $result1->fetch(PDO::FETCH_ASSOC);
 		$total_amount = $row_cost["sum(cost)"];
 		
-		print($total_amount." SQ credits<br/>");
+		print($total_amount." SQ credits<br/><br/>");
+//By date - Expenditure
+		print("<b>Total Expenditure By Date:</b><br/>");
+
+		$query1 = "select purchased_date, sum(cost) from purchase where userid='".$userid."' 
+					group by purchased_date order by purchased_date desc limit 20";
+		$result1 = pdo_query($query1);
+		$row_purchase = $result1->fetchAll(PDO::FETCH_ASSOC);
+
+		print("<table border='1'><tr><th>Date</th><th>Total Amount</th></tr>");
+
+		foreach($row_purchase as $item){
+			print("<tr><td>".$item["purchased_date"]."</td><td>".$item["sum(cost)"]."</td></tr>");	
+		}
+
+		print("</table><br/>");
+
+		
 	?>
 </div>
 </fieldset>
