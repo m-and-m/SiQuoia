@@ -33,7 +33,7 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 //1) get question set from packet 
 	$query0  = "select questionid_set from packet where packetid = '".$quizid."'";
 //DELETEME
-print("strt_quiz: ".$query0."<br/>");
+//print("strt_quiz: ".$query0."<br/>");
 	$result0 = pdo_query($query0);    
 	$q_item  = $result0->fetch();
 	// question set in json

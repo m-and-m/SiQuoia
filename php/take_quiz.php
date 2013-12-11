@@ -28,9 +28,9 @@ $total_question_count = count($quiz_set);
 // Check if the packet is branded quiz
 $query1  = "select brandlogo from packet where packetid ='".$quizid."'";
 $result1 = pdo_query($query1);
-$brand_item  = $result1->fetch();
+$packet_item  = $result1->fetch();
 $isbranded_quiz = false;    
-if($brand_item["brandlogo"] != false) {
+if($packet_item["brandlogo"] != false) {
 	$isbranded_quiz = true;
 }
 
@@ -45,10 +45,6 @@ foreach ($quiz_set as $item) {
 	print("take_quiz.<br/>Page load count: ".$load_count."<br/>Packet id: ".$quizid.
 	  	  "<br/>Total # question: ".$total_question_count.
 	 	  "<br/>Last status: ".$last_status."<br/>");
-
-//echo "<pre><br/>";
-//var_dump($savedquiz);
-//echo "</pre>";
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -58,14 +54,14 @@ foreach ($quiz_set as $item) {
  <body>
  
  <header>
-	<h1>
-	 <?php
+  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".$username."'s page"); ?>
+  	 <?php
  		if($isbranded_quiz) {
- 			print("<img src='../files/".$brand_item["brandlogo"]."' alt='brand logo' height='50' >&nbsp;&nbsp;");
+ 			print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='../files/".$packet_item["brandlogo"].
+ 				  "' alt='brand logo' height='70' length='200'>");
  		}
  	?>
-
-	 SiQuoia - <?php print($username);?>'s page</h1><hr>
+  </h1><hr>  
  </header>
  
  <div class="content">

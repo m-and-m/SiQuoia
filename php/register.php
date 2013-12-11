@@ -29,7 +29,7 @@ $email_exist = $result0->fetch();
  <body>
  
  <header>
-  <h1>SiQuoia</h1><hr>
+  <h1><?php include("../html/sq_logo.html"); ?></h1><hr>  
  </header>
  
  <div class="content">

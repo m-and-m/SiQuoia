@@ -58,14 +58,14 @@ foreach ($quiz_set as $item) {
  <body>
  
  <header>
-	<h1>
-	 <?php
+  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".$username."'s page"); ?>
+  	 <?php
  		if($isbranded_quiz) {
- 			print("<img src='../files/".$brand_item["brandlogo"]."' alt='brand logo' height='50' >&nbsp;&nbsp;");
+ 			print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='../files/".$packet_item["brandlogo"].
+ 				  "' alt='brand logo' height='70' length='200'>");
  		}
  	?>
-
-	 SiQuoia - <?php print($username);?>'s page</h1><hr>
+  </h1><hr>  
  </header>
  
  <div class="content">

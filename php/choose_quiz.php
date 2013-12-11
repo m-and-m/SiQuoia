@@ -71,7 +71,7 @@ $branded_item  = $result5->fetchAll();
  <body>
  
  <header>
-  <h1>SiQuoia - <?php print($username); ?>'s page</h1><hr>  
+  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".$username."'s page"); ?></h1><hr>  
  </header>
  
  <div class="content">

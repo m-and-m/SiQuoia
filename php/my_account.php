@@ -23,7 +23,7 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
  <body>
  
  <header>
-  <h1>SiQuoia - <?php print($username); ?>'s page</h1><hr>  
+  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".$username."'s page"); ?></h1><hr>  
  </header>
  
  <div class="content">
@@ -31,8 +31,9 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
   <hr>
 
 <!--LEADERBOARD-->
+<fieldset>
+<legend><h2>Leaderboard</h2></legend>
 <div id='leaderboard'>
-<h2>Leaderboard</h2>
 	<?php
 		$query0 = "select * from user_data d, user_profile p where d.userid = p.userid order by userpoint desc limit 10";
 		$result0 = pdo_query($query0);
@@ -53,10 +54,13 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 		}
 	?>
 </div>
+</fieldset>
 
 <!--PURCHASE HISTORY-->
+<fieldset>
+<legend><h2>Purchase History</h2></legend>
 <div id='purchase_history'>
-<h2>Purchase History</h2>
+
 	<?php
 //Packet
 		print("<b>Question Packets:</b><br/>");	
@@ -115,10 +119,12 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 		print($total_amount."<br/>");
 	?>
 </div>
+</fieldset>
 
 <!--POINTS HISTORY-->
+<fieldset>
+<legend><h2>Point History</h2></legend>
 <div id='points_history'>
-<h2>Point History</h2>
 	<?php
 // Total points	
 		print("<b>Total Points Earned:</b><br/>");	
@@ -155,6 +161,7 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 	
 	?>
 </div>
+</fieldset>
 
 <br />
 	<div id="menu"><a href='menu.php'>Menu</a></div>
