@@ -9,9 +9,10 @@ $rn_email = isset($_REQUEST["rn_email"]) ? $_REQUEST["rn_email"] : "";
 $rn_pass = isset($_REQUEST["rn_pass"]) ? $_REQUEST["rn_pass"] : "";
    
 // Check if the email exists
-$query0  = "select userpass from user_profile where useremail='" . $rn_email. "'";
-$result0 = pdo_query($query0);
-$pass_exist = $result0->fetch();
+$stmt = pdo_prepare("select userpass from user_profile where useremail = ?");
+$stmt->bindParam(1, $rn_email);
+$result0 = $stmt->execute();
+$pass_exist = $stmt->fetch();
 $hush_pass = $pass_exist[0];
 
 $rslt = password_verify($rn_pass, $hush_pass);
@@ -29,9 +30,10 @@ if(($pass_exist == false) || ($rslt == null)) {
 } else { // Navigate a particular page 
 
 	// Fetch userid
-	$query1  = "select userid, username from user_profile where useremail='" . $rn_email. "'";
-	$result1 = pdo_query($query1);
-	$user_info = $result1->fetch();
+	$stmt = pdo_prepare("select userid, username from user_profile where useremail = ?");
+	$stmt->bindParam(1, $rn_email);
+	$result1 = $stmt->execute();
+	$user_info = $stmt->fetch();
 	$userid = $user_info["userid"];
 	$username = $user_info["username"];
 	$_SESSION["userid"] = $userid;

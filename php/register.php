@@ -12,9 +12,11 @@ $new_pass = isset($_REQUEST["new_pass"]) ? $_REQUEST["new_pass"] : "";
 $referred_by = isset($_REQUEST["referred"]) ? $_REQUEST["referred"] : "";
    
 // Check if the email exists
-$query0  = "select useremail from user_profile where useremail='" . $new_email. "'";
-$result0 = pdo_query($query0);
-$email_exist = $result0->fetch();
+$stmt = pdo_prepare("select useremail from user_profile where useremail = ?");
+$stmt->bindParam(1, $new_email);
+$result0 = $stmt->execute();
+$email_exist = $stmt->fetch();
+
 //DELETE ME
 //var_dump ($email_exist);
 ?>	
@@ -69,19 +71,27 @@ if($email_exist == true) {
 	
 	// Check referred_by
 	$referringid = "";
-    $query2  = "select userid from user_profile where useremail='".$referred_by."'";
-    $result2 = pdo_query($query2);
-    
-    $match_email  = $result2->fetch();
+    $stmt = pdo_prepare("select userid from user_profile where useremail = ?");
+    $stmt->bindParam(1, $referred_by);
+    $result2 = $stmt->execute();
+    $match_email = $stmt->fetch();
+
 	if($match_email == true) {
 		$referringid = $match_email[0];
+	} else {
+		$referringid = null;
 	} 
 //DELETEME
 	//print($referringid."\n");
 
 	// Create data set for user_profile
-	$query3  = "INSERT INTO user_profile VALUES ('".$curr_id."','".$new_name."','".$new_email."',0,'".$bcrypt_pass."', '".$referringid."')";
-    $result3 = pdo_query($query3);
+    $stmt = pdo_prepare("INSERT INTO user_profile VALUES (?, ?, ?, 0, ?, ?)");
+    $stmt->bindParam(1, $curr_id);
+    $stmt->bindParam(2, $new_name);
+    $stmt->bindParam(3, $new_email);
+    $stmt->bindParam(4, $bcrypt_pass);
+    $stmt->bindParam(5, $referringid);
+    $result3 = $stmt->execute();
 	
 	if($result3 == false) {
         print("Failed to create new user account(user_profile): " . pdo_errorInfo() . "<br />");

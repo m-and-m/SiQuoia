@@ -124,19 +124,28 @@ if (isset($_FILES[$file_field]) && isset($_FILES[$file_field]["tmp_name"]) && is
 	// TEMPORARY...st6 = misc
 	$subtopicid = "st6";
 	$base = (isset($base)) ? $base : "";
-	$query2  = "INSERT INTO question VALUES ('".
-				$new_qid."','".$text_question."','".$base."','".
-				$answer1."','".$answer2."','".$answer3."','".$answer4."','".
-				$correct_answer."','".$subtopicid."',0,0,'".$userid."',null)";
 
-    $result2 = pdo_query($query2);
+	pdo_transactionstart();
+	$stmt = pdo_prepare("INSERT INTO question (qid, question, media, answer1, answer2, answer3, answer4, correct_answer, subtopicid, submitedby) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	$stmt->bindParam(1, $new_qid);
+	$stmt->bindParam(2, $text_question);
+	$stmt->bindParam(3, $base);
+	$stmt->bindParam(4, $answer1);
+	$stmt->bindParam(5, $answer2);
+	$stmt->bindParam(6, $answer3);
+	$stmt->bindParam(7, $answer4);
+	$stmt->bindParam(8, $correct_answer);
+	$stmt->bindParam(9, $subtopicid);
+	$stmt->bindParam(10, $userid);
+	$result2 = $stmt->execute();
 	
 	if($result2 == false) {
-        print("Failed to create new question: " . pdo_errorInfo() . "<br />");
+	        print("Failed to create new question: " . pdo_errorInfo() . "<br />");
 		pdo_rollback();
 	} else {
 		print("Your submission was successfully sent.<br/>".
 			"After your question is accepted, you will see the new score.<br/><br/>");
+		pdo_commit();
 	}
 
     print("<a href='submit_question.php'>Back To Submit A Quiz</a>");
