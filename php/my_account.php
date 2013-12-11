@@ -163,7 +163,8 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
  <footer>
   <hr>
   <section>
-   <div>created by SQ4</div>
+<!--<div>created by SQ4</div>-->
+<img src="../files/sq04/sq04.png" alt='sq04 logo' height='60' width='150'>	
   </section>
  </footer> 
  </body>
@@ -172,16 +173,3 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 <?php
 server_disconnect();
 ?>
-
-<!--
-	$query1  = "select * from question where qid='".$curr_qid."'";
-//DELETEME
-//print("mm_library: ".$query1."<br/>");
-	$result1 = pdo_query($query1);    
-	$user_item = $result1->fetch(PDO::FETCH_ASSOC);
-
-	print("<div id='question_content'><p>".$user_item['question']."</p>");
-
-//Check if the question has media, and check what kind of media
-	if($user_item['media'] != null) {
--->

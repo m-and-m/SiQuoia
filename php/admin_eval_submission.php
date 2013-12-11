@@ -95,7 +95,8 @@ $user_item  = $result0->fetchAll();
  <footer>
   <hr>
   <section>
-   <div>created by SQ4</div>
+<!--<div>created by SQ4</div>-->
+<img src="../files/sq04/sq04.png" alt='sq04 logo' height='60' width='150'>	
   </section>
  </footer> 
  </body>

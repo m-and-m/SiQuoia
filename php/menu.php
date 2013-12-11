@@ -1,11 +1,12 @@
 <?php
+session_start();
 include("connection.php");
 include("mm_php_library.php");
 include("sq_currency.php");
 
 server_connect();
 
-session_start();
+
 $userid = $_SESSION["userid"];
 $username = $_SESSION["username"];
 
@@ -65,11 +66,11 @@ if($user_item["isadmin"]) {
 	<div id="logout"><a href='logout.php'>Logout</a></div> <!--COMPLETE-->
 
  </div>
-
  <footer>
   <hr>
   <section>
-   <div>created by SQ4</div>
+<!--<div>created by SQ4</div>-->
+<img src="../files/sq04/sq04.png" alt='sq04 logo' height='60' width='150'>	
   </section>
  </footer> 
  </body>
