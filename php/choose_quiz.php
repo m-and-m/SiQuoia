@@ -71,15 +71,18 @@ $branded_item  = $result5->fetchAll();
  <body>
  
  <header>
-  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".$username."'s page"); ?></h1><hr>  
+  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".ucfirst($username)."'s page"); ?></h1><hr>  
  </header>
  
  <div class="content">
  <h2>CHOOSE A QUIZ</h2>
   <hr>
   
-  <!-- Show the total point -->
-  <p>Your current SQ credit: <?php print($user_item["usercredit"]); ?><br/><br/></p>
+<!-- Show the current SQ credit the user has -->
+  <p>
+  	<span>Your current SQ credit: <?php print($user_item["usercredit"]); ?></span><br/><br/>
+ 	<span>You can try <b>ONE</b> trial from 'Featured Quiz' or 'Random Quiz'</span><br/><br/>
+  </p>
 
 <!--Pre-existing question-->
 	<div id='static_question'>

@@ -58,7 +58,7 @@ foreach ($quiz_set as $item) {
  <body>
  
  <header>
-  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".$username."'s page"); ?>
+  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".ucfirst($username)."'s page"); ?>
   	 <?php
  		if($isbranded_quiz) {
  			print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='../files/".$packet_item["brandlogo"].
@@ -98,7 +98,7 @@ if($load_count < $total_question_count) {
 	add_point($correct_count, $userid, $answer_correct_point);	
 
 	// Update usedtrial value to true
-	check_trial_used($userid, $quizid);
+	update_trial_used($userid, $quizid);
 
 	// Delete savedquiz if it exists
 	delete_savedquiz($user_item, $userid);

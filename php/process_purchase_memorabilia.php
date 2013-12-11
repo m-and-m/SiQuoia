@@ -33,7 +33,7 @@ $user_item  = $result0->fetch();
  <body>
  
  <header>
-  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".$username."'s page"); ?></h1><hr>  
+  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".ucfirst($username)."'s page"); ?></h1><hr>  
  </header>
  
  <div class="content">
@@ -44,7 +44,7 @@ $user_item  = $result0->fetch();
  pdo_transactionstart();
  
 //2) decrement the usercredit
-	use_credit($total_amount_to_pay);	
+	use_credit($total_amount_to_pay, $userid);	
 	
 //3) add purchase information in purchase
 	add_purchase_information($userid, "", $purchasetype, $total_amount_to_pay);

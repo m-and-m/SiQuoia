@@ -1,5 +1,5 @@
 <?php
-$initial_credit = 30;
+$initial_credit = 50;
 
 $answer_correct_point = 1; 
 $introduce_friend_point = 10;

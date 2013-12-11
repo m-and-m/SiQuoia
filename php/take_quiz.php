@@ -10,6 +10,9 @@ server_connect();
 $userid = $_SESSION["userid"];
 $username = $_SESSION["username"];
 $quizid = $_SESSION["quizid"];
+$packet_type = $_SESSION["packet_type"];
+//DELETEME
+//print("Packet tyepe: ".$packet_type."<br/>");
 
 $load_count = isset($_REQUEST["load_count"]) ? $_REQUEST["load_count"] : 0;
 $previous_answer = isset($_REQUEST["rslt"]) ? $_REQUEST["rslt"] : null;
@@ -54,7 +57,7 @@ foreach ($quiz_set as $item) {
  <body>
  
  <header>
-  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".$username."'s page"); ?>
+  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".ucfirst($username)."'s page"); ?>
   	 <?php
  		if($isbranded_quiz) {
  			print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='../files/".$packet_item["brandlogo"].
@@ -91,18 +94,23 @@ if($load_count < $total_question_count) {
 	// Display score
 	display_score($correct_count, $total_question_count);
 
-	pdo_transactionstart();
+    pdo_transactionstart();
 	
 	// Add score/point
 	add_point($correct_count, $userid, $answer_correct_point);	
  
 	// Update usedtrial value to true
-	check_trial_used($userid, $quizid);
+	update_trial_used($userid, $quizid);
 
 	// Delete savedquiz if it exists
 	delete_savedquiz($user_item, $userid);	
 	
+	if(strcmp($packet_type, "TRIAL") != 0) {
+		//Check referral, and give the points if the user is introduced by the other user
+		update_referral($userid, $introduce_friend_point);
+	}
 	pdo_commit();
+	
 }	
 ?>
 	<div id="menu"><a href='menu.php'>Menu</a></div>

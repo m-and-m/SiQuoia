@@ -30,6 +30,8 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 		$cost = $static_packet_cost;
 	}
 	
+	$_SESSION["packet_type"] = $purchasetype;
+	$packet_type = $_SESSION["packet_type"];
 
 //1) get question set from packet 
 	$query0  = "select questionid_set from packet where packetid = '".$quizid."'";
@@ -154,6 +156,9 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 		print("Your choice is not available currently.<br/>");
 	}
 	
+	$_SESSION["packet_type"] = $purchasetype;
+	$packet_type = $_SESSION["packet_type"];
+
 	$result = pdo_query($query);
 	$question_id = $result->fetchAll(PDO::FETCH_ASSOC);
 
@@ -181,18 +186,6 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 
 	$json_quizidset = json_encode($quizset_json_for_packet);
 	$newid = get_max_id("packet");
-
-//3) !! Changed not to save a question set into packet
-//Saved into packet
-/*	
-	$query7 = "INSERT INTO packet VALUES ('"
-	.$newid."','".$packet_name."','', '".$json_quizidset."','')";
-	$result7 = pdo_query($query7);    
-
-	if($result7 == false) {
-		pdo_rollback();
-	}
-*/
 
 	pdo_transactionstart();
 
@@ -264,6 +257,8 @@ elseif(strcmp($quiztype, "branded_quiz") == 0) {
 } 
 else {
 	print("something wrong at selecting quiz type.<br/>");
+	return false;
+	print("<a href='choose_quiz.php'>Go Back To Choose Quiz</a>");
 }
 
 server_disconnect();

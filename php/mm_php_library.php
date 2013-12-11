@@ -211,7 +211,7 @@ function use_credit($total_used_credit, $userid){
    trial packet
    **packet id "p1" is trial packet  	
 */
-function check_trial_used($userid, $quizid){
+function update_trial_used($userid, $quizid){
 
 	// if the packet is trial, check the usedtrial to true/1
 	if($quizid == "p1") {
@@ -222,7 +222,7 @@ function check_trial_used($userid, $quizid){
 		}
 	}
 
- } // check_trial_used
+ } // update_trial_used
  
 /* If the user has the savedquiz, delete it
 */
@@ -236,6 +236,65 @@ function delete_savedquiz($user_item, $userid) {
    	 }  
 	}
 } // delete_savedquiz
+
+function check_point($userid, $prefix) {
+	$query1  = "select userid, usercredit, userpoint from user_data where userid ='".$userid."'";
+	$result1 = pdo_query($query1);
+	$user_item  = $result1->fetch();
+	if($result1 == false) {
+		print("Failed to check point. ".$prefix."<br/>");
+	} else {
+		print("check point. ".$prefix."<br/>");
+		dump_array_pretty($user_item);
+	}
+} // check_point
+
+
+/* Check if the user is introduced by the other user. 
+Check if the combination of those two userid is in the referral table.
+Give points to the "introduced" user if it is not in the table.
+*/
+function update_referral($userid, $point) {
+	$query1  = "select introducedby from user_profile where userid ='".$userid."'";
+	$result1 = pdo_query($query1);
+	$user_item  = $result1->fetch();
+
+	if($user_item["introducedby"] == null) {
+		return;
+	}
+	
+	$introducedby_userid = $user_item["introducedby"];
+
+	$query2  = "select * from referral 
+				where introducedby='".$introducedby_userid."'
+				and introduced='".$userid."'";
+	$result2 = pdo_query($query2);
+	$referral_item  = $result2->fetch();
+
+	if($referral_item != null) {
+		return;
+	}
+//DELETEME
+//	print("mm_library.<br/>newcombination!");
+
+//1) add the combination
+	$query3  = "insert into referral (introducedby, introduced) values
+				('".$introducedby_userid."','".$userid."')"; 
+	$result3 = pdo_query($query3);	
+	if($result3 == false) {
+		pdo_rollback();
+	}
+		
+//2) update the user credit		 
+	$query4  = "update user_data set usercredit = (usercredit+".$point.
+		   ") where userid = '".$introducedby_userid."'";
+	$result4 = pdo_query($query4);
+	if($result4 == false) {
+		pdo_rollback();
+	} 
+		
+	return;
+} // update_referral
 
 /* Get max id in this format "q0000" 
 */

@@ -23,7 +23,7 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
  <body>
  
  <header>
-  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".$username."'s page"); ?></h1><hr>  
+  <h1><?php include("../html/sq_logo.html"); print("&nbsp;&nbsp;&nbsp;".ucfirst($username)."'s page"); ?></h1><hr>  
  </header>
  
  <div class="content">
@@ -48,7 +48,7 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 			if($previous_user_point != $current_user_point) {
 				$i++;
 			}
-			print($i.": ".$auser["userpoint"]." ( ".$auser["username"]." )<br/>");		
+			print($i.": ".ucfirst($auser["username"])." ( ".$auser["userpoint"]." points )<br/>");		
 
 			$previous_user_point = $auser["userpoint"];
 		}
@@ -94,7 +94,7 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 		print("Topic: ".$topic_count."<br/>");
 		print("Subtopic: ".$subtopic_count."<br/>");
 		print("Branded: ".$branded_count."<br/>");
-		print("Difficulty: ".$random_count."<br/>");
+		print("Miscelleneous: ".$random_count."<br/>");
 
 		print("<br/>");
 //Memorabilia
@@ -116,7 +116,7 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 		$row_cost = $result1->fetch(PDO::FETCH_ASSOC);
 		$total_amount = $row_cost["sum(cost)"];
 		
-		print($total_amount."<br/>");
+		print($total_amount." SQ credits<br/>");
 	?>
 </div>
 </fieldset>
@@ -132,10 +132,10 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 		$result10 = pdo_query($query10);
 		$row_point = $result10->fetch(PDO::FETCH_ASSOC);
 		$total_point = $row_point["userpoint"];
-		print($total_point."<br/><br/>");
+		print($total_point." points<br/><br/>");
 
 // By introducing a friend		
-		print("<b>Points Earned By Introduce A Friend:</b><br/>
+		print("<b>Points Earned By Referring Friends:</b><br/>
 				(".$introduce_friend_point." SQ credit per a friend)<br/>");	
 		$query11 = "select username, p.userid from user_profile p, user_data d
 					where p.userid = d.userid and introducedby ='".$userid."'";
@@ -148,16 +148,16 @@ $memorabilia_locate = "../files/sq04/crown.jpg";
 		}
 		print("<br/>");
 		$point_by_introduce = (count($row_introduced) * $introduce_friend_point);
-		print("Total points: ".$point_by_introduce."<br/><br/>");
+		print("Total credits: ".$point_by_introduce."<br/><br/>");
 
 // By submit a question
-		print("<b>Points Earned By Submit A Question:</b><br/>
+		print("<b>Points Earned By Submitting Questions:</b><br/>
 				(".$submit_quiz_point." SQ credit per a question)<br/>");	
 		$query12 = "select count(*) from question where submitedby = '".$userid."'";
 		$result12 = pdo_query($query12);
 		$row_submit = $result12->fetch(PDO::FETCH_ASSOC);
 		$point_by_submission = $row_submit["count(*)"];
-		print($point_by_submission."<br/><br/>");
+		print("Total credits: ".$point_by_submission."<br/><br/>");
 	
 	?>
 </div>

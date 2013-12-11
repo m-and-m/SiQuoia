@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS subtopic;
 DROP TABLE IF EXISTS topic;
 DROP TABLE IF EXISTS subject;
 DROP TABLE IF EXISTS packet;
+DROP TABLE IF EXISTS referral;
 
 /*NOTE (user_profile):*/
 /*userid: user999999 (up to 10M)*/
@@ -106,4 +107,10 @@ CREATE TABLE purchase (
 	purchased_date DATE NOT NULL,
 	PRIMARY KEY(purchaseid),
 	FOREIGN KEY(userid) REFERENCES user_profile(userid) ON DELETE CASCADE
+);
+
+CREATE TABLE referral (
+	introducedby VARCHAR(7),
+	introduced VARCHAR(7),
+	PRIMARY KEY(introducedby, introduced)
 );

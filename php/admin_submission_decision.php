@@ -42,7 +42,7 @@ if(strcmp($decision, "ACCEPT") == 0) {
 		pdo_rollback();
 		return;
 	} 
-	print("Update a question and userscore Successfully!<br/>");
+	print("Update the question and the user score Successfully!<br/>");
 	pdo_commit();
 	
 } elseif(strcmp($decision, "REJECT") == 0) {
