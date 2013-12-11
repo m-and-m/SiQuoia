@@ -70,7 +70,7 @@ $user_item  = $result0->fetchAll();
 		print("<tr><td><input type='radio' name='qid' value='".$row["qid"]."'/></td>");
 
 		print("<td>".$row["qid"]."</td><td>".$row["question"]."</td><td>".$hasmedia."</td>");
-		print("<td>".$row["answer1"]."</td><td>".$row["answer3"]."</td><td>".$row["answer3"]."</td>");
+		print("<td>".$row["answer1"]."</td><td>".$row["answer2"]."</td><td>".$row["answer3"]."</td>");
 		print("<td>".$row["answer4"]."</td><td>".$row["correct_answer"]."</td><td>".$row["submitedby"]."</td></tr>");
 	}
 ?>	
