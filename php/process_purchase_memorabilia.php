@@ -47,7 +47,11 @@ $user_item  = $result0->fetch();
 	use_credit($total_amount_to_pay, $userid);	
 	
 //3) add purchase information in purchase
-	add_purchase_information($userid, "", $purchasetype, $total_amount_to_pay);
+	$i = 0;
+	while($i < $num_memora_purchase){
+		add_purchase_information($userid, "", $purchasetype, $total_amount_to_pay);
+		$i++;
+	}
 	
 	print("Now you have new ".$num_memora_purchase." memorabilia!<br/><br/>");
 	pdo_commit();
