@@ -1,4 +1,16 @@
 INSERT INTO question (qid, subtopicid, media, question, answer1, answer2, answer3, answer4, correct_answer, submitedby, evaluatedby) VALUES
+( "q6038", "st6", "q6038.mp3",
+ "What character is speaking?",
+ "Abraham DeLacey", "Thomas O'Malley", "Michael Rickman", "Matthew Crossman",
+ "2", "user6", NULL);
+
+INSERT INTO question (qid, subtopicid, media, question, answer1, answer2, answer3, answer4, correct_answer, submitedby, evaluatedby) VALUES
+( "q6039", "st6", "q6039.jpg",
+ "What does Thomas say Duchess\' eyes are like?",
+ "dazzling sapphires", "glittering gemstones", "glowing diamonds", "dull and boring",
+ "1", "user6", NULL);
+ 
+INSERT INTO question (qid, subtopicid, media, question, answer1, answer2, answer3, answer4, correct_answer, submitedby, evaluatedby) VALUES
 ( "q6030", "st6", "q6030.jpg",
  "Where does the story of the cartoon take place?",
  "London", "Paris", "Geneva", "Rome",
