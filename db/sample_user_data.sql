@@ -6,7 +6,7 @@ INSERT INTO user_profile (userid, username, useremail, isadmin, userpass, introd
 ("user4","duchess","duchess@gmail.com","1","a",null),
 ("user5","thomas o\'malley","thomas@gmail.com","1","a",null),
 ("user6","marie","marie@gmail.com","0","a",null),
-("user7","WTP","pooh@gmail.com","0","a","user6"),
+("user7","Winnie The Pooh","pooh@gmail.com","0","a","user6"),
 ("user8","eeyore","eeyore@gmail.com","0","a","user6");
 
 INSERT INTO user_data (userid, usercredit, userpoint, usedtrial) VALUES 
