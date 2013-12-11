@@ -1,0 +1,39 @@
+/* User Profile */
+- isadmin: 1 - admin, 0 - not admin
+| userid | username        | useremail          | isadmin |
++--------+-----------------+--------------------+---------+
+| user0  | admin           | admin              |       1 |
+| user1  | scatcat         | scatcat@gmail.com  |       0 |
+| user2  | berlioz         | berlioz@gmail.com  |       0 |
+| user3  | toulouse        | toulouse@gmail.com |       0 |
+| user4  | duchess         | duchess@gmail.com  |       1 |
+| user5  | thomas o'malley | thomas@gmail.com   |       1 |
+| user6  | marie           | marie@gmail.com    |       0 |
+| user7  | WTP             | pooh@gmail.com     |       0 | 
+| user8  | eeyore          | eeyore@gmail.com   |       0 | 
++--------+-----------------+--------------------+---------+
+
+/* Password */
+username - pass
+scatcat - trumpet
+berlioz - blackcat
+toulouse - browncat
+duchess - elecat
+thomas o\'malley - singercat
+marie - whitecat
+WTP - yellobear
+piglet - pinkpig
+eeyore - bluedonkey
+
+/* User Default Data */
+(userid, usercredit, userpoint, usedtrial) 
+—————————————————————
+("user0", "30", "8", "0"),
+("user1", "30", "60", "0"),
+("user2", "30", "13", "0"),
+("user3", "30", "32", "0"),
+("user4", "30", "43", "0"),
+("user5", "30", "8", "0"),
+("user6", "30", "75", "0"),
+("user7", "30", "100", "0"),
+("user8", "30", "53", "0");

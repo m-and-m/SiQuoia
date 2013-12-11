@@ -84,7 +84,7 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 		// trial and random quiz packet(questions are chosen from entire question
 		$purchasetype = "TRIAL";
 		$cost = $trial_packet_cost;
-		$query = "select qid from question order by rand() limit 20";		
+		$query = "select qid from question where evaluatedby='admin' order by rand() limit 20";		
 
 //		$packet_name = "random trial";
 		
@@ -139,8 +139,7 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 		$purchasetype = "MISCE";
 		$cost = $misc_packet_cost;
 
-		$query = "select qid from question 
-				  where (correct_count / use_count) < 50 order by rand() limit 20";
+		$query = "select qid from question where (correct_count / use_count) < 50 and evaluatedby='admin' order by rand() limit 20";
 				
 	} elseif(strcmp($quizid, "hard") == 0) {
 		// use question ranking >=50%
@@ -149,8 +148,7 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 		$purchasetype = "MISCE";
 		$cost = $misc_packet_cost;
 
-		$query = "select qid from question 
-				  where (correct_count / use_count) >= 50 order by rand() limit 20";		
+		$query = "select qid from question where (correct_count / use_count) >= 50 and evaluatedby='admin' order by rand() limit 20";		
 
 	} else {
 		print("Your choice is not available currently.<br/>");
