@@ -47,6 +47,10 @@
 	$result = mysqli_multi_query($connection, $data);
 	do {;} while (mysqli_next_result($connection));
     
+	$data = file_get_contents('purchase.sql');
+	$result = mysqli_multi_query($connection, $data);
+	do {;} while (mysqli_next_result($connection));
+
     foreach($userpasses as $key => $value) {
     
 	    $bcrypt_pass = password_hash($value, PASSWORD_BCRYPT, $options);
@@ -61,8 +65,6 @@
 	$result = mysqli_multi_query($connection, $data);
 	do {;} while (mysqli_next_result($connection));
 
-    //print("databases initialized..<br>");
-    
     //print("<a href='../html/splashpage.html>Go To SiQuoia</a><br>");
 	/*
 	 *make a data/result query for each .sql you need to load to db
