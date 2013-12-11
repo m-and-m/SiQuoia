@@ -288,5 +288,18 @@ function nummemora_availability($current_credit, $memora_cost) {
 	return $answer;
 } // nummemora_availability
 
+/* Get total number for a particular item
+Refere purchase item from populate_schema
+*/
+function get_total_purchase_item($item_type, $userid) {
+	$query1 = "select count(*) from purchase where userid='".$userid.
+			  "' and purchase_type='".$item_type."' group by purchase_type";
+	$result1 = pdo_query($query1);
+	$row_count = $result1->fetch(PDO::FETCH_ASSOC);
+	$item_count = $row_count["count(*)"];
+
+	return $item_count;
+} // get_total_purchase_item
+
 server_disconnect();
 ?>
