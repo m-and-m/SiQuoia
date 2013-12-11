@@ -25,10 +25,11 @@ if(strcmp($quiztype, "static_quiz") == 0) {
 	if($quizid == "p1") {
 		$purchasetype = "TRIAL";
 		$cost = $trial_packet_cost;
+	} else {
+		$purchasetype = "STATI";
+		$cost = $static_packet_cost;
 	}
 	
-	$purchasetype = "STATI";
-	$cost = $static_packet_cost;
 
 //1) get question set from packet 
 	$query0  = "select questionid_set from packet where packetid = '".$quizid."'";
@@ -158,7 +159,7 @@ elseif(strcmp($quiztype, "random_quiz") == 0) {
 
 	if($question_id == false) {
 		print("Currently the packet you selected is not available...<br/>");
-		print ("<a href='choose_quiz.html'>Go Back To Choose Quiz</a>");	
+		print ("<a href='choose_quiz.php'>Go Back To Choose Quiz</a>");	
 
 		return false;	
 	}

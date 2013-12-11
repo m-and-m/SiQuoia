@@ -81,8 +81,8 @@ CREATE TABLE packet (
 	packetid VARCHAR(7) NOT NULL,
 	p_name VARCHAR(30) NOT NULL,
 	branded VARCHAR(10),
-	brandlogo VARCHAR(30),
 	questionid_set TEXT,
+	brandlogo VARCHAR(30),
 	PRIMARY KEY(packetid)
 );
 
